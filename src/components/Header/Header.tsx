@@ -2,6 +2,7 @@ import "./header.scss";
 import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { FaEthereum } from "react-icons/fa";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
   return (
@@ -10,6 +11,7 @@ const Header = () => {
         <div className="logo">
           <MdOutlineRamenDining />
         </div>
+        <AiOutlineSearch className="search-icon" />
         <a>Swap</a>
         <a>Tokens</a>
         <a>Pool</a>
@@ -21,7 +23,7 @@ const Header = () => {
         <BiDotsHorizontalRounded className="dots-icon" />
         <div className="dropdown">
           <FaEthereum />
-          Ethereum
+          <span>Ethereum</span>
         </div>
         <button>Connect</button>
       </div>

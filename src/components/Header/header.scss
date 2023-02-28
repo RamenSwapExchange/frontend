@@ -15,9 +15,14 @@
     gap: 50px;
     width: 33%;
 
+    .search-icon {
+      display: none;
+    }
+
     .logo {
       font-size: 30px;
       font-weight: lighter;
+      @include flexCenter();
     }
 
     a {
@@ -78,6 +83,34 @@
 
       &:hover {
         color: #fd92cb;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    .header-left {
+      width: 50%;
+
+      .search-icon {
+        display: block;
+        font-size: 30px;
+      }
+
+      a {
+        display: none;
+      }
+    }
+    .header-mid {
+      display: none;
+    }
+    .header-right {
+      width: 50%;
+      .dropdown {
+        span {
+          display: none;
+        }
       }
     }
   }
