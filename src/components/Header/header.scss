@@ -1,0 +1,24 @@
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+}
+
+.header{
+    max-width: 100vw;
+    height: 72px;
+    padding: 20px 12px;
+    @include flexCenter();
+    justify-content: space-around
+}
+
+.header-left{
+    @include flexCenter();
+}
+
+.header-mid{
+    @include flexCenter();
+}
+
+.header-right{
+    @include flexCenter();
+}
