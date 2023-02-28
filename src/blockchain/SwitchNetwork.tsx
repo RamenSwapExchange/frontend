@@ -10,17 +10,19 @@ const SwitchNetwork = () => {
       {chain && <div>Connected to {chain.name}</div>}
 
       {chains.map((x) => (
-        <button
-          disabled={!switchNetwork || x.id === chain?.id}
-          key={x.id}
-          onClick={() => switchNetwork?.(x.id)}
-        >
-          {x.name}
-          {isLoading && pendingChainId === x.id && " (switching)"}
-        </button>
+        <div>
+          <button
+            disabled={!switchNetwork || x.id === chain?.id} //checking if already
+            key={x.id}
+            onClick={() => switchNetwork?.(x.id)}
+          >
+            {x.name}
+          </button>
+          {isLoading && pendingChainId === x.id && <div> switching</div>}
+        </div>
       ))}
 
-      <div>{error && error.message}</div>
+      {error && <b>{`Error: ${error.message}`}</b>}
     </>
   );
 };
