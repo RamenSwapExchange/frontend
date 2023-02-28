@@ -1,5 +1,6 @@
 import { useAccount, useConnect, useDisconnect, useEnsName } from "wagmi";
-import CallFunction from "./CallFunction";
+import GetTotalSupply from "./GetTotalSupply";
+import Mint from "./Mint";
 
 import SwitchNetwork from "./SwitchNetwork";
 
@@ -16,7 +17,8 @@ function Profile() {
         <div>{address}</div>
         <button onClick={disconnect as VoidFunction}>Disconnect</button>
         <SwitchNetwork />
-        <CallFunction />
+        <GetTotalSupply />
+        <Mint />
       </div>
     );
   }

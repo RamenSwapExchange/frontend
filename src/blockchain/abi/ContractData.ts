@@ -1,3 +1,5 @@
+export const address = "0x2C76adB0AE170f832011D25797993b45eAdCEbE2";
+
 export const abiERC20 = [
   {
     inputs: [],
