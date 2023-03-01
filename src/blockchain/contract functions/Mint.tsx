@@ -1,5 +1,5 @@
 import { usePrepareContractWrite, useContractWrite } from "wagmi";
-import { abiERC20, address } from "../abi/ContractData";
+import { abiERC20, address } from "../ContractData";
 
 const Mint = () => {
     const { config } = usePrepareContractWrite({

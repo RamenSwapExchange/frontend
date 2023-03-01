@@ -1,5 +1,5 @@
 import { useContractRead } from "wagmi";
-import { abiERC20, address } from "../abi/ContractData";
+import { abiERC20, address } from "../ContractData";
 
 const GetTotalSupply = () => {
   const { data, isError, isLoading }: { data: BigInt | undefined, isError: boolean, isLoading: boolean } = useContractRead({
