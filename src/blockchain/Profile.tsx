@@ -1,10 +1,6 @@
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import GetTotalSupply from "./contract functions/GetTotalSupply";
-import Mint from "./contract functions/Mint";
 
-import SwitchNetwork from "./SwitchNetwork";
-
-function Profile() {
+const Profile = () => {
   const { address, connector, isConnected } = useAccount();
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect();
@@ -15,12 +11,7 @@ function Profile() {
       <div>
         <div>Connected to {connector?.name}</div>
         <div>{address}</div>
-        <button onClick={disconnect as VoidFunction}>Disconnect</button>
-
-        <SwitchNetwork />
-        <GetTotalSupply />
-        <Mint />
-        
+        <button onClick={disconnect as VoidFunction}>Disconnect</button>        
       </div>
     );
   }
