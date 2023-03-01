@@ -24,7 +24,11 @@ const Header = () => {
           <BiDotsHorizontalRounded className="dots-icon" />
           <ul className="dropdown-menu">
             <li className="dropdown-item li">Vote in governance</li>
-            <li className="dropdown-item li">English</li>
+            <li className="dropdown-item li">View more analytics</li>
+            <li className="dropdown-item li info-item">Help center</li>
+            <li className="dropdown-item li info-item">Documentation</li>
+            <li className="dropdown-item li info-item">Feedback</li>
+            <li className="dropdown-item li info-item">Legal & Privacy</li>
           </ul>
         </div>
 
