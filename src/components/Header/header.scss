@@ -70,19 +70,16 @@
       }
     }
 
-    .dropdown:hover > .dropdown-menu {
-      display: block;
-      opacity: 1;
-    }
-
-    .dropdown:hover > .dropdown-menu {
+    .dropdown-menu-active {
+      display: block !important;
+      opacity: 1 !important;
       box-shadow: 0px 8px 24px 0px rgba(66, 68, 90, 1);
       padding: 10px;
     }
 
     .dropdown-menu {
       position: absolute;
-      top: 100%;
+      top: 160%;
       right: 0%;
       width: auto;
       display: flex;
@@ -129,7 +126,7 @@
 
     .dots-icon {
       color: $primary-dark;
-      font-size: 30px;
+      font-size: 28px;
       cursor: pointer;
       position: relative;
     }
