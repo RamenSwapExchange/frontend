@@ -64,7 +64,7 @@ const Header = () => {
         </div>
 
         <div className="dropdown" onClick={ethereumClicked}>
-          <FaEthereum className="dots-icon" />
+          <FaEthereum />
           <span>Ethereum</span>
           <ul
             className={
