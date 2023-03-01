@@ -1,8 +1,9 @@
 import "./header.scss";
 import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { FaEthereum } from "react-icons/fa";
-import { AiOutlineSearch } from "react-icons/ai";
+import { FaEthereum, FaScroll } from "react-icons/fa";
+import { AiOutlineSearch, AiOutlineTwitter, AiFillGithub } from "react-icons/ai";
+import { SiDiscord } from "react-icons/si"
 
 const Header = () => {
   return (
@@ -17,7 +18,7 @@ const Header = () => {
         <a>Pool</a>
       </div>
       <div className="header-mid">
-        <input type="text" placeholder="Search tokens" />    
+        <input type="text" placeholder="Search tokens" />
       </div>
       <div className="header-right">
         <div className="dropdown">
@@ -29,6 +30,7 @@ const Header = () => {
             <li className="dropdown-item li info-item">Documentation</li>
             <li className="dropdown-item li info-item">Feedback</li>
             <li className="dropdown-item li info-item">Legal & Privacy</li>
+            <li className="dropdown-item li icon-item "><SiDiscord style={{ margin: 0 }} /><AiOutlineTwitter /><AiFillGithub /></li>
           </ul>
         </div>
 
