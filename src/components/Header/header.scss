@@ -97,9 +97,15 @@
         transition: $transition;
         width: auto;
         border-radius: 10px;
+        @include flexCenter();
 
         &:hover {
           background-color: rgb(238, 238, 238);
+        }
+
+        .dropdown-icon{
+          font-size: 20px;
+          margin-right: 10px;
         }
       }
       .info-item {
@@ -114,9 +120,6 @@
         gap: 30px;
       }
 
-      svg {
-        margin-left: 10px;
-      }
     }
 
     .dropdown-menu > .dropdown-item {
