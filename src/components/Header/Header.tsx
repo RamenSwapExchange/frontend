@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import { SiDiscord } from "react-icons/si";
 import { useState } from "react";
-import { FiBarChart } from "react-icons/fi"
+import { FiBarChart } from "react-icons/fi";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
@@ -50,13 +50,27 @@ const Header = () => {
                 : "dropdown-menu"
             }
           >
-            <li className="dropdown-item li-hover">< FaScroll className="dropdown-icon" />Vote in governance</li>
-            <li className="dropdown-item li-hover">< FiBarChart className="dropdown-icon" />View more analytics</li>
+            <li className="dropdown-item li-hover">
+              <FaScroll className="dropdown-icon" />
+              Vote in governance
+            </li>
+            <li className="dropdown-item li-hover">
+              <FiBarChart className="dropdown-icon" />
+              View more analytics
+            </li>
             <div className="border-bottom"></div>
-            <li className="dropdown-item li-hover info-item">Help center</li>
-            <li className="dropdown-item li-hover info-item">Documentation</li>
-            <li className="dropdown-item li-hover info-item">Feedback</li>
-            <li className="dropdown-item li-hover info-item">Legal & Privacy</li>
+            <li className="dropdown-item li-hover info-item">
+              Help center &#8599;
+            </li>
+            <li className="dropdown-item li-hover info-item">
+              Documentation &#8599;
+            </li>
+            <li className="dropdown-item li-hover info-item">
+              Feedback &#8599;
+            </li>
+            <li className="dropdown-item li-hover info-item">
+              Legal & Privacy &#8599;
+            </li>
             <li className="dropdown-item li icon-item ">
               <SiDiscord style={{ margin: 0 }} />
               <AiOutlineTwitter />
