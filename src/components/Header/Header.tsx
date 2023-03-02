@@ -53,10 +53,10 @@ const Header = () => {
             <li className="dropdown-item li-hover">< FaScroll className="dropdown-icon" />Vote in governance</li>
             <li className="dropdown-item li-hover">< FiBarChart className="dropdown-icon" />View more analytics</li>
             <div className="border-bottom"></div>
-            <li className="dropdown-item li-hover info-item">Help center </li>
-            <li className="dropdown-item li-hover info-item">Documentation </li>
-            <li className="dropdown-item li-hover info-item">Feedback </li>
-            <li className="dropdown-item li-hover info-item">Legal & Privacy </li>
+            <li className="dropdown-item li-hover info-item">Help center 🡥</li>
+            <li className="dropdown-item li-hover info-item">Documentation 🡥</li>
+            <li className="dropdown-item li-hover info-item">Feedback 🡥</li>
+            <li className="dropdown-item li-hover info-item">Legal & Privacy 🡥</li>
             <li className="dropdown-item li icon-item ">
               <SiDiscord style={{ margin: 0 }} />
               <AiOutlineTwitter />
