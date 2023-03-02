@@ -64,10 +64,6 @@
       align-items: center;
       position: relative;
       font-size: 15px;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
 
     .dropdown-menu-active {
@@ -89,6 +85,12 @@
       border-radius: 10px;
       display: none;
 
+      .border-bottom {
+        border-bottom: 1px solid rgb(212, 212, 212);
+        width: 100%;
+        margin: 15px 0px;
+      }
+
       li {
         color: black;
         background-color: white;
@@ -99,30 +101,38 @@
         border-radius: 10px;
         @include flexCenter();
 
-        &:hover {
-          background-color: rgb(238, 238, 238);
-        }
-
-        .dropdown-icon{
+        .dropdown-icon {
           font-size: 20px;
           margin-right: 10px;
         }
       }
+
       .info-item {
         font-size: 13px;
         color: $primary-dark;
         display: flex;
+
       }
+
+      .li-hover:hover {
+        background-color: rgb(212, 212, 212);
+        cursor: pointer;
+      }
+
       .icon-item {
         font-size: 15px;
         color: $primary-dark;
         display: flex;
         gap: 30px;
+
+        svg{
+          cursor: pointer;
+        }
       }
 
     }
 
-    .dropdown-menu > .dropdown-item {
+    .dropdown-menu>.dropdown-item {
       transform-origin: top center;
       animation: translateX 100ms 60ms ease-in-out forwards;
     }
