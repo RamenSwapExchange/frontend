@@ -65,8 +65,15 @@
       position: relative;
       font-size: 15px;
 
-      &:hover {
+      .ethereum-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+
+      .ethereum-dropdown-box {
         cursor: pointer;
+        @include flexCenter();
       }
     }
 
@@ -89,6 +96,12 @@
       border-radius: 10px;
       display: none;
 
+      .border-bottom {
+        border-bottom: 1px solid rgb(212, 212, 212);
+        width: 100%;
+        margin: 15px 0px;
+      }
+
       li {
         color: black;
         background-color: white;
@@ -97,25 +110,34 @@
         transition: $transition;
         width: auto;
         border-radius: 10px;
+        @include flexCenter();
 
-        &:hover {
-          background-color: rgb(238, 238, 238);
+        .dropdown-icon {
+          font-size: 20px;
+          margin-right: 10px;
         }
       }
+
       .info-item {
         font-size: 13px;
         color: $primary-dark;
         display: flex;
       }
+
+      .li-hover:hover {
+        background-color: rgb(212, 212, 212);
+        cursor: pointer;
+      }
+
       .icon-item {
         font-size: 15px;
         color: $primary-dark;
         display: flex;
         gap: 30px;
-      }
 
-      svg {
-        margin-left: 10px;
+        svg {
+          cursor: pointer;
+        }
       }
     }
 
@@ -129,12 +151,6 @@
       font-size: 28px;
       cursor: pointer;
       position: relative;
-    }
-
-    .ethereum-dropdown {
-      @include flexCenter();
-      gap: 2px;
-      cursor: pointer;
     }
 
     button {
@@ -157,8 +173,10 @@
 
 @media only screen and (max-width: 768px) {
   .header {
+    display: flex;
+    justify-content: space-between;
     .header-left {
-      width: 50%;
+      max-width: 50vw;
 
       .search-icon {
         display: block;
@@ -174,17 +192,22 @@
       display: none;
     }
 
-    .header-right {
-      width: 50%;
+    .header-left {
+      gap: 30px;
+    }
 
-      .ethereum-dropdown {
+    .header-right {
+      max-width: 50vw;
+      gap: 30px;
+
+      .dropdown {
         span {
           display: none;
         }
-      }
 
-      .dropdown {
-        display: none;
+        .dropdown-menu {
+          right: -400%;
+        }
       }
     }
   }
