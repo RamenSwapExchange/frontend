@@ -58,16 +58,99 @@
     width: 33%;
     gap: 50px;
 
-    .dots-icon {
-      color: $primary-dark;
-      font-size: 30px;
-      cursor: pointer;
+    .dropdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      font-size: 15px;
+
+      .ethereum-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+
+      .ethereum-dropdown-box {
+        cursor: pointer;
+        @include flexCenter();
+      }
     }
 
-    .dropdown {
-      @include flexCenter();
-      gap: 2px;
+    .dropdown-menu-active {
+      display: block !important;
+      opacity: 1 !important;
+      box-shadow: 0px 8px 24px 0px rgba(66, 68, 90, 1);
+      padding: 10px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 160%;
+      right: 0%;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
+      overflow-x: auto;
+      border-radius: 10px;
+      display: none;
+
+      .border-bottom {
+        border-bottom: 1px solid rgb(212, 212, 212);
+        width: 100%;
+        margin: 15px 0px;
+      }
+
+      li {
+        color: black;
+        background-color: white;
+        font-size: 17px;
+        padding: 10px 20px;
+        transition: $transition;
+        width: auto;
+        border-radius: 10px;
+        @include flexCenter();
+
+        .dropdown-icon {
+          font-size: 20px;
+          margin-right: 10px;
+        }
+      }
+
+      .info-item {
+        font-size: 13px;
+        color: $primary-dark;
+        display: flex;
+      }
+
+      .li-hover:hover {
+        background-color: rgb(212, 212, 212);
+        cursor: pointer;
+      }
+
+      .icon-item {
+        font-size: 15px;
+        color: $primary-dark;
+        display: flex;
+        gap: 30px;
+
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .dropdown-menu > .dropdown-item {
+      transform-origin: top center;
+      animation: translateX 100ms 60ms ease-in-out forwards;
+    }
+
+    .dots-icon {
+      color: $primary-dark;
+      font-size: 28px;
       cursor: pointer;
+      position: relative;
     }
 
     button {
@@ -90,8 +173,10 @@
 
 @media only screen and (max-width: 768px) {
   .header {
+    display: flex;
+    justify-content: space-between;
     .header-left {
-      width: 50%;
+      max-width: 50vw;
 
       .search-icon {
         display: block;
@@ -102,14 +187,26 @@
         display: none;
       }
     }
+
     .header-mid {
       display: none;
     }
+
+    .header-left {
+      gap: 30px;
+    }
+
     .header-right {
-      width: 50%;
+      max-width: 50vw;
+      gap: 30px;
+
       .dropdown {
         span {
           display: none;
+        }
+
+        .dropdown-menu {
+          right: -400%;
         }
       }
     }
