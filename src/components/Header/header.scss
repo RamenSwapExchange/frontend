@@ -64,6 +64,17 @@
       align-items: center;
       position: relative;
       font-size: 15px;
+
+      .ethereum-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+
+      .ethereum-dropdown-box {
+        cursor: pointer;
+        @include flexCenter();
+      }
     }
 
     .dropdown-menu-active {
@@ -111,7 +122,6 @@
         font-size: 13px;
         color: $primary-dark;
         display: flex;
-
       }
 
       .li-hover:hover {
@@ -125,14 +135,13 @@
         display: flex;
         gap: 30px;
 
-        svg{
+        svg {
           cursor: pointer;
         }
       }
-
     }
 
-    .dropdown-menu>.dropdown-item {
+    .dropdown-menu > .dropdown-item {
       transform-origin: top center;
       animation: translateX 100ms 60ms ease-in-out forwards;
     }
@@ -142,12 +151,6 @@
       font-size: 28px;
       cursor: pointer;
       position: relative;
-    }
-
-    .ethereum-dropdown {
-      @include flexCenter();
-      gap: 2px;
-      cursor: pointer;
     }
 
     button {
@@ -170,8 +173,10 @@
 
 @media only screen and (max-width: 768px) {
   .header {
+    display: flex;
+    justify-content: space-between;
     .header-left {
-      width: 50%;
+      max-width: 50vw;
 
       .search-icon {
         display: block;
@@ -187,17 +192,22 @@
       display: none;
     }
 
-    .header-right {
-      width: 50%;
+    .header-left {
+      gap: 30px;
+    }
 
-      .ethereum-dropdown {
+    .header-right {
+      max-width: 50vw;
+      gap: 30px;
+
+      .dropdown {
         span {
           display: none;
         }
-      }
 
-      .dropdown {
-        display: none;
+        .dropdown-menu {
+          right: -400%;
+        }
       }
     }
   }
