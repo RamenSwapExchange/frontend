@@ -146,7 +146,9 @@ const Header = () => {
           </ul>
         </div>
         {address ? (
-          <button>{address}</button>
+          <button>
+            {address.replace(address.substring(7, address.length - 5), "...")}
+          </button>
         ) : (
           <button onClick={() => dispatch(showPopUp(true))}>Connect</button>
         )}

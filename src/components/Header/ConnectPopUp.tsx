@@ -1,52 +1,70 @@
 import "./connectPopUp.scss";
 
-import { useConnect } from "wagmi";
 import { useAppDispatch } from "../../redux/hooks";
 import { showPopUp } from "../../redux/appSlice";
-import { polygonMumbai } from "wagmi/chains";
+
+import { Connector, useConnect } from "wagmi";
+
 import { useState } from "react";
 
 const ConnectPopUp = () => {
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect({
-      chainId: polygonMumbai.id,
-    });
+  const { connect, connectors, isLoading } = useConnect({
+    onError(error) {
+      setError(error);
+    },
+    onSuccess() {
+      dispatch(showPopUp(false));
+    },
+  });
+  const [error, setError] = useState<Error | false>(false);
   const dispatch = useAppDispatch();
-  const [connector, setConnector] = useState<any>(undefined);
-
-  console.log(connectors[0]);
+  const [connector, setConnector] = useState<
+    Connector<any, any, any> | undefined
+  >(undefined);
 
   return (
     <div>
       <div className="background" onClick={() => dispatch(showPopUp(false))} />
-      <div className="popup">
-        <div>
-          <h4> Connect to Wallet </h4>
-          <button onClick={() => dispatch(showPopUp(false))}> X </button>
+
+      <div className="popUp-div">
+        <div className="title-div">
+          <h4 className="title-text"> Connect a wallet </h4>
+          <div
+            className="cancel-button"
+            onClick={() => dispatch(showPopUp(false))}
+          >
+            X
+          </div>
         </div>
+
         <div>
-          {isLoading && <b>{`Loading`}</b>}
-          {error && (
+          {isLoading ? (
+            <>
+              <b>{`Loading`}</b>
+            </>
+          ) : error ? (
             <div>
-              <b>{`Error: ${error.message}`}</b>
+              <b>{`Error`}</b>
               <button onClick={() => connect({ connector })}>try again</button>
+              <button onClick={() => setError(false)}>
+                back to wallet selection
+              </button>
             </div>
-          )}
-          {!isLoading &&
-            !error &&
+          ) : (
             connectors.map((connector) => (
-              <div key={connector.id}>
-                <button
-                  disabled={!connector.ready}
-                  onClick={() => {
-                    setConnector(connector);
-                    connect({ connector });
-                  }}
-                >
-                  {connector.name}
-                </button>
-              </div>
-            ))}
+              <button
+                className="connector-button"
+                disabled={!connector.ready}
+                key={connector.id}
+                onClick={() => {
+                  setConnector(connector);
+                  connect({ connector });
+                }}
+              >
+                {connector.name}
+              </button>
+            ))
+          )}
         </div>
       </div>
     </div>

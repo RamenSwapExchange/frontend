@@ -1,22 +1,7 @@
 @import "../../common/global.scss";
 
-.popup {
-  display: block;
-  position: fixed;
-
-  height: 180px;
-  width: 280px;
-
-  padding: 10px;
-
-  left: 50%;
-  top: 50%;
-
-  margin-top: -100px;
-  margin-left: -150px;
-  
-  background: #fff;
-  z-index: 20;
+@mixin flex {
+  display: flex;
 }
 
 .background {
@@ -26,11 +11,43 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: rgba(255, 0, 0, 0.2);;
+  background-color: black;
+  opacity: 0.5;
   z-index: 10;
 }
 
-.popup1 {
-  -webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+.popUp-div {
+  display: block;
+  position: fixed;
+
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+
+  height: 25%;
+  width: 25%;
+
+  padding: 10px;
+  
+  background: #fff;
+  z-index: 20;
+
+  .title-div {
+    @include flex();
+
+    justify-content: space-between;
+    margin: 20px;
+    .title-text {
+      
+    }
+    .cancel-button {
+      padding: 2.5px;
+      border: none;
+
+    }
+  }
+
+  .connector-button {
+    width: 100%;
+  }
 }
