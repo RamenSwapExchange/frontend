@@ -19,12 +19,14 @@ import celoIcon from "/images/Celo.svg";
 
 import { useAppDispatch } from "../../redux/hooks";
 import { showPopUp } from "../../redux/appSlice";
+import { useAccount } from "wagmi";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
   const [ethereumDropdownActive, setEthereumDropdownActive] =
     useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const { address, isConnecting, isDisconnected } = useAccount();
 
   function dotsClicked() {
     setDotsDropdownActive(!dotsDropdownActive);
@@ -143,8 +145,11 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
-        <button onClick={() => dispatch(showPopUp(true))}>Connect</button>
+        {address ? (
+          <button>{address}</button>
+        ) : (
+          <button onClick={() => dispatch(showPopUp(true))}>Connect</button>
+        )}
       </div>
     </div>
   );
