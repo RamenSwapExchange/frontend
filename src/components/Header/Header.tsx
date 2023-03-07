@@ -8,13 +8,15 @@ import {
   AiFillGithub,
 } from "react-icons/ai";
 import { SiDiscord } from "react-icons/si";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiBarChart } from "react-icons/fi";
 import ethereumIcon from "/images/Ethereum.png";
 import polygonIcon from "/images/Polygon.svg";
 import optymismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectPopUp, showPopUp } from "../../redux/appSlice";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
@@ -30,6 +32,15 @@ const Header = () => {
     setEthereumDropdownActive(!ethereumDropdownActive);
     setDotsDropdownActive(false);
   }
+
+  //example reducer
+  const popUp = useAppSelector(selectPopUp)
+  const dispatch = useAppDispatch()
+
+  dispatch(showPopUp(true))
+  console.log(popUp)
+
+
 
   return (
     <div className="header">
