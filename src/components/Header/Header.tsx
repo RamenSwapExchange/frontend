@@ -1,4 +1,5 @@
 import "./header.scss";
+
 import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { FaScroll } from "react-icons/fa";
@@ -15,13 +16,15 @@ import polygonIcon from "/images/Polygon.svg";
 import optymismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectPopUp, showPopUp } from "../../redux/appSlice";
+
+import { useAppDispatch } from "../../redux/hooks";
+import { showPopUp } from "../../redux/appSlice";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
   const [ethereumDropdownActive, setEthereumDropdownActive] =
     useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   function dotsClicked() {
     setDotsDropdownActive(!dotsDropdownActive);
@@ -32,15 +35,6 @@ const Header = () => {
     setEthereumDropdownActive(!ethereumDropdownActive);
     setDotsDropdownActive(false);
   }
-
-  //example reducer
-  const popUp = useAppSelector(selectPopUp)
-  const dispatch = useAppDispatch()
-
-  dispatch(showPopUp(true))
-  console.log(popUp)
-
-
 
   return (
     <div className="header">
@@ -150,7 +144,7 @@ const Header = () => {
           </ul>
         </div>
 
-        <button>Connect</button>
+        <button onClick={() => dispatch(showPopUp(true))}>Connect</button>
       </div>
     </div>
   );

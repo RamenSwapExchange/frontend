@@ -5,9 +5,16 @@ import Swap from "./components/Swap/Swap";
 import Pool from "./components/Pool/Pool";
 import Header from "./components/Header/Header";
 
+import { selectPopUp } from "./redux/appSlice";
+import { useAppSelector } from "./redux/hooks";
+import ConnectPopUp from "./components/Header/ConnectPopUp";
+
 const App = () => {
+  const isActivePopUp = useAppSelector(selectPopUp);
+
   return (
     <>
+      {isActivePopUp && <ConnectPopUp />}
 
       <Router>
         <Header></Header>
@@ -19,6 +26,6 @@ const App = () => {
       </Router>
     </>
   );
-}
+};
 
 export default App;
