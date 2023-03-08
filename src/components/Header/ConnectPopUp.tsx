@@ -29,54 +29,65 @@ const ConnectPopUp = () => {
       <div className="background" onClick={() => dispatch(showPopUp(false))} />
 
       <div className="popUp-div">
-        <div className="title-div">
-          <div className="title-text"> Connect a wallet </div>
-          <div
-            className="cancel-button"
-            onClick={() => dispatch(showPopUp(false))}
-          >
-            X
+        <>
+          <div className="title-div">
+            <div className="title-text">
+              {error ? "Error" : "Connect a wallet"}
+            </div>
+            <div
+              className="cancel-button"
+              onClick={() => dispatch(showPopUp(false))}
+            >
+              X
+            </div>
           </div>
-        </div>
-
+        </>
         {isLoading ? (
-          <div className="loading-div">
-            <span className="loading-img"></span>
-            <b className="loading-text">Loading...</b>
-          </div>
+          <>
+            <div className="loading-div">
+              <span className="loading-img"></span>
+              <b className="loading-text">Loading...</b>
+            </div>
+          </>
         ) : error ? (
-          <div className="error-div">
-            <BiErrorAlt className="error-img" />
-            <div className="error-text"> Error </div>
-            <button
-              className="error-tryAgain"
-              onClick={() => connect({ connector })}
-            >
-              Try again
-            </button>
-            <button
-              className="error-backToWallet"
-              onClick={() => setError(false)}
-            >
-              Back to wallet selection
-            </button>
-          </div>
-        ) : (
-          <div className="connectors-div">
-            {connectors.map((connector) => (
+          <>
+            <div className="error-div">
+              <BiErrorAlt className="error-img" />
               <button
-                className="connector-button"
-                disabled={!connector.ready}
-                key={connector.id}
+                className="error-tryAgain"
                 onClick={() => {
-                  setConnector(connector);
                   connect({ connector });
+                  setError(false);
                 }}
               >
-                {connector.name}
+                Try again
               </button>
-            ))}
-          </div>
+              <div
+                className="error-backToWallet"
+                onClick={() => setError(false)}
+              >
+                Back to wallet selection
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="connectors-div">
+              {connectors.map((connector) => (
+                <button
+                  className="connector-button"
+                  disabled={!connector.ready}
+                  key={connector.id}
+                  onClick={() => {
+                    setConnector(connector);
+                    connect({ connector });
+                  }}
+                >
+                  {connector.name}
+                </button>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -14,20 +14,22 @@
 
 .popUp-div {
   display: flex;
-
-  flex-direction: column;
   position: fixed;
 
+  flex-direction: column;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 
   height: 25%;
   width: 25%;
+  max-width: 450px;
+
+  background: #fff;
+  border-radius: 8px;
 
   padding: 10px;
 
-  background: #fff;
   z-index: 20;
 
   .title-div {
@@ -80,23 +82,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 4;
 
-    .error-text {
-      flex-grow: 2;
-    }
+    height: 100%;
 
     .error-img {
-      flex-grow: 2;
       width: 100px;
       height: 100px;
+
+      margin-bottom: 10px;
     }
 
     .error-tryAgain {
-      flex-grow: 1;
+      height: 20%;
+      width: 90%;
+
+      background-color: $light-pink;
+      border: 1px solid #d5d9d9;
+      border-radius: 10px;
     }
     .error-backToWallet {
-      flex-grow: 1;
+      width: 50%;
+      height: 20px;
+
+      margin-top: 15px;
+
+      font-size: 13px;
+      text-align: center;
+      cursor: pointer;
     }
   }
 
