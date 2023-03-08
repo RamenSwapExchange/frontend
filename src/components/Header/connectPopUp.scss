@@ -1,4 +1,4 @@
-@import "../../common/global.scss";
+@import '../../common/global.scss';
 
 .background {
   display: block;
@@ -32,9 +32,8 @@
 
   .title-div {
     display: flex;
-
     justify-content: space-between;
-    
+
     margin: 10px 20px;
     .title-text {
     }
@@ -52,7 +51,7 @@
     flex-grow: 4;
     row-gap: 20px;
 
-    .loader {
+    .loading-img {
       display: inline-block;
       box-sizing: border-box;
 
@@ -76,7 +75,48 @@
     }
   }
 
-  .connector-button {
-    width: 100%;
+  .error-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 4;
+
+    .error-text {
+      flex-grow: 2;
+    }
+
+    .error-img {
+      flex-grow: 2;
+      width: 100px;
+      height: 100px;
+    }
+
+    .error-tryAgain {
+      flex-grow: 1;
+    }
+    .error-backToWallet {
+      flex-grow: 1;
+    }
+  }
+
+  .connectors-div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    margin: 10px;
+    .connector-button {
+      width: 100%;
+      padding: 10px;
+
+      text-decoration: none;
+
+      background-color: $light-pink;
+
+      border: 1px solid #d5d9d9;
+      border-radius: 10px;
+      box-shadow: rgba(213, 217, 217, 0.5) 0 5px 10px 0;
+    }
   }
 }

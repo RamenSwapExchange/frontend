@@ -1,5 +1,7 @@
 import "./connectPopUp.scss";
 
+import { BiErrorAlt } from "react-icons/bi";
+
 import { useAppDispatch } from "../../redux/hooks";
 import { showPopUp } from "../../redux/appSlice";
 
@@ -39,31 +41,42 @@ const ConnectPopUp = () => {
 
         {isLoading ? (
           <div className="loading-div">
-            <span className="loader"></span>
+            <span className="loading-img"></span>
             <b className="loading-text">Loading...</b>
           </div>
         ) : error ? (
-          <div>
-            <div> Error </div>
-            <button onClick={() => connect({ connector })}> Try again </button>
-            <button onClick={() => setError(false)}>
+          <div className="error-div">
+            <BiErrorAlt className="error-img" />
+            <div className="error-text"> Error </div>
+            <button
+              className="error-tryAgain"
+              onClick={() => connect({ connector })}
+            >
+              Try again
+            </button>
+            <button
+              className="error-backToWallet"
+              onClick={() => setError(false)}
+            >
               Back to wallet selection
             </button>
           </div>
         ) : (
-          connectors.map((connector) => (
-            <button
-              className="connector-button"
-              disabled={!connector.ready}
-              key={connector.id}
-              onClick={() => {
-                setConnector(connector);
-                connect({ connector });
-              }}
-            >
-              {connector.name}
-            </button>
-          ))
+          <div className="connectors-div">
+            {connectors.map((connector) => (
+              <button
+                className="connector-button"
+                disabled={!connector.ready}
+                key={connector.id}
+                onClick={() => {
+                  setConnector(connector);
+                  connect({ connector });
+                }}
+              >
+                {connector.name}
+              </button>
+            ))}
+          </div>
         )}
       </div>
     </div>
