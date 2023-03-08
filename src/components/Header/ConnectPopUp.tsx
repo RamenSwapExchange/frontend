@@ -28,7 +28,7 @@ const ConnectPopUp = () => {
 
       <div className="popUp-div">
         <div className="title-div">
-          <h4 className="title-text"> Connect a wallet </h4>
+          <div className="title-text"> Connect a wallet </div>
           <div
             className="cancel-button"
             onClick={() => dispatch(showPopUp(false))}
@@ -37,35 +37,34 @@ const ConnectPopUp = () => {
           </div>
         </div>
 
-        <div>
-          {isLoading ? (
-            <>
-              <b>{`Loading`}</b>
-            </>
-          ) : error ? (
-            <div>
-              <b>{`Error`}</b>
-              <button onClick={() => connect({ connector })}>try again</button>
-              <button onClick={() => setError(false)}>
-                back to wallet selection
-              </button>
-            </div>
-          ) : (
-            connectors.map((connector) => (
-              <button
-                className="connector-button"
-                disabled={!connector.ready}
-                key={connector.id}
-                onClick={() => {
-                  setConnector(connector);
-                  connect({ connector });
-                }}
-              >
-                {connector.name}
-              </button>
-            ))
-          )}
-        </div>
+        {isLoading ? (
+          <div className="loading-div">
+            <span className="loader"></span>
+            <b className="loading-text">Loading...</b>
+          </div>
+        ) : error ? (
+          <div>
+            <div> Error </div>
+            <button onClick={() => connect({ connector })}> Try again </button>
+            <button onClick={() => setError(false)}>
+              Back to wallet selection
+            </button>
+          </div>
+        ) : (
+          connectors.map((connector) => (
+            <button
+              className="connector-button"
+              disabled={!connector.ready}
+              key={connector.id}
+              onClick={() => {
+                setConnector(connector);
+                connect({ connector });
+              }}
+            >
+              {connector.name}
+            </button>
+          ))
+        )}
       </div>
     </div>
   );

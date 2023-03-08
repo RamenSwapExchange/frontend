@@ -1,9 +1,5 @@
 @import "../../common/global.scss";
 
-@mixin flex {
-  display: flex;
-}
-
 .background {
   display: block;
   position: fixed;
@@ -17,33 +13,66 @@
 }
 
 .popUp-div {
-  display: block;
+  display: flex;
+
+  flex-direction: column;
   position: fixed;
 
   left: 50%;
-  top:50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 
   height: 25%;
   width: 25%;
 
   padding: 10px;
-  
+
   background: #fff;
   z-index: 20;
 
   .title-div {
-    @include flex();
+    display: flex;
 
     justify-content: space-between;
-    margin: 20px;
+    
+    margin: 10px 20px;
     .title-text {
-      
     }
     .cancel-button {
-      padding: 2.5px;
-      border: none;
+      cursor: pointer;
+    }
+  }
 
+  .loading-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    flex-grow: 4;
+    row-gap: 20px;
+
+    .loader {
+      display: inline-block;
+      box-sizing: border-box;
+
+      width: 48px;
+      height: 48px;
+
+      border: 5px solid black;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
 
