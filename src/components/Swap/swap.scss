@@ -1,3 +1,5 @@
+@import "../../common/global.scss";
+
 .swap-container{
     width: 100vw;
     display: flex;
@@ -9,5 +11,45 @@
         margin-top: 100px;
         padding: 8px;
         border-radius: 16px;
+        background-color: white;
+
+        .swap-top{
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .settings-icon{
+                color: $primary-dark;
+                font-size: 20px;
+                transition: $transition;
+
+                &:hover{
+                    cursor: pointer;
+                    color: #929396;;
+                }
+            }
+        }
+
+        .single-swap{
+            background-color: #f8f4fc;
+            padding: 16px;
+            border-radius: 12px;
+            width: 100%;
+            box-sizing: border-box;
+
+            &:focus-within{
+                border: 1px solid #d6d3d8;
+            }
+            
+            .swap-input{   
+                font-size: 36px;
+                width: 100%;
+                outline: none;
+                border: none;
+                background-color: #f8f4fc;
+            }
+        }
+        
     }
 }
