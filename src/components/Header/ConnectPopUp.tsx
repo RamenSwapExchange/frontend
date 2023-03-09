@@ -1,6 +1,7 @@
 import "./connectPopUp.scss";
 
 import { BiErrorAlt } from "react-icons/bi";
+import logoMetaMask from "./images/logoMetaMask.png";
 
 import { useAppDispatch } from "../../redux/hooks";
 import { showPopUp } from "../../redux/appSlice";
@@ -32,7 +33,7 @@ const ConnectPopUp = () => {
         <>
           <div className="title-div">
             <div className="title-text">
-              {error ? "Error" : "Connect a wallet"}
+              {(isLoading || error) ? "" : "Connect a wallet"}
             </div>
             <div
               className="cancel-button"
@@ -45,14 +46,24 @@ const ConnectPopUp = () => {
         {isLoading ? (
           <>
             <div className="loading-div">
-              <span className="loading-img"></span>
-              <b className="loading-text">Loading...</b>
+              <div className="loading-inDiv">
+                <span className="loading-img"></span>
+                <div className="loading-headear">Waiting to connect</div>
+                <div className="loading-text">
+                  Confirm this connection in your wallet
+                </div>
+              </div>
             </div>
           </>
         ) : error ? (
           <>
             <div className="error-div">
               <BiErrorAlt className="error-img" />
+              <b>Error connecting</b>
+              <div className="error-text">
+                The connection attempt failed. Please click try again and follow
+                the steps to connect in your wallet.
+              </div>
               <button
                 className="error-tryAgain"
                 onClick={() => {
@@ -83,7 +94,11 @@ const ConnectPopUp = () => {
                     connect({ connector });
                   }}
                 >
-                  {connector.name}
+                  <img
+                    className="connector-logo"
+                    src={connector.name == "MetaMask" ? logoMetaMask : ""}
+                  />
+                  <div className="connector-text">{connector.name}</div>
                 </button>
               ))}
             </div>
