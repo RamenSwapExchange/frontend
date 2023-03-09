@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { FiBarChart } from "react-icons/fi";
 import ethereumIcon from "/images/Ethereum.png";
 import polygonIcon from "/images/Polygon.svg";
-import optymismIcon from "/images/Optymism.svg";
+import optimismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
 
@@ -22,6 +22,8 @@ import { showPopUp } from "../../redux/appSlice";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
+  const [chosenIcon, setChosenIcon] = useState<string>(ethereumIcon);
+  const [chosenText, setChosenText] = useState<string>("Ethereum");
   const [ethereumDropdownActive, setEthereumDropdownActive] =
     useState<boolean>(false);
   const dispatch = useAppDispatch();
@@ -34,6 +36,31 @@ const Header = () => {
   function ethereumClicked() {
     setEthereumDropdownActive(!ethereumDropdownActive);
     setDotsDropdownActive(false);
+  }
+
+  function chooseOption(option: string) {
+    switch (option) {
+      case "ethereum":
+        setChosenIcon(ethereumIcon)
+        setChosenText("Ethereum")
+        break;
+      case "polygon":
+        setChosenIcon(polygonIcon)
+        setChosenText("Polygon")
+        break;
+      case "optimism":
+        setChosenIcon(optimismIcon)
+        setChosenText("Optimism")
+        break;
+      case "arbitrum":
+        setChosenIcon(arbitrumIcon)
+        setChosenText("Arbitrum")
+        break;
+      case "celo":
+        setChosenIcon(celoIcon)
+        setChosenText("Celo")
+        break;
+    }
   }
 
   return (
@@ -92,11 +119,11 @@ const Header = () => {
         <div className="dropdown" onClick={ethereumClicked}>
           <div className="ethereum-dropdown-box">
             <img
-              src={ethereumIcon}
+              src={chosenIcon}
               alt="ethereum-icon"
               className="ethereum-icon"
             />
-            <span>Ethereum</span>
+            <span>{chosenText}</span>
           </div>
           <ul
             className={
@@ -105,7 +132,7 @@ const Header = () => {
                 : "dropdown-menu"
             }
           >
-            <li className="dropdown-item li li-hover">
+            <li className="dropdown-item li li-hover" onClick={() => chooseOption("ethereum")}>
               <img
                 src={ethereumIcon}
                 alt="ethereum-icon"
@@ -113,7 +140,7 @@ const Header = () => {
               />
               Ethereum
             </li>
-            <li className="dropdown-item li li-hover">
+            <li className="dropdown-item li li-hover" onClick={() => chooseOption("polygon")}>
               <img
                 src={polygonIcon}
                 alt="polygon-icon"
@@ -121,15 +148,15 @@ const Header = () => {
               />
               Polygon
             </li>
-            <li className="dropdown-item li li-hover">
+            <li className="dropdown-item li li-hover" onClick={() => chooseOption("optimism")}>
               <img
-                src={optymismIcon}
+                src={optimismIcon}
                 alt="optymism-icon"
                 className="ethereum-icon"
               />
               Optimism
             </li>
-            <li className="dropdown-item li li-hover">
+            <li className="dropdown-item li li-hover" onClick={() => chooseOption("arbitrum")}>
               <img
                 src={arbitrumIcon}
                 alt="arbitrum-icon"
@@ -137,7 +164,7 @@ const Header = () => {
               />
               Arbitrum
             </li>
-            <li className="dropdown-item li li-hover">
+            <li className="dropdown-item li li-hover" onClick={() => chooseOption("celo")}>
               <img src={celoIcon} alt="celo-icon" className="ethereum-icon" />
               Celo
             </li>
