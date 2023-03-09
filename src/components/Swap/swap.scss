@@ -1,0 +1,13 @@
+.swap-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    .swap-box{
+        width: 25vw;
+        border: 1px solid rgb(210, 217, 238);
+        margin-top: 100px;
+        padding: 8px;
+        border-radius: 16px;
+    }
+}
