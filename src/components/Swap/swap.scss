@@ -96,3 +96,27 @@ $gray-hover: #929396;
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .swap-container {
+    .swap-box {
+      width: 40vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .swap-container {
+    .swap-box {
+      width: 50vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .swap-container {
+    .swap-box {
+      width: 90vw;
+    }
+  }
+}
