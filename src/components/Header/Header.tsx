@@ -71,14 +71,14 @@ const Header = () => {
           <MdOutlineRamenDining />
         </div>
         <AiOutlineSearch className="search-icon" />
-        <Link to="/">
-          <a>Swap</a>
+        <Link to="/" className="link">
+          Swap
         </Link>
-        <Link to="/tokens">
-          <a>Tokens</a>
+        <Link to="/tokens" className="link">
+          Tokens
         </Link>
-        <Link to="/pool">
-          <a>Pool</a>
+        <Link to="/pool" className="link">
+          Pool
         </Link>
       </div>
       <div className="header-mid">

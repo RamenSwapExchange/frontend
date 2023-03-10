@@ -25,9 +25,14 @@
       @include flexCenter();
     }
 
-    a {
+    .link {
       color: $primary-dark;
       cursor: pointer;
+      text-decoration: none;
+
+      &:focus {
+        color: black;
+      }
     }
   }
 
@@ -172,7 +177,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 964px) {
   .header {
     display: flex;
     justify-content: space-between;
@@ -184,7 +189,7 @@
         font-size: 30px;
       }
 
-      a {
+      .link {
         display: none;
       }
     }
