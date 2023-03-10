@@ -1,4 +1,4 @@
-@import "../../common/global.scss";
+@import '../../common/global.scss';
 
 @mixin flexCenter {
   display: flex;
@@ -151,22 +151,6 @@
       font-size: 28px;
       cursor: pointer;
       position: relative;
-    }
-
-    button {
-      border-radius: 9999px;
-      padding: 10px 12px;
-      font-weight: bold;
-      font-size: 16px;
-      color: $dark-pink;
-      border: none;
-      background-color: $light-pink;
-      cursor: pointer;
-      transition: $transition;
-
-      &:hover {
-        color: #fd92cb;
-      }
     }
   }
 }

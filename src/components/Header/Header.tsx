@@ -17,16 +17,12 @@ import optymismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
 
-import { useAppDispatch } from "../../redux/hooks";
-import { showPopUp } from "../../redux/appSlice";
-import { useAccount } from "wagmi";
+import ConnectButton from "./ConnectButton";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
   const [ethereumDropdownActive, setEthereumDropdownActive] =
     useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const { address, isConnecting, isDisconnected } = useAccount();
 
   function dotsClicked() {
     setDotsDropdownActive(!dotsDropdownActive);
@@ -145,13 +141,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        {address ? (
-          <button>
-            {address.replace(address.substring(7, address.length - 5), "...")}
-          </button>
-        ) : (
-          <button onClick={() => dispatch(showPopUp(true))}>Connect</button>
-        )}
+        <ConnectButton />
       </div>
     </div>
   );

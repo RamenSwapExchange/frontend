@@ -1,0 +1,39 @@
+@import '../../common/global.scss';
+
+.button-connect {
+  display: flex;
+    align-items: center;
+
+  padding: 10px 12px;
+
+  color: $dark-pink;
+  font-weight: bold;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 9999px;
+  background-color: $light-pink;
+  transition: $transition;
+
+  cursor: pointer;
+  &:hover {
+    color: #fd92cb;
+  }
+
+  .button-text {
+    
+  }
+
+  .button-line {
+    height: 20px;
+    width: 1.5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: $dark-pink;
+  }
+
+  .button-arrowDown {
+
+    height: 20px;
+  }
+}
