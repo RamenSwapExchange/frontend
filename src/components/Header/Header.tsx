@@ -19,6 +19,7 @@ import celoIcon from "/images/Celo.svg";
 
 import { useAppDispatch } from "../../redux/hooks";
 import { showPopUp } from "../../redux/appSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
@@ -41,24 +42,24 @@ const Header = () => {
   function chooseOption(option: string) {
     switch (option) {
       case "ethereum":
-        setChosenIcon(ethereumIcon)
-        setChosenText("Ethereum")
+        setChosenIcon(ethereumIcon);
+        setChosenText("Ethereum");
         break;
       case "polygon":
-        setChosenIcon(polygonIcon)
-        setChosenText("Polygon")
+        setChosenIcon(polygonIcon);
+        setChosenText("Polygon");
         break;
       case "optimism":
-        setChosenIcon(optimismIcon)
-        setChosenText("Optimism")
+        setChosenIcon(optimismIcon);
+        setChosenText("Optimism");
         break;
       case "arbitrum":
-        setChosenIcon(arbitrumIcon)
-        setChosenText("Arbitrum")
+        setChosenIcon(arbitrumIcon);
+        setChosenText("Arbitrum");
         break;
       case "celo":
-        setChosenIcon(celoIcon)
-        setChosenText("Celo")
+        setChosenIcon(celoIcon);
+        setChosenText("Celo");
         break;
     }
   }
@@ -70,9 +71,15 @@ const Header = () => {
           <MdOutlineRamenDining />
         </div>
         <AiOutlineSearch className="search-icon" />
-        <a>Swap</a>
-        <a>Tokens</a>
-        <a>Pool</a>
+        <Link to="/">
+          <a>Swap</a>
+        </Link>
+        <Link to="/tokens">
+          <a>Tokens</a>
+        </Link>
+        <Link to="/pool">
+          <a>Pool</a>
+        </Link>
       </div>
       <div className="header-mid">
         <input type="text" placeholder="Search tokens" />
@@ -132,7 +139,10 @@ const Header = () => {
                 : "dropdown-menu"
             }
           >
-            <li className="dropdown-item li li-hover" onClick={() => chooseOption("ethereum")}>
+            <li
+              className="dropdown-item li li-hover"
+              onClick={() => chooseOption("ethereum")}
+            >
               <img
                 src={ethereumIcon}
                 alt="ethereum-icon"
@@ -140,7 +150,10 @@ const Header = () => {
               />
               Ethereum
             </li>
-            <li className="dropdown-item li li-hover" onClick={() => chooseOption("polygon")}>
+            <li
+              className="dropdown-item li li-hover"
+              onClick={() => chooseOption("polygon")}
+            >
               <img
                 src={polygonIcon}
                 alt="polygon-icon"
@@ -148,7 +161,10 @@ const Header = () => {
               />
               Polygon
             </li>
-            <li className="dropdown-item li li-hover" onClick={() => chooseOption("optimism")}>
+            <li
+              className="dropdown-item li li-hover"
+              onClick={() => chooseOption("optimism")}
+            >
               <img
                 src={optimismIcon}
                 alt="optymism-icon"
@@ -156,7 +172,10 @@ const Header = () => {
               />
               Optimism
             </li>
-            <li className="dropdown-item li li-hover" onClick={() => chooseOption("arbitrum")}>
+            <li
+              className="dropdown-item li li-hover"
+              onClick={() => chooseOption("arbitrum")}
+            >
               <img
                 src={arbitrumIcon}
                 alt="arbitrum-icon"
@@ -164,7 +183,10 @@ const Header = () => {
               />
               Arbitrum
             </li>
-            <li className="dropdown-item li li-hover" onClick={() => chooseOption("celo")}>
+            <li
+              className="dropdown-item li li-hover"
+              onClick={() => chooseOption("celo")}
+            >
               <img src={celoIcon} alt="celo-icon" className="ethereum-icon" />
               Celo
             </li>
