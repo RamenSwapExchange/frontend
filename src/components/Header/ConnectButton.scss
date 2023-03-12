@@ -1,58 +1,71 @@
 @import '../../common/global.scss';
 
-.button-with-dropdown {
+.button-connect {
+  display: flex;
   position: relative;
+  align-items: center;
+  justify-content: space-around;
 
-  .button-connect {
+  width: auto;
+  height: 32px;
+
+  color: $dark-pink;
+  font-weight: bold;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 9999px;
+  background-color: $light-pink;
+  transition: $transition;
+
+  cursor: pointer;
+
+  .button-text {
+    align-self: center;
+    justify-self: center;
+
+    padding-left: 10px;
+    padding-right: 5px;
+  }
+
+  .button-text:hover {
+    filter: brightness(80%);
+    transition: .4s;
+  }
+
+  .button-line {
+    height: 20px;
+    width: 1.5px;
+    background-color: $dark-pink;
+  }
+
+  .button-div-icon {
     display: flex;
     align-items: center;
 
-    max-height: 170px;
-    padding: 10px 12px;
+    padding-left: 5px;
+    padding-right: 10px;
 
-    color: $dark-pink;
-    font-weight: bold;
-    font-size: 16px;
+    height: 100%;
+    width: 100%;
 
-    border: none;
-    border-radius: 9999px;
-    background-color: $light-pink;
-    transition: $transition;
-
-    cursor: pointer;
-    &:hover {
-      color: #fd92cb;
-    }
-
-    .button-text {
-      align-self: flex-end;
-    }
-
-    .button-line {
-      height: 20px;
-      width: 1.5px;
-      margin-left: 7px;
-      margin-right: 7px;
-      background-color: $dark-pink;
-    }
-
-    .button-arrowDown {
+    .button-icon-arrow {
       filter: invert(33%) sepia(95%) saturate(7431%) hue-rotate(319deg)
         brightness(104%) contrast(97%);
       height: 15px;
     }
   }
+}
+.button-connect:hover {
+  box-shadow: 0px 0px 0px 1px black inset;
+}
 
-  .dropdown-connect {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
+.dropdown-connect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 
-    padding: 10px;
-    border: solid black 1px;
-  }
-  .dropdown-connect:hover {
-    background-color: gray;
-  }
+  padding: 10px;
+  border: solid black 1px;
 }
