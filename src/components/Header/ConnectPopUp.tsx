@@ -25,6 +25,10 @@ const ConnectPopUp = () => {
     Connector<any, any, any> | undefined
   >(undefined);
 
+  const connectorOnClick = () => {
+    //TODO
+  };
+
   return (
     <div>
       <div className="background" onClick={() => dispatch(showPopUp(false))} />
@@ -33,7 +37,7 @@ const ConnectPopUp = () => {
         <>
           <div className="title-div">
             <div className="title-text">
-              {(isLoading || error) ? "" : "Connect a wallet"}
+              {isLoading || error ? "" : "Connect a wallet"}
             </div>
             <div
               className="cancel-button"
@@ -66,10 +70,7 @@ const ConnectPopUp = () => {
               </div>
               <button
                 className="error-tryAgain"
-                onClick={() => {
-                  connect({ connector });
-                  setError(false);
-                }}
+                onClick={() => connectorOnClick()}
               >
                 Try again
               </button>
@@ -87,7 +88,6 @@ const ConnectPopUp = () => {
               {connectors.map((connector) => (
                 <button
                   className="connector-button"
-                  disabled={!connector.ready}
                   key={connector.id}
                   onClick={() => {
                     setConnector(connector);
@@ -98,7 +98,9 @@ const ConnectPopUp = () => {
                     className="connector-logo"
                     src={connector.name == "MetaMask" ? logoMetaMask : ""}
                   />
-                  <div className="connector-text">{connector.name}</div>
+                  <div className="connector-text">
+                    {!connector.ready && "Install "} {connector.name}
+                  </div>
                 </button>
               ))}
             </div>
