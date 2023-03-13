@@ -40,11 +40,8 @@
 
   .title-div {
     display: flex;
-    justify-content: space-between;
-
     margin: 10px 20px;
-    .title-text {
-    }
+    justify-content: flex-end;
     .cancel-button {
       cursor: pointer;
     }
