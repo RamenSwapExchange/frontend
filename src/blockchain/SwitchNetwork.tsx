@@ -12,7 +12,7 @@ const SwitchNetwork = () => {
       {chains.map((x) => (
         <div key={x.id}>
           <button
-            disabled={!switchNetwork || x.id === chain?.id} //checking if already  
+            disabled={!switchNetwork || x.id === chain?.id} //checking if already
             onClick={() => switchNetwork?.(x.id)}
           >
             {x.name}
