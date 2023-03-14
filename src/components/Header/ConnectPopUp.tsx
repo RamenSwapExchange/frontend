@@ -2,20 +2,21 @@ import "./connectPopUp.scss";
 import { BiErrorAlt } from "react-icons/bi";
 
 import { useEffect } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { showPopUp } from "../../redux/appSlice";
 
 import { useConnect } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
-const ConnectPopUp = () => {
+interface IConnectPopUp {
+  showPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ConnectPopUp = ({ showPopUp }: IConnectPopUp) => {
   const { connect, isLoading, isError, connectors } = useConnect({
     connector: new MetaMaskConnector({}),
     onSuccess() {
-      dispatch(showPopUp(false));
+      showPopUp(false);
     },
   });
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     connect();
@@ -23,15 +24,13 @@ const ConnectPopUp = () => {
   }, []);
 
   return (
-    <div>
-      <div className="background" onClick={() => dispatch(showPopUp(false))} />
+    <div className="popUp-main-div">
+      <div className="background" onClick={() => showPopUp(false)} />
 
       <div className="popUp-div">
+
         <div className="title-div">
-          <div
-            className="cancel-button"
-            onClick={() => dispatch(showPopUp(false))}
-          >
+          <div className="cancel-button" onClick={() => showPopUp(false)}>
             X
           </div>
         </div>
@@ -62,6 +61,7 @@ const ConnectPopUp = () => {
                   </button>
                 </>
               ) : (
+                // metamask not found
                 <>
                   <div className="error-text" />
                   <button
