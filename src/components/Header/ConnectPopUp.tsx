@@ -13,7 +13,7 @@ const ConnectPopUp = () => {
 
   return (
     <div>
-      <div className="background" onClick={() => dispatch(showPopUp(false))}/>
+      <div className="background" onClick={() => dispatch(showPopUp(false))} />
       <div className="popup">
         {connectors.map((connector) => (
           <div key={connector.id}>
