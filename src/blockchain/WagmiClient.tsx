@@ -11,7 +11,9 @@ const { chains, provider, webSocketProvider } = configureChains(
 
 const client = createClient({
   autoConnect: true,
-  connectors: [new MetaMaskConnector({ chains })],
+  connectors: [
+    new MetaMaskConnector({ chains }),
+  ],
   provider,
   webSocketProvider,
 });

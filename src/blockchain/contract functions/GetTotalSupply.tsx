@@ -1,5 +1,5 @@
 import { useContractRead } from "wagmi";
-import { abiERC20, address } from "../ContractData";
+import { abiERC20, address } from "../abi/ContractData";
 
 const GetTotalSupply = () => {
   const {
@@ -12,6 +12,9 @@ const GetTotalSupply = () => {
       abi: abiERC20,
       functionName: "totalSupply",
       watch: true,
+      onError(err) {
+        console.log(err);
+      },
     });
 
   return (
@@ -22,6 +25,7 @@ const GetTotalSupply = () => {
       ) : (
         <div> {data?.toString()} </div>
       )}
+      {isError && <div> error </div>}
     </div>
   );
 };

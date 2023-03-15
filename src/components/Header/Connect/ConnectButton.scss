@@ -1,0 +1,80 @@
+@import "../../../common/global.scss";
+
+.button-connect {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
+
+  width: auto;
+  height: 32px;
+
+  color: $dark-pink;
+  font-weight: bold;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 9999px;
+  background-color: $light-pink;
+  transition: $transition;
+
+  cursor: pointer;
+
+  .button-text {
+    align-self: center;
+    justify-self: center;
+
+    padding-left: 10px;
+    padding-right: 5px;
+  }
+
+  .button-text:hover {
+    filter: brightness(80%);
+    transition: .4s;
+  }
+
+  .button-line {
+    height: 20px;
+    width: 1.5px;
+    background-color: $dark-pink;
+  }
+
+  .button-div-icon {
+    display: flex;
+    align-items: center;
+
+    padding-left: 5px;
+    padding-right: 10px;
+
+    height: 100%;
+    width: 100%;
+
+    .button-icon-arrow {
+      filter: invert(33%) sepia(95%) saturate(7431%) hue-rotate(319deg)
+        brightness(104%) contrast(97%);
+      height: 15px;
+    }
+  }
+}
+.button-connect:hover {
+  box-shadow: 0px 0px 0px 1px black inset;
+}
+
+.dropdown-connect {
+  position: absolute;
+  top: 140%;
+  right: 0%;
+  
+  display: flex;
+  flex-direction: column;
+
+  opacity: 1;
+  box-shadow: 0px 8px 24px 0px rgba(66, 68, 90, 1);
+  padding: 10px;
+
+  width: auto;
+
+  white-space: nowrap;
+  overflow-x: auto;
+  border-radius: 10px;
+}

@@ -10,21 +10,15 @@ import { useAppSelector } from "./redux/hooks";
 import ConnectPopUp from "./components/Header/ConnectPopUp";
 
 const App = () => {
-  const isActivePopUp = useAppSelector(selectPopUp);
-
   return (
-    <>
-      {isActivePopUp && <ConnectPopUp />}
-
-      <Router>
-        <Header></Header>
-        <Routes>
-          <Route path="/" element={<Swap />}></Route>
-          <Route path="/tokens" element={<Tokens />}></Route>
-          <Route path="/pool" element={<Pool />}></Route>
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Header></Header>
+      <Routes>
+        <Route path="/" element={<Swap />}></Route>
+        <Route path="/tokens" element={<Tokens />}></Route>
+        <Route path="/pool" element={<Pool />}></Route>
+      </Routes>
+    </Router>
   );
 };
 

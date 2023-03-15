@@ -20,6 +20,7 @@ import celoIcon from "/images/Celo.svg";
 import { useAppDispatch } from "../../redux/hooks";
 import { showPopUp } from "../../redux/appSlice";
 import { Link } from "react-router-dom";
+import ConnectButton from "./Connect/ConnectButton";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
@@ -27,7 +28,6 @@ const Header = () => {
   const [chosenText, setChosenText] = useState<string>("Ethereum");
   const [ethereumDropdownActive, setEthereumDropdownActive] =
     useState<boolean>(false);
-  const dispatch = useAppDispatch();
 
   function dotsClicked() {
     setDotsDropdownActive(!dotsDropdownActive);
@@ -192,8 +192,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
-        <button onClick={() => dispatch(showPopUp(true))}>Connect</button>
+        <ConnectButton />
       </div>
     </div>
   );
