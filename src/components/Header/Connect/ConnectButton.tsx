@@ -1,5 +1,5 @@
 import "./ConnectButton.scss";
-import arrowDown from "../images/arrowDown.png";
+import arrowDown from "/images/arrowDown.png";
 
 import { useAccount } from "wagmi";
 import { useDisconnect } from "wagmi";
