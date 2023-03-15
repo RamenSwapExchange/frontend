@@ -17,7 +17,7 @@ import optymismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
 
-import ConnectButton from "./ConnectButton";
+import ConnectButton from "./Connect/ConnectButton";
 
 const Header = () => {
   const [dotsDropdownActive, setDotsDropdownActive] = useState<boolean>(false);
