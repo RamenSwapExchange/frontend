@@ -3,7 +3,7 @@ import { mainnet, polygon, optimism, arbitrum, celo } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
-import ethereumIcon from "/images/Ethereum.png";
+import ethereumIcon from "/images/Ethereum.svg";
 import polygonIcon from "/images/Polygon.svg";
 import optimismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
@@ -40,7 +40,6 @@ export const getChainIcon = (chainName: string) => {
 };
 //#endregion
 
-
 //do wywalenia chyba na razie uzywane tylko w tokens.jsx
 export const chainsWithIcons = [
   {
@@ -60,7 +59,7 @@ export const chainsWithIcons = [
   },
   {
     id: arbitrum.id,
-    name: arbitrum.name.substring(0, arbitrum.name.length - 4),
+    name: arbitrum.name.substring(0, arbitrum.name.length - 4), //Arbitrum One -> Arbitrum
     icon: arbitrumIcon,
   },
   {
