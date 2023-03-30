@@ -1,11 +1,9 @@
-import "./index.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Tokens from "./components/Tokens/Tokens";
 import Swap from "./components/Swap/Swap";
-import Pools from "./components/Pool/Pools";
+import Pools from "./components/Pools/Pools";
 import Header from "./components/Header/Header";
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (

@@ -1,33 +1,50 @@
-import "./header.scss"
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import "./header.scss";
+import { MdOutlineRamenDining } from "react-icons/md";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <Navbar expand="lg">
-            <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
+        <Navbar className="header">
+            <Navbar.Brand><MdOutlineRamenDining className='logo' /></Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                    <div className="header-left">
+                        <Link to="/swap" className="nav-link">
+                            <Nav.Link>Swap</Nav.Link>
+                        </Link>
+                        <Link to="/tokens" className="nav-link">
+                            <Nav.Link>Tokens</Nav.Link>
+                        </Link>
+                        <Link to="/pools" className="nav-link">
+                            <Nav.Link>Pools</Nav.Link>
+                        </Link>
+                        <NavDropdown title={<BiDotsHorizontalRounded className='dots-icon' />} id="basic-nav-dropdown">
+                            <NavDropdown.Item>Vote in governance</NavDropdown.Item>
+                            <NavDropdown.Item>
+                                View more analytics
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item>Help center</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
+                            <NavDropdown.Item>
+                                Documentation
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                                Feedback
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                                Legal & Privacy
                             </NavDropdown.Item>
                         </NavDropdown>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
+                    </div>
+                    <div className="header-middle"></div>
+                    <div className="header-right"></div>
+                </Nav>
+            </Navbar.Collapse>
         </Navbar>
     )
 }

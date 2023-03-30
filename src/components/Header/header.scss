@@ -1,0 +1,40 @@
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+  }
+
+.header{
+    padding: 20px 12px;
+    
+    .header-left{
+        width: 33%;
+        @include flexCenter();
+    }
+
+    .header-middle{
+        width: 34%;
+        @include flexCenter();
+    }
+
+    .header-right{
+        width: 33%;
+        @include flexCenter();
+    }
+
+    .logo{
+        font-size: 32px;
+    }
+
+    .dots-icon{
+        font-size: 24px;
+    }
+
+    .dropdown-toggle::after{
+        display: none;
+    }
+
+
+    .nav-link{
+        font-weight: 600;
+    }
+}
