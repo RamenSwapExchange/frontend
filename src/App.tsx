@@ -5,7 +5,6 @@ import Swap from "./components/Swap/Swap";
 import Pools from "./components/Pools/Pools";
 import Header from "./components/Header/Header";
 
-
 const App = () => {
   return (
     <Router>
