@@ -13,6 +13,7 @@ const ConnectButton = () => {
 
   return (
     <div
+      className="connect-button-main"
       onClick={() => {
         connect();
       }}

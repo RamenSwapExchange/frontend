@@ -1,0 +1,12 @@
+@import "../../common/globals.scss";
+
+.connect-button-main{
+    border: none;
+    border-radius: 9999px;
+    background-color: gray;
+    transition: $transition;
+    padding: 10px 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}

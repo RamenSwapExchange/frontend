@@ -1,72 +1,58 @@
 @import "../../common/globals.scss";
 
 @mixin flexCenter {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  padding: 20px 12px;
+
+  .header-left {
+    width: 33%;
+    @include flexCenter();
+
+    .dropdown-toggle::after {
+      display: none;
+    }
   }
 
-.header{
-    padding: 20px 12px;
-    
-    .header-left{
-        width: 33%;
-        @include flexCenter();
+  .header-middle {
+    width: 34%;
+    @include flexCenter();
 
-        .dropdown-toggle::after{
-            display: none;
-        }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: black;
+      outline: none;
+      border-radius: 10px;
+      border: 1px solid lightgray;
+      transition: $transition;
+
+      &:hover {
+        border: 1px solid black;
+      }
     }
+  }
 
-    .header-middle{
-        width: 34%;
-        @include flexCenter();
+  .header-right {
+    width: 33%;
+    @include flexCenter();
+    justify-content: flex-end;
+    gap: 20px;
+  }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            color: black;
-            outline: none;
-            border-radius: 10px;
-            border: 1px solid lightgray;
-            transition: $transition;
-      
-            &:hover {
-              border: 1px solid black;
-            }
-          }
-    }
+  .logo {
+    font-size: 32px;
+  }
 
-    .header-right{
-        width: 33%;
-        @include flexCenter();
-        justify-content: flex-end;
-        gap: 20px;
+  .dots-icon {
+    font-size: 24px;
+  }
 
-        .connect-button{
-            border: none;
-            border-radius: 9999px;
-            background-color: gray;
-            transition: $transition;
-            padding: 10px 12px;
-            font-weight: 600;
-
-            cursor: pointer;
-        }
-    }
-
-    .logo{
-        font-size: 32px;
-    }
-
-    .dots-icon{
-        font-size: 24px;
-    }
-
-   
-
-
-    .nav-link{
-        font-weight: 600;
-    }
+  .nav-link {
+    font-weight: 600;
+  }
 }
