@@ -2,8 +2,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./header.scss";
+
 import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+
 import { Link } from "react-router-dom";
 import ConnectButton from "./ConnectButton";
 
