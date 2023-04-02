@@ -15,6 +15,36 @@
     .dropdown-toggle::after {
       display: none;
     }
+
+    .dropdown-li {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 16px;
+
+      .dropdown-icon {
+        font-size: 22px;
+      }
+    }
+
+    .info-item {
+      font-size: 13px;
+    }
+
+    .dropdown-socials {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+
+      .social-link {
+        transition: $transition;
+        cursor: pointer;
+        font-size: 18px;
+        &:hover {
+          color: gray;
+        }
+      }
+    }
   }
 
   .header-middle {

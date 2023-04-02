@@ -5,6 +5,9 @@ import "./header.scss";
 
 import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { FaScroll } from "react-icons/fa";
+import { FiBarChart } from "react-icons/fi";
+import { AiOutlineTwitter, AiFillGithub } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import ConnectButton from "./ConnectButton";
@@ -31,13 +34,31 @@ const Header = () => {
             title={<BiDotsHorizontalRounded className="dots-icon" />}
             id="basic-nav-dropdown"
           >
-            <NavDropdown.Item>Vote in governance</NavDropdown.Item>
-            <NavDropdown.Item>View more analytics</NavDropdown.Item>
-            <NavDropdown.Item>Help center</NavDropdown.Item>
+            <NavDropdown.Item className="dropdown-li">
+              <FaScroll className="dropdown-icon" />
+              Vote in governance
+            </NavDropdown.Item>
+            <NavDropdown.Item className="dropdown-li">
+              <FiBarChart className="dropdown-icon" />
+              View more analytics
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item>Documentation</NavDropdown.Item>
-            <NavDropdown.Item>Feedback</NavDropdown.Item>
-            <NavDropdown.Item>Legal & Privacy</NavDropdown.Item>
+            <NavDropdown.Item className="info-item">
+              Help center &#8599;
+            </NavDropdown.Item>
+            <NavDropdown.Item className="info-item">
+              Documentation &#8599;
+            </NavDropdown.Item>
+            <NavDropdown.Item className="info-item">
+              Feedback &#8599;
+            </NavDropdown.Item>
+            <NavDropdown.Item className="info-item">
+              Legal & Privacy &#8599;
+            </NavDropdown.Item>
+            <NavDropdown.ItemText className="dropdown-socials">
+              <AiOutlineTwitter className="social-link" />
+              <AiFillGithub className="social-link" />
+            </NavDropdown.ItemText>
           </NavDropdown>
         </Nav>
         <Nav className="me-auto header-middle">
