@@ -1,0 +1,17 @@
+.chain-main-div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+
+  width: 200px;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}

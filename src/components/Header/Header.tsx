@@ -11,6 +11,7 @@ import { AiOutlineTwitter, AiFillGithub } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import ConnectButton from "./ConnectButton";
+import ChainsDropdown from "./ChainsDropdown";
 
 const Header = () => {
   return (
@@ -67,10 +68,7 @@ const Header = () => {
           </NavDropdown.Item>
         </Nav>
         <Nav className="me-auto header-right">
-          <NavDropdown title={"x"} id="basic-nav-dropdown" align="end">
-            <NavDropdown.Item>A</NavDropdown.Item>
-            <NavDropdown.Item>B</NavDropdown.Item>
-          </NavDropdown>
+          <ChainsDropdown />
           <ConnectButton />
         </Nav>
       </Navbar.Collapse>
