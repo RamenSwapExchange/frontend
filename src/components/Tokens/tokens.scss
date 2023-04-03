@@ -1,0 +1,30 @@
+@import "../../common/globals.scss";
+
+.tokens-container{
+    margin-top: 100px;
+
+    .tokens-title {
+        font-size: 36px;
+        margin-bottom: 32px;
+      }
+
+      .filter-section{
+        display: flex;
+        gap: 8px;
+        
+
+        input {
+            padding: 0px 10px;
+            font-size: 14px;
+            color: black;
+            outline: none;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            transition: $transition;
+      
+            &:hover {
+              border: 1px solid black;
+            }
+          }
+      }
+}
