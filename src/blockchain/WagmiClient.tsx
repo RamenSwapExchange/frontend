@@ -26,17 +26,17 @@ export default client;
 
 //#region Chain icons
 interface IChainIcons {
-  [key: string]: string;
+  [key: number]: string;
 }
 const chainIcons: IChainIcons = {};
-chainIcons[mainnet.name] = ethereumIcon;
-chainIcons[polygon.name] = polygonIcon;
-chainIcons[optimism.name] = optimismIcon;
-chainIcons[arbitrum.name] = arbitrumIcon;
-chainIcons[celo.name] = celoIcon;
+chainIcons[mainnet.id] = ethereumIcon;
+chainIcons[polygon.id] = polygonIcon;
+chainIcons[optimism.id] = optimismIcon;
+chainIcons[arbitrum.id] = arbitrumIcon;
+chainIcons[celo.id] = celoIcon;
 
-export const getChainIcon = (chainName: string) => {
-  return chainIcons[chainName];
+export const getChainIcon = (chainId: number) => {
+  return chainIcons[chainId];
 };
 //#endregion
 

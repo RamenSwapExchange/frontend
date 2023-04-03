@@ -1,7 +1,7 @@
 import "./ChainsDropdown.scss";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { chainsWithIcons } from "../../blockchain/WagmiClient";
-import { useNetwork, useSwitchNetwork } from "wagmi";
+import { chainsWithIcons, getChainIcon } from "../../blockchain/WagmiClient";
+import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 
 const ChainsDropdown = () => {
   const { isError, isLoading, pendingChainId, switchNetwork } =
@@ -9,16 +9,42 @@ const ChainsDropdown = () => {
       onError() {},
       onSuccess() {},
     });
-  const { chain, chains } = useNetwork();
+  const { chain } = useNetwork();
+  const { isConnected } = useAccount();
+
+  const TitleDropdown = (
+    <div className={isLoading ? "chain-button chain-button-loading" : "chain-button"}>
+      {isLoading ? (
+        <>
+          <div className="loader"/>
+          <img className="chain-icon" src={getChainIcon(pendingChainId!)} />
+        </>
+      ) : (
+        <img
+          className="chain-icon"
+          src={isConnected ? getChainIcon(chain?.id!) : getChainIcon(1)}
+        />
+      )}
+    </div>
+  );
 
   return (
-    <NavDropdown title={"x"} id="basic-nav-dropdown" align="end">
-      {chainsWithIcons.map((chain2) => {
+    <NavDropdown
+      title={TitleDropdown}
+      className="chainDropdown-main"
+      id="basic-nav-dropdown"
+      align="end"
+    >
+      {chainsWithIcons.map((chainMap, id) => {
         return (
-          <NavDropdown.Item className="chain-main-div">
-            <img src={chain2.icon} />
-            <div>{chain2.name}</div>
-            {chain?.id == chain2.id && <div>lol</div>}
+          <NavDropdown.Item
+            key={id}
+            className="chain-item-div"
+            onClick={() => switchNetwork!(chainMap.id)}
+          >
+            <img className="chain-icon" src={getChainIcon(chainMap.id)} />
+            <div>{chainMap.name}</div>
+            {chain?.id == chainMap.id && <div>✔</div>}
           </NavDropdown.Item>
         );
       })}

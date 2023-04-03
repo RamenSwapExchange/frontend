@@ -1,17 +1,65 @@
-.chain-main-div {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 20px;
+.chainDropdown-main {
+  border-radius: 15px;
 
-  width: 200px;
-  border-radius: 5px;
-  margin: 2px;
-  padding: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  img {
+  //bootstrap class remove toggle
+  .dropdown-toggle::after {
+    display: none;
+  }
+
+  .chain-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .loader {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+
+      border: 2px solid black;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  .chain-icon {
     height: 20px;
     width: 20px;
   }
+
+  .chain-item-div {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+
+    width: 200px;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .chain-button-loading {
+    border: solid black 1px;
+  }
+}
+
+
+.chainDropdown-main:hover {
+  background-color: gray;
+
+  transition: 0.5s;
 }
