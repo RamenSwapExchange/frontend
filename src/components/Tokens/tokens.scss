@@ -11,7 +11,7 @@
       .filter-section{
         display: flex;
         gap: 8px;
-        
+        margin-bottom: 20px;
 
         input {
             padding: 0px 10px;
@@ -26,5 +26,9 @@
               border: 1px solid black;
             }
           }
+      }
+
+      .tokens-table{
+        border-radius: 12px;
       }
 }
