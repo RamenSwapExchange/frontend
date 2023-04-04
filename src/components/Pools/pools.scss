@@ -1,0 +1,52 @@
+@import "../../common/globals.scss";
+
+.pools-container{
+    margin-top: 100px;
+
+    .pools-header{
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+
+        .pools-title {
+            font-size: 36px;
+          }
+
+          .pools-controls{
+            display: flex;
+            gap: 8px;
+
+            button{
+                height: 38px;
+                padding: 0px 10px;
+                border: none;
+            }
+          }
+    }
+
+    .liquidity-container{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        border: 1px solid black;
+        border-radius: 12px;
+        padding: 25px;
+
+        .container-icon{
+            font-size: 40px;
+        }
+
+        .pools-connect-btn{     
+            border: none;
+            border-radius: 9999px;
+            background-color: gray;
+            transition: $transition;
+            padding: 10px 12px;
+            font-weight: 600;
+            
+            cursor: pointer;
+        }
+    }
+}
