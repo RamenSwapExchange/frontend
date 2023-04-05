@@ -54,6 +54,9 @@ const ChainsDropdown = () => {
     </div>
   );
 
+  //TODO modal pop up
+  //https://react-bootstrap.github.io/components/modal/
+
   return (
     <NavDropdown
       title={TitleDropdown}
