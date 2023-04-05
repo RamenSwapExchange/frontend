@@ -1,39 +1,56 @@
 import "./ChainsDropdown.scss";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { BiError } from "react-icons/bi";
+
 import { chainsWithIcons, getChainIcon } from "../../blockchain/WagmiClient";
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import { useState } from "react";
+import { watchNetwork } from "@wagmi/core";
 
 const ChainsDropdown = () => {
-  const { isError, isLoading, pendingChainId, switchNetwork } =
-    useSwitchNetwork({
-      onError() {},
-      onSuccess() {},
-    });
+  const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork({
+    onError() {
+      setIsError(true);
+    },
+    onSuccess() {},
+  });
   const { chain } = useNetwork();
   const { isConnected } = useAccount();
+
+  //fires when user change net
+  watchNetwork(() => {
+    setIsError(false);
+  });
+
+  //state to change icon when user is not logged. Default ethereum icon
   const [icon, setIcon] = useState<string>(getChainIcon(1));
+  const [isError, setIsError] = useState(false);
 
   const ChangeChain = (chainId: number) => {
-    setIcon(getChainIcon(chainId));
+    if (!isConnected) {
+      setIcon(getChainIcon(chainId));
+      return;
+    }
 
-    if (isConnected) switchNetwork!(chainId);
+    setIsError(false);
+    if (chain?.id != chainId) switchNetwork!(chainId);
   };
 
   const TitleDropdown = (
-    <div
-      className={
-        isLoading ? "chain-button chain-button-loading" : "chain-button"
-      }
-    >
-      {isLoading ? (
-        <>
-          <div className="loader" />
-          <img className="chain-icon" src={getChainIcon(pendingChainId!)} />
-        </>
-      ) : (
-        <img className="chain-icon" src={isConnected ? icon : getChainIcon(chain)} />
-      )}
+    <div className="chain-button">
+      {isError && <BiError />}
+      {isLoading && <div className="loader" />}
+
+      <img
+        className="chain-icon"
+        src={
+          isConnected
+            ? isLoading
+              ? getChainIcon(pendingChainId!)
+              : getChainIcon(chain?.id)
+            : icon
+        }
+      />
     </div>
   );
 
@@ -53,7 +70,7 @@ const ChainsDropdown = () => {
           >
             <img className="chain-icon" src={getChainIcon(chainMap.id)} />
             <div>{chainMap.name}</div>
-            {chain?.id == chainMap.id && <div>✔</div>}
+            {chain?.id == chainMap.id && <div> ✔ </div>}
           </NavDropdown.Item>
         );
       })}
