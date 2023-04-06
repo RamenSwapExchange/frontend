@@ -47,7 +47,7 @@ const ChainsDropdown = () => {
           isConnected
             ? isLoading
               ? getChainIcon(pendingChainId!)
-              : getChainIcon(chain?.id)
+              : getChainIcon(chain?.id!)
             : icon
         }
       />
