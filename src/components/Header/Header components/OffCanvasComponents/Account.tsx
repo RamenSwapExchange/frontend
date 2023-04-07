@@ -1,6 +1,7 @@
 import "./Account.scss";
-import { AiOutlinePoweroff } from "react-icons/ai";
+import { AiOutlinePoweroff, AiOutlineCopy } from "react-icons/ai";
 
+import { useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 import { useDisconnect } from "wagmi";
 
@@ -10,7 +11,7 @@ const Account = () => {
   const { data } = useBalance({
     address: address,
   });
-
+  const [isCopyIcon, setIsCopyIcon] = useState(false);
   const addressSliced = address?.replace(
     address.substring(7, address.length - 5),
     "..."
@@ -19,7 +20,15 @@ const Account = () => {
   return (
     <div>
       <div className="account-headear">
-        <div className="account-address">{addressSliced}</div>
+        <div
+          className="account-address"
+          onMouseOver={() => setIsCopyIcon(true)}
+          onMouseOut={() => setIsCopyIcon(false)}
+          onClick={() => navigator.clipboard.writeText(address!)}
+        >
+          {addressSliced}
+          {isCopyIcon && <AiOutlineCopy />}
+        </div>
         <div className="account-disconnect" onClick={() => disconnect()}>
           <AiOutlinePoweroff />
         </div>

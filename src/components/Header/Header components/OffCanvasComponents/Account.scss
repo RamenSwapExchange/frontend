@@ -8,6 +8,10 @@
   .account-address {
     height: 100%;
     padding-top: 10px;
+    cursor: pointer;
+  }
+  .account-address:hover {
+    color: gray;
   }
 
   .account-disconnect {
