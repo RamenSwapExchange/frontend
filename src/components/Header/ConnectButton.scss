@@ -1,5 +1,7 @@
 @import '../../common/globals.scss';
 
+$secondary-color: gray;
+
 .connect-button-main {
   border: none;
   border-radius: 9999px;
@@ -29,6 +31,64 @@
     .right-panel {
       height: 100%;
       width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .connector-header {
+        margin: 20px 15px 20px 15px;
+        justify-content: space-between;
+      }
+
+      .connectors {
+        margin: 10px;
+        border-radius: 5px;
+
+        background-color: $secondary-color;
+
+        .connector-div {
+          display: flex;
+          align-items: center;
+          height: 80px;
+          gap: 20px;
+
+          .connector-logo {
+            height: 30px;
+            margin: 5px;
+            margin-left: 20px;
+          }
+          .connector-name {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .theme-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 10px;
+      height: 50px;
+      margin: 5px;
+      .theme-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid black 1px;
+        border-radius: 15px;
+
+        div {
+          border-radius: 15px;
+          padding: 5px;
+          margin: 5px;
+          width: 50%;
+          cursor: pointer;
+        }
+        .active-theme {
+          background-color: aqua;
+        }
+      }
     }
   }
 }
