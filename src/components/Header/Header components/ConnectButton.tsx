@@ -5,6 +5,7 @@ import metaMaskLogo from "/images/MetaMaskLogo.svg";
 import { useAccount, useConnect } from "wagmi";
 import { useDisconnect } from "wagmi";
 import { useState } from "react";
+import ThemeButton from "./ThemeButton";
 
 const ConnectButton = () => {
   const { address, isConnected } = useAccount();
@@ -18,9 +19,7 @@ const ConnectButton = () => {
   const [showCanvas, setShowCanvas] = useState(false);
   const handleClose = () => setShowCanvas(false);
   const handleShow = () => setShowCanvas(true);
-
-  const [theme, setTheme] = useState("light");
-
+  
   return (
     <>
       <div className="connect-button-main" onClick={() => handleShow()}>
@@ -68,28 +67,7 @@ const ConnectButton = () => {
               </div>
             )}
 
-            <div className="theme-div">
-              <div className="theme-headear">Theme:</div>
-              <div className="theme-buttons">
-                <div
-                  className={theme == "light" ? "active-theme" : ""}
-                  onClick={() => {
-                    setTheme("light");
-                  }}
-                >
-                  light
-                </div>
-                <div
-                  className={theme == "dark" ? "active-theme" : ""}
-                  onClick={() => {
-                    setTheme("dark");
-                  }}
-                >
-                  dark
-                </div>
-              </div>
-            </div>
-            
+            <ThemeButton />
           </div>
         </div>
       </Offcanvas>

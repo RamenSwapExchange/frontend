@@ -1,4 +1,4 @@
-@import '../../common/globals.scss';
+@import '../../../common/globals.scss';
 
 $secondary-color: gray;
 
@@ -43,8 +43,8 @@ $secondary-color: gray;
       .connectors {
         margin: 10px;
         border-radius: 5px;
-
         background-color: $secondary-color;
+        cursor: pointer;
 
         .connector-div {
           display: flex;
@@ -62,32 +62,9 @@ $secondary-color: gray;
           }
         }
       }
-    }
-
-    .theme-div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      column-gap: 10px;
-      height: 50px;
-      margin: 5px;
-      .theme-buttons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: solid black 1px;
-        border-radius: 15px;
-
-        div {
-          border-radius: 15px;
-          padding: 5px;
-          margin: 5px;
-          width: 50%;
-          cursor: pointer;
-        }
-        .active-theme {
-          background-color: aqua;
-        }
+      .connectors:hover {
+        background-color: lightgray;
+        transition: 0.1s;
       }
     }
   }

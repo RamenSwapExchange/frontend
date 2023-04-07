@@ -1,0 +1,26 @@
+.theme-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  height: 50px;
+  margin: 5px;
+  .theme-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid black 1px;
+    border-radius: 15px;
+
+    div {
+      border-radius: 15px;
+      padding: 5px;
+      margin: 5px;
+      width: 50%;
+      cursor: pointer;
+    }
+    .active-theme {
+      background-color: aqua;
+    }
+  }
+}

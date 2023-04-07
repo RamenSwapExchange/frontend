@@ -2,7 +2,7 @@ import "./ChainsDropdown.scss";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiError } from "react-icons/bi";
 
-import { chainsWithIcons, getChainIcon } from "../../blockchain/WagmiClient";
+import { chainsWithIcons, getChainIcon } from "../../../blockchain/WagmiClient";
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import { useState } from "react";
 import { watchNetwork } from "@wagmi/core";
