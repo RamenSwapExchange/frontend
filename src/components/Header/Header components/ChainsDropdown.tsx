@@ -31,7 +31,8 @@ const ChainsDropdown = () => {
     switch (isConnected) {
       case true:
         setIsError(false);
-        if (chain?.id != chainId) switchNetwork!(chainId);
+        if (chain?.id == chainId) return;
+        switchNetwork!(chainId);
         break;
       case false:
         setIcon(getChainIcon(chainId));
@@ -57,7 +58,6 @@ const ChainsDropdown = () => {
       {isArrowUp ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
     </div>
   );
-
   //TODO modal pop up on Error
   //https://react-bootstrap.github.io/components/modal/
 
