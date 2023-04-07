@@ -1,5 +1,7 @@
 import "./ThemeButton.scss";
 import { useState } from "react";
+import { BsSun } from "react-icons/bs";
+import { BsMoon } from "react-icons/bs";
 
 const ThemeButton = () => {
   enum ETheme {
@@ -7,10 +9,9 @@ const ThemeButton = () => {
     dark,
   }
   const [theme, setTheme] = useState<ETheme>(ETheme.light);
-  
+
   return (
     <div className="theme-div">
-      <div className="theme-headear">Theme:</div>
       <div className="theme-buttons">
         <div
           className={theme == ETheme.light ? "active-theme" : ""}
@@ -18,7 +19,7 @@ const ThemeButton = () => {
             setTheme(ETheme.light);
           }}
         >
-          light
+          <BsSun />
         </div>
         <div
           className={theme == ETheme.dark ? "active-theme" : ""}
@@ -26,7 +27,7 @@ const ThemeButton = () => {
             setTheme(ETheme.dark);
           }}
         >
-          dark
+          <BsMoon />
         </div>
       </div>
     </div>
