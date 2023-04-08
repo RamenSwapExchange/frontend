@@ -4,8 +4,12 @@ import { FiSettings } from "react-icons/fi";
 import { AiOutlineArrowDown } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useAppSelector } from "../../redux/hooks";
+import { selectNetworks } from "../../redux/appSlice";
 
 const Swap = () => {
+  const networks = useAppSelector(selectNetworks);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
