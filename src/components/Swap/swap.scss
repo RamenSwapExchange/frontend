@@ -42,6 +42,9 @@ $gray-hover: #929396;
       box-sizing: border-box;
       margin: 5px 0px;
       transition: $transition;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       &:focus-within {
         outline: 1px solid #d6d3d8;
@@ -49,10 +52,16 @@ $gray-hover: #929396;
 
       .swap-input {
         font-size: 36px;
-        width: 100%;
+        width: 50%;
         outline: none;
         border: none;
         background-color: #f8f4fc;
+        position: relative;
+      }
+
+      .token-btn {
+        padding: 4px 8px;
+        border-radius: 16px;
       }
     }
 
@@ -93,6 +102,22 @@ $gray-hover: #929396;
       &:hover {
         color: $gray-hover;
       }
+    }
+  }
+}
+
+.tokens-modal {
+  position: relative;
+  top: 50%;
+  transform: translate(0%, -70%);
+
+  .tokens-modal-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .search-token-input {
+      width: 95%;
     }
   }
 }

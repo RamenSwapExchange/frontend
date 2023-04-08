@@ -17,7 +17,9 @@ const Header = () => {
   return (
     <Navbar className="header">
       <Navbar.Brand>
-        <MdOutlineRamenDining className="logo" />
+        <Link to="/" className="nav-link">
+          <MdOutlineRamenDining className="logo" />
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
