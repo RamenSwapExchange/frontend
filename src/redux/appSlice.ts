@@ -1,24 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
-import networksApi from "../common/networksApi";
+import tokensApi from "../common/tokensApi";
 
-export const fetchAsyncNetworks = createAsyncThunk(
+export const fetchAsyncTokens = createAsyncThunk(
   "networks/fetchAsyncNetworks",
   async () => {
-    const response = await networksApi.get("networks");
-    return response.data;
+    const response = await tokensApi.get("tokens");
+    return response.data.tokens;
   }
 );
 
+interface TokensType {
+  name: string;
+  symbol: string;
+  key: string;
+}
+
 interface AppState {
   popUp: boolean;
-  networks: string[];
+  tokens: TokensType[];
 }
 
 const initialState: AppState = {
   popUp: false,
-  networks: [],
+  tokens: [],
 };
 
 export const appSlice = createSlice({
@@ -29,11 +35,18 @@ export const appSlice = createSlice({
       state.popUp = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAsyncTokens.pending, () => {});
+    builder.addCase(fetchAsyncTokens.rejected, () => {});
+    builder.addCase(fetchAsyncTokens.fulfilled, (state, { payload }) => {
+      state.tokens = payload;
+    });
+  },
 });
 
 export const { showPopUp } = appSlice.actions;
 
 export const selectPopUp = (state: RootState) => state.app.popUp;
-export const selectNetworks = (state: RootState) => state.app.networks;
+export const selectTokens = (state: RootState) => state.app.tokens;
 
 export default appSlice.reducer;

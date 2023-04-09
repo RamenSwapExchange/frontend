@@ -5,10 +5,11 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useAppSelector } from "../../redux/hooks";
-import { selectNetworks } from "../../redux/appSlice";
+import { selectTokens } from "../../redux/appSlice";
 
 const Swap = () => {
-  const networks = useAppSelector(selectNetworks);
+  const tokens = useAppSelector(selectTokens);
+  console.log(tokens);
 
   const [show, setShow] = useState(false);
 
@@ -50,6 +51,16 @@ const Swap = () => {
             placeholder="Search name"
             className="search-token-input"
           />
+
+          <div className="tokens-list">
+            {tokens.map((token) => {
+              return (
+                <div key={token.key} className="single-token">
+                  {token.name}
+                </div>
+              );
+            })}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
