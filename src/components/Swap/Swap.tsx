@@ -52,10 +52,14 @@ const Swap = () => {
             className="search-token-input"
           />
 
-          <div className="networks-list">
-            {/* {tokens.map((token) => {
-              return <div className="single-network">{token}</div>;
-            })} */}
+          <div className="tokens-list">
+            {tokens.map((token) => {
+              return (
+                <div key={token.key} className="single-token">
+                  {token.name}
+                </div>
+              );
+            })}
           </div>
         </Modal.Body>
         <Modal.Footer>

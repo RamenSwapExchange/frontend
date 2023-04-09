@@ -11,9 +11,15 @@ export const fetchAsyncTokens = createAsyncThunk(
   }
 );
 
+interface TokensType {
+  name: string;
+  symbol: string;
+  key: string;
+}
+
 interface AppState {
   popUp: boolean;
-  tokens: any[];
+  tokens: TokensType[];
 }
 
 const initialState: AppState = {
