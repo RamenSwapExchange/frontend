@@ -5,11 +5,11 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useAppSelector } from "../../redux/hooks";
-import { selectNetworks } from "../../redux/appSlice";
+import { selectTokens } from "../../redux/appSlice";
 
 const Swap = () => {
-  const networks = useAppSelector(selectNetworks);
-  console.log(networks);
+  const tokens = useAppSelector(selectTokens);
+  console.log(tokens);
 
   const [show, setShow] = useState(false);
 
@@ -53,9 +53,9 @@ const Swap = () => {
           />
 
           <div className="networks-list">
-            {networks.map((network) => {
-              return <div className="single-network">{network}</div>;
-            })}
+            {/* {tokens.map((token) => {
+              return <div className="single-network">{token}</div>;
+            })} */}
           </div>
         </Modal.Body>
         <Modal.Footer>

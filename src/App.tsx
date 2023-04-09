@@ -11,13 +11,13 @@ import Pools from "./components/Pools/Pools";
 import Header from "./components/Header/Header";
 import { useAppDispatch } from "./redux/hooks";
 import { useEffect } from "react";
-import { fetchAsyncNetworks } from "./redux/appSlice";
+import { fetchAsyncTokens } from "./redux/appSlice";
 
 const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchAsyncNetworks());
+    dispatch(fetchAsyncTokens());
   }, [dispatch]);
 
   return (
