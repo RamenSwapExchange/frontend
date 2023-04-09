@@ -9,6 +9,7 @@ import { selectNetworks } from "../../redux/appSlice";
 
 const Swap = () => {
   const networks = useAppSelector(selectNetworks);
+  console.log(networks);
 
   const [show, setShow] = useState(false);
 
@@ -50,6 +51,12 @@ const Swap = () => {
             placeholder="Search name"
             className="search-token-input"
           />
+
+          <div className="networks-list">
+            {networks.map((network) => {
+              return <div className="single-network">{network}</div>;
+            })}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

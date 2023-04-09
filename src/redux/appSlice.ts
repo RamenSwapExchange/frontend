@@ -29,6 +29,13 @@ export const appSlice = createSlice({
       state.popUp = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAsyncNetworks.pending, () => {});
+    builder.addCase(fetchAsyncNetworks.rejected, () => {});
+    builder.addCase(fetchAsyncNetworks.fulfilled, (state, { payload }) => {
+      state.networks = payload;
+    });
+  },
 });
 
 export const { showPopUp } = appSlice.actions;

@@ -115,6 +115,7 @@ $gray-hover: #929396;
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
     .search-token-input {
       width: 95%;
