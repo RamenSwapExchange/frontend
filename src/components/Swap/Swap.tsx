@@ -56,7 +56,17 @@ const Swap = () => {
             {tokens.map((token) => {
               return (
                 <div key={token.key} className="single-token">
-                  {token.name}
+                  <div className="token-image">
+                    {token.images ? (
+                      <img src={token.images[1]}></img>
+                    ) : (
+                      <img src={token.image}></img>
+                    )}
+                  </div>
+                  <div>
+                    <div className="token-name">{token.name}</div>
+                    <div className="token-symbol">{token.symbol}</div>
+                  </div>
                 </div>
               );
             })}

@@ -119,11 +119,44 @@ $gray-hover: #929396;
     max-height: 40vh;
 
     .search-token-input {
-      width: 95%;
+      width: 100%;
+      padding: 7px;
+      font-size: 16px;
+      color: black;
+      outline: none;
+      border-radius: 10px;
+      border: 1px solid lightgray;
+      transition: $transition;
+      margin-bottom: 10px;
+
+      &:hover {
+        border: 1px solid black;
+      }
     }
 
     .tokens-list {
       overflow-y: scroll;
+
+      .single-token {
+        display: flex;
+        align-items: center;
+        height: 56px;
+
+        .token-image > img {
+          width: 36px;
+          margin-right: 10px;
+        }
+
+        .token-name {
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        .token-symbol {
+          font-size: 12px;
+          color: gray;
+        }
+      }
     }
   }
 }
