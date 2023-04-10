@@ -15,6 +15,8 @@ interface TokensType {
   name: string;
   symbol: string;
   key: string;
+  image: string;
+  images: string[];
 }
 
 interface AppState {
