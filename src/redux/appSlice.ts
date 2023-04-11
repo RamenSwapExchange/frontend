@@ -17,16 +17,19 @@ interface TokensType {
   key: string;
   image: string;
   images: string[];
+  network: string;
 }
 
 interface AppState {
   popUp: boolean;
   tokens: TokensType[];
+  selectedChain: string;
 }
 
 const initialState: AppState = {
   popUp: false,
   tokens: [],
+  selectedChain: "",
 };
 
 export const appSlice = createSlice({
@@ -35,6 +38,9 @@ export const appSlice = createSlice({
   reducers: {
     showPopUp: (state, action: PayloadAction<boolean>) => {
       state.popUp = action.payload;
+    },
+    changeChain: (state, action: PayloadAction<string>) => {
+      state.selectedChain = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -46,7 +52,7 @@ export const appSlice = createSlice({
   },
 });
 
-export const { showPopUp } = appSlice.actions;
+export const { showPopUp, changeChain } = appSlice.actions;
 
 export const selectPopUp = (state: RootState) => state.app.popUp;
 export const selectTokens = (state: RootState) => state.app.tokens;
