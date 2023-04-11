@@ -1,0 +1,35 @@
+.account-headear {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin: 20px;
+
+  .account-address {
+    height: 100%;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+  .account-address:hover {
+    color: gray;
+  }
+
+  .account-disconnect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+
+    background-color: gray;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+.account-balance {
+  width: 100%;
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: 400;
+}

@@ -36,7 +36,8 @@ chainIcons[arbitrum.id] = arbitrumIcon;
 chainIcons[celo.id] = celoIcon;
 
 export const getChainIcon = (chainId: number) => {
-  return chainIcons[chainId];
+  if(chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId];
+  else return "error"; //TODO
 };
 //#endregion
 

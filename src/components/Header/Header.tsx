@@ -10,8 +10,8 @@ import { FiBarChart } from "react-icons/fi";
 import { AiOutlineTwitter, AiFillGithub } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
-import ConnectButton from "./ConnectButton";
-import ChainsDropdown from "./ChainsDropdown";
+import ConnectButton from "./Header components/ConnectButton";
+import ChainsDropdown from "./Header components/ChainsDropdown";
 
 const Header = () => {
   return (
