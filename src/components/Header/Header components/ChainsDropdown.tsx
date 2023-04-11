@@ -76,7 +76,7 @@ const ChainsDropdown = () => {
             className="chain-item-div"
             onClick={() => ChangeChain(chainMap.id)}
           >
-            <img className="chain-icon" src={getChainIcon(chainMap.id)} />
+            <img className="chain-icon" src={chainMap.icon} />
             <div>{chainMap.name}</div>
             {chain?.id == chainMap.id && <div> ✔ </div>}
           </NavDropdown.Item>
