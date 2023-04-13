@@ -10,7 +10,7 @@ const TokensListModal = () => {
     const show = useAppSelector(selectModal);
     const tokens = useAppSelector(selectTokens);
 
-    console.log(tokens);
+    // console.log(tokens);
 
     const handleClose = () => dispatch(showModal(false));
 
