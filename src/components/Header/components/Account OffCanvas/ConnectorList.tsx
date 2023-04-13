@@ -14,7 +14,7 @@ const ConnectorList = ({ onConnectAccount }: IConnectorList) => {
   });
 
   return (
-    <div>
+    <>
       <div className="connector-header">Connect a wallet</div>
       <div className="connectors">
         {connectors.map((connector) => {
@@ -38,7 +38,7 @@ const ConnectorList = ({ onConnectAccount }: IConnectorList) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
