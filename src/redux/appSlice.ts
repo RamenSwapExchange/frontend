@@ -24,12 +24,14 @@ interface AppState {
   popUp: boolean;
   tokens: TokensType[];
   selectedChain: string;
+  modal: boolean;
 }
 
 const initialState: AppState = {
   popUp: false,
   tokens: [],
   selectedChain: "",
+  modal: false
 };
 
 export const appSlice = createSlice({
@@ -42,6 +44,9 @@ export const appSlice = createSlice({
     changeChain: (state, action: PayloadAction<string>) => {
       state.selectedChain = action.payload;
     },
+    showModal: (state, action: PayloadAction<boolean>) => {
+      state.modal = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAsyncTokens.pending, () => {});
@@ -52,9 +57,10 @@ export const appSlice = createSlice({
   },
 });
 
-export const { showPopUp, changeChain } = appSlice.actions;
+export const { showPopUp, changeChain, showModal } = appSlice.actions;
 
 export const selectPopUp = (state: RootState) => state.app.popUp;
 export const selectTokens = (state: RootState) => state.app.tokens;
+export const selectModal = (state: RootState) => state.app.modal;
 
 export default appSlice.reducer;
