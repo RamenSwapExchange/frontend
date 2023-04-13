@@ -13,11 +13,11 @@
     width: 33%;
     @include flexCenter();
 
-    .logo{
+    .logo {
       margin-right: 15px;
     }
 
-    .mobile-search{
+    .mobile-search {
       font-size: 30px;
       display: none;
     }
@@ -50,6 +50,7 @@
         transition: $transition;
         cursor: pointer;
         font-size: 18px;
+
         &:hover {
           color: gray;
         }
@@ -100,24 +101,28 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .header{
-    .header-left{
+  .header {
+    .header-left {
       width: 50%;
       gap: 10px;
-    .nav-link {
+
+      .nav-link {
+        display: none;
+      }
+
+      .mobile-search {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .header-middle {
       display: none;
     }
-    .mobile-search{
-      display: flex;
-      justify-content: center;
+
+    .header-right {
+      width: 50%;
+      gap: 10px;
     }
-  }
-  .header-middle{
-    display: none;
-  }
-  .header-right{
-    width: 50%;
-    gap: 10px;
-  }
   }
 }

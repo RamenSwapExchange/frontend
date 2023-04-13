@@ -106,64 +106,12 @@ $gray-hover: #929396;
   }
 }
 
-.tokens-modal {
-  position: relative;
-  top: 50%;
-  transform: translate(0%, -70%);
 
-  .tokens-modal-body {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    max-height: 40vh;
-
-    .search-token-input {
-      width: 100%;
-      padding: 7px;
-      font-size: 16px;
-      color: black;
-      outline: none;
-      border-radius: 10px;
-      border: 1px solid lightgray;
-      transition: $transition;
-      margin-bottom: 10px;
-
-      &:hover {
-        border: 1px solid black;
-      }
-    }
-
-    .tokens-list {
-      overflow-y: scroll;
-
-      .single-token {
-        display: flex;
-        align-items: center;
-        height: 56px;
-
-        .token-image > img {
-          width: 36px;
-          margin-right: 10px;
-        }
-
-        .token-name {
-          font-size: 16px;
-          font-weight: 600;
-        }
-
-        .token-symbol {
-          font-size: 12px;
-          color: gray;
-        }
-      }
-    }
-  }
-}
 
 @media only screen and (max-width: 1200px) {
   .swap-container {
     width: 100vw;
+
     .swap-box {
       width: 40vw;
     }
@@ -173,6 +121,7 @@ $gray-hover: #929396;
 @media only screen and (max-width: 768px) {
   .swap-container {
     width: 100vw;
+
     .swap-box {
       width: 50vw;
     }
@@ -182,6 +131,7 @@ $gray-hover: #929396;
 @media only screen and (max-width: 600px) {
   .swap-container {
     width: 100vw;
+
     .swap-box {
       width: 90vw;
     }
