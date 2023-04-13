@@ -4,9 +4,9 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { useAccount } from "wagmi";
 import { useState } from "react";
 
-import ThemeButton from "./ThemeButton";
-import ConnectorList from "./OffCanvasComponents/ConnectorList";
-import Account from "./OffCanvasComponents/Account";
+import ThemeButton from "./Account OffCanvas/ThemeButton";
+import ConnectorList from "./Account OffCanvas/ConnectorList";
+import Account from "./Account OffCanvas/Account";
 
 const ConnectButton = () => {
   const { address, isConnected } = useAccount();

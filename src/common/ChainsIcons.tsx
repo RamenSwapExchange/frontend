@@ -1,30 +1,10 @@
-import { createClient, configureChains } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum, celo } from "wagmi/chains";
-import { publicProvider } from "wagmi/providers/public";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-
 import ethereumIcon from "/images/Ethereum.png";
 import polygonIcon from "/images/Polygon.svg";
 import optimismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
 
-//TODO: alchemy or infura provider
-const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, polygon, optimism, arbitrum, celo],
-  [publicProvider()]
-);
-
-const client = createClient({
-  autoConnect: true,
-  connectors: [new MetaMaskConnector({ chains })],
-  provider,
-  webSocketProvider,
-});
-
-export default client;
-
-//#region Chain icons
 interface IChainIcons {
   [key: number]: string;
 }
@@ -36,13 +16,12 @@ chainIcons[arbitrum.id] = arbitrumIcon;
 chainIcons[celo.id] = celoIcon;
 
 export const getChainIcon = (chainId: number) => {
-  if(chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId];
+  if (chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId];
   else return "error"; //TODO
 };
-//#endregion
 
 //do wywalenia chyba na razie uzywane tylko w tokens.jsx
-export const chainsWithIcons = [
+export const chainsIcons = [
   {
     id: mainnet.id,
     name: mainnet.name,

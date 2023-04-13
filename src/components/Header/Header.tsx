@@ -1,7 +1,7 @@
+import "./header.scss";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import "./header.scss";
 
 import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
@@ -10,8 +10,8 @@ import { FiBarChart } from "react-icons/fi";
 import { AiOutlineTwitter, AiFillGithub, AiOutlineSearch } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
-import ConnectButton from "./Header components/ConnectButton";
-import ChainsDropdown from "./Header components/ChainsDropdown";
+import ConnectButton from "./components/ConnectButton";
+import ChainsDropdown from "./components/ChainsDropdown";
 
 const Header = () => {
   return (

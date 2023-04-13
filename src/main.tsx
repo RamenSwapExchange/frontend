@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 import { WagmiConfig } from "wagmi";
-import client from "./blockchain/WagmiClient";
+import client from "./common/WagmiClient";
 
 import "./index.scss";
 

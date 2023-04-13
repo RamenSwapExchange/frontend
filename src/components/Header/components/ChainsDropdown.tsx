@@ -3,7 +3,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiError } from "react-icons/bi";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 
-import { chainsWithIcons, getChainIcon } from "../../../blockchain/WagmiClient";
+import { chainsIcons, getChainIcon } from "../../../common/ChainsIcons";
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import { useState } from "react";
 import { watchNetwork } from "@wagmi/core";
@@ -69,7 +69,7 @@ const ChainsDropdown = () => {
       align="end"
       onClick={() => setIsArrowUp(!isArrowUp)}
     >
-      {chainsWithIcons.map((chainMap, id) => {
+      {chainsIcons.map((chainMap, id) => {
         return (
           <NavDropdown.Item
             key={id}
