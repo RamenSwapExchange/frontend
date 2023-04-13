@@ -7,10 +7,17 @@
 
 .header {
   padding: 20px 12px;
+  max-width: 100vw;
 
   .header-left {
     width: 33%;
     @include flexCenter();
+
+    .mobile-search{
+      display: flex;
+      justify-content: center;
+      font-size: 30px;
+    }
 
     .dropdown-toggle::after {
       display: none;
@@ -76,6 +83,7 @@
 
   .logo {
     font-size: 32px;
+    color: black;
   }
 
   .dots-icon {
@@ -84,5 +92,23 @@
 
   .nav-link {
     font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header{
+    .header-left{
+      width: 50%;
+      gap: 10px;
+    .nav-link {
+      display: none;
+    }
+  }
+  .header-middle{
+    display: none;
+  }
+  .header-right{
+    width: 50%;
+  }
   }
 }

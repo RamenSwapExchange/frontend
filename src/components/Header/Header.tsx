@@ -7,7 +7,7 @@ import { MdOutlineRamenDining } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { FaScroll } from "react-icons/fa";
 import { FiBarChart } from "react-icons/fi";
-import { AiOutlineTwitter, AiFillGithub } from "react-icons/ai";
+import { AiOutlineTwitter, AiFillGithub, AiOutlineSearch } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import ConnectButton from "./ConnectButton";
@@ -16,14 +16,12 @@ import ChainsDropdown from "./ChainsDropdown";
 const Header = () => {
   return (
     <Navbar className="header">
-      <Navbar.Brand>
-        <Link to="/" className="nav-link">
-          <MdOutlineRamenDining className="logo" />
-        </Link>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto header-left">
+          <Link to="/">
+            <MdOutlineRamenDining className="logo" />
+          </Link>
+          <div className="mobile-search"><AiOutlineSearch className="search-icon" /></div>
           <Link to="/swap" className="nav-link">
             Swap
           </Link>

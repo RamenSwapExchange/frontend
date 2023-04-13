@@ -163,6 +163,7 @@ $gray-hover: #929396;
 
 @media only screen and (max-width: 1200px) {
   .swap-container {
+    width: 100vw;
     .swap-box {
       width: 40vw;
     }
@@ -171,6 +172,7 @@ $gray-hover: #929396;
 
 @media only screen and (max-width: 768px) {
   .swap-container {
+    width: 100vw;
     .swap-box {
       width: 50vw;
     }
@@ -179,6 +181,7 @@ $gray-hover: #929396;
 
 @media only screen and (max-width: 600px) {
   .swap-container {
+    width: 100vw;
     .swap-box {
       width: 90vw;
     }
