@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { selectModal, selectTokens, showModal } from "../../../redux/appSlice";
+import { selectModal, selectTokens, showModal, TokensType } from "../../../redux/appSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import "./tokensListModal.scss"
 
 const TokensListModal = () => {
+    const [filteredTokens, setFilteredTokens] = useState<TokensType[]>()
+    const [tokensFilter, setTokensFilter] = useState("")
 
     const dispatch = useAppDispatch();
     const show = useAppSelector(selectModal);
@@ -13,6 +16,15 @@ const TokensListModal = () => {
     console.log(tokens);
 
     const handleClose = () => dispatch(showModal(false));
+
+    useEffect(() => {
+        let filteredArray = tokens.filter((token) =>
+        (token.name
+            .toLowerCase()
+            .includes(tokensFilter.toLowerCase())
+        ))
+        setFilteredTokens(filteredArray)
+    }, [show, tokensFilter])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -24,9 +36,10 @@ const TokensListModal = () => {
                     type="text"
                     placeholder="Search name"
                     className="search-token-input"
+                    onChange={e => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list">
-                    {tokens.map((token) => (
+                    {filteredTokens?.map((token) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
                                 {token.images ? (

@@ -11,7 +11,7 @@ export const fetchAsyncTokens = createAsyncThunk(
   }
 );
 
-interface TokensType {
+export interface TokensType {
   name: string;
   symbol: string;
   key: string;
