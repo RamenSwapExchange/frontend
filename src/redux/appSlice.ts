@@ -6,7 +6,7 @@ import tokensApi from "../common/tokensApi";
 export const fetchAsyncTokens = createAsyncThunk(
   "networks/fetchAsyncNetworks",
   async () => {
-    const response = await tokensApi.get("tokens");
+    const response = await tokensApi.get("tokens?page=1");
     return response.data.tokens;
   }
 );
@@ -31,7 +31,7 @@ const initialState: AppState = {
   popUp: false,
   tokens: [],
   selectedChain: "",
-  modal: false
+  modal: false,
 };
 
 export const appSlice = createSlice({
