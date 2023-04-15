@@ -9,16 +9,17 @@ import Tokens from "./components/Tokens/Tokens";
 import Swap from "./components/Swap/Swap";
 import Pools from "./components/Pools/Pools";
 import Header from "./components/Header/Header";
-import { useAppDispatch } from "./redux/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { useEffect } from "react";
-import { fetchAsyncTokens } from "./redux/appSlice";
+import { fetchAsyncTokens, selectPage } from "./redux/appSlice";
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const page = useAppSelector(selectPage);
 
   useEffect(() => {
-    dispatch(fetchAsyncTokens());
-  }, [dispatch]);
+    dispatch(fetchAsyncTokens(`tokens?page=${page}`));
+  }, [dispatch, page]);
 
   return (
     <Router>

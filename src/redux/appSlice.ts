@@ -5,8 +5,8 @@ import tokensApi from "../common/tokensApi";
 
 export const fetchAsyncTokens = createAsyncThunk(
   "networks/fetchAsyncNetworks",
-  async () => {
-    const response = await tokensApi.get("tokens?page=1");
+  async (request: string) => {
+    const response = await tokensApi.get(`${request}`);
     return response.data.tokens;
   }
 );
@@ -25,6 +25,7 @@ interface AppState {
   tokens: TokensType[];
   selectedChain: string;
   modal: boolean;
+  page: number;
 }
 
 const initialState: AppState = {
@@ -32,6 +33,7 @@ const initialState: AppState = {
   tokens: [],
   selectedChain: "",
   modal: false,
+  page: 0,
 };
 
 export const appSlice = createSlice({
@@ -47,6 +49,9 @@ export const appSlice = createSlice({
     showModal: (state, action: PayloadAction<boolean>) => {
       state.modal = action.payload;
     },
+    changePage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAsyncTokens.pending, () => {});
@@ -57,10 +62,12 @@ export const appSlice = createSlice({
   },
 });
 
-export const { showPopUp, changeChain, showModal } = appSlice.actions;
+export const { showPopUp, changeChain, showModal, changePage } =
+  appSlice.actions;
 
 export const selectPopUp = (state: RootState) => state.app.popUp;
 export const selectTokens = (state: RootState) => state.app.tokens;
 export const selectModal = (state: RootState) => state.app.modal;
+export const selectPage = (state: RootState) => state.app.page;
 
 export default appSlice.reducer;

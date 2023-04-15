@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {
+  changePage,
   selectModal,
   selectTokens,
   showModal,
@@ -21,19 +22,20 @@ const TokensListModal = () => {
   console.log(tokens);
 
   const handleClose = () => dispatch(showModal(false));
-  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(0);
   const boxRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
     const box = boxRef.current;
     if (box && box.scrollTop + box.clientHeight === box.scrollHeight) {
-      setCount((prevCount) => prevCount + 1);
+      setPage((prevPage) => prevPage + 1);
     }
   };
 
   useEffect(() => {
-    console.log("page: " + count);
-  }, [count]);
+    console.log("page: " + page);
+    dispatch(changePage(page));
+  }, [page, dispatch]);
 
   useEffect(() => {
     let filteredArray = tokens.filter((token) =>
