@@ -1,5 +1,10 @@
 import "./ConnectButton.scss";
 import { useAccount } from "wagmi";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {
+  selectAccountCanvas,
+  showAccountCanvas,
+} from "../../../redux/appSlice";
 
 const ConnectButton = () => {
   const { address, isConnected } = useAccount();
@@ -8,9 +13,15 @@ const ConnectButton = () => {
     "..."
   );
 
+  const showCanvas = useAppSelector(selectAccountCanvas);
+  const dispatch = useAppDispatch();
+
   //show canvas
   return (
-    <div className="connect-button-main" onClick={() => {}}>
+    <div
+      className="connect-button-main"
+      onClick={() => dispatch(showAccountCanvas(!showCanvas))}
+    >
       {isConnected ? addressSliced : "Connect"}
     </div>
   );

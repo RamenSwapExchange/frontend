@@ -7,11 +7,16 @@ import ThemeButton from "./CanvasComponents/ThemeButton";
 import ConnectorList from "./CanvasComponents/ConnectorList";
 import Account from "./CanvasComponents/Account";
 
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectAccountCanvas, showAccountCanvas } from "../../redux/appSlice";
+
 const AccountCanvas = () => {
   const { isConnected } = useAccount();
 
-  const [showCanvas, setShowCanvas] = useState(true);
-  const handleClose = () => setShowCanvas(false);
+  const handleClose = () => dispatch(showAccountCanvas(false));
+
+  const showCanvas = useAppSelector(selectAccountCanvas);
+  const dispatch = useAppDispatch();
 
   return (
     <Offcanvas

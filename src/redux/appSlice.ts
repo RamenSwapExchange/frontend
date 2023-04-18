@@ -22,6 +22,7 @@ export interface TokensType {
 
 interface AppState {
   popUp: boolean;
+  isAccountCanvas: boolean;
   tokens: TokensType[];
   selectedChain: string;
   modal: boolean;
@@ -30,6 +31,7 @@ interface AppState {
 
 const initialState: AppState = {
   popUp: false,
+  isAccountCanvas: false,
   tokens: [],
   selectedChain: "",
   modal: false,
@@ -42,6 +44,9 @@ export const appSlice = createSlice({
   reducers: {
     showPopUp: (state, action: PayloadAction<boolean>) => {
       state.popUp = action.payload;
+    },
+    showAccountCanvas: (state, action: PayloadAction<boolean>) => {
+      state.isAccountCanvas = action.payload;
     },
     changeChain: (state, action: PayloadAction<string>) => {
       state.selectedChain = action.payload;
@@ -62,10 +67,11 @@ export const appSlice = createSlice({
   },
 });
 
-export const { showPopUp, changeChain, showModal, changePage } =
+export const { showPopUp, showAccountCanvas,changeChain, showModal, changePage } =
   appSlice.actions;
 
 export const selectPopUp = (state: RootState) => state.app.popUp;
+export const selectAccountCanvas = (state: RootState) => state.app.isAccountCanvas;
 export const selectTokens = (state: RootState) => state.app.tokens;
 export const selectModal = (state: RootState) => state.app.modal;
 export const selectPage = (state: RootState) => state.app.page;
