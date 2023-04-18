@@ -18,12 +18,12 @@ const AccountCanvas = () => {
 
   const handleClose = () => dispatch(showAccountCanvas(false));
 
-  const showCanvas = useAppSelector(selectAccountCanvas);
+  const isCanvas = useAppSelector(selectAccountCanvas);
   const dispatch = useAppDispatch();
 
   return (
     <Offcanvas
-      show={showCanvas}
+      show={isCanvas}
       placement={"end"}
       backdrop={false}
       className="main-canvas"
