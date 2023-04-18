@@ -16,7 +16,6 @@ const ConnectButton = () => {
   const showCanvas = useAppSelector(selectAccountCanvas);
   const dispatch = useAppDispatch();
 
-  //show canvas
   return (
     <div
       className="connect-button-main"

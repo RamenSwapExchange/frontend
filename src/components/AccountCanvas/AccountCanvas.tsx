@@ -1,6 +1,5 @@
 import "./AccountCanvas.scss";
 import { Offcanvas } from "react-bootstrap";
-import { useState } from "react";
 import { useAccount } from "wagmi";
 
 import ThemeButton from "./CanvasComponents/ThemeButton";
@@ -11,7 +10,11 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectAccountCanvas, showAccountCanvas } from "../../redux/appSlice";
 
 const AccountCanvas = () => {
-  const { isConnected } = useAccount();
+  const { isConnected } = useAccount({
+    onDisconnect() {
+      handleClose();
+    },
+  });
 
   const handleClose = () => dispatch(showAccountCanvas(false));
 

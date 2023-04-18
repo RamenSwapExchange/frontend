@@ -39,9 +39,8 @@ const Account = () => {
 
       <div className="account-menu">
         <Nav
-          variant="pills"
           defaultActiveKey="tokens"
-          onSelect={(e) => setChoosenPage(e)}
+          onSelect={(item) => setChoosenPage(item)}
           className="account-menu-header"
         >
           <Nav.Item>
