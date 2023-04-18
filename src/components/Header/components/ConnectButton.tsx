@@ -1,12 +1,10 @@
 import "./ConnectButton.scss";
-import Offcanvas from "react-bootstrap/Offcanvas";
-
 import { useAccount } from "wagmi";
-import { useState } from "react";
-
-import ThemeButton from "./Account OffCanvas/ThemeButton";
-import ConnectorList from "./Account OffCanvas/ConnectorList";
-import Account from "./Account OffCanvas/Account";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {
+  selectAccountCanvas,
+  showAccountCanvas,
+} from "../../../redux/appSlice";
 
 const ConnectButton = () => {
   const { address, isConnected } = useAccount();
@@ -15,39 +13,16 @@ const ConnectButton = () => {
     "..."
   );
 
-  const [showCanvas, setShowCanvas] = useState(false);
-  const handleClose = () => setShowCanvas(false);
-  const handleShow = () => setShowCanvas(true);
+  const showCanvas = useAppSelector(selectAccountCanvas);
+  const dispatch = useAppDispatch();
 
   return (
-    <>
-      <div className="connect-button-main" onClick={() => handleShow()}>
-        {isConnected ? addressSliced : "Connect"}
-      </div>
-
-      <Offcanvas
-        show={showCanvas}
-        placement={"end"}
-        backdrop={false}
-        className="main-canvas"
-      >
-        <div className="main-div-canvas">
-          <div className="left-panel" onClick={handleClose}>
-            &gt;&gt;
-          </div>
-
-          <div className="right-panel">
-            {isConnected ? (
-              <Account />
-            ) : (
-              <ConnectorList onConnectAccount={handleClose} />
-            )}
-
-            <ThemeButton />
-          </div>
-        </div>
-      </Offcanvas>
-    </>
+    <div
+      className="connect-button-main"
+      onClick={() => dispatch(showAccountCanvas(!showCanvas))}
+    >
+      {isConnected ? addressSliced : "Connect"}
+    </div>
   );
 };
 

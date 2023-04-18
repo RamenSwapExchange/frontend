@@ -57,8 +57,9 @@
 
     font-weight: 900;
     margin: 0px 10px 0px 10px;
-    color: gray;
-
+    a {
+      color: gray;
+    }
     .nav-link.active {
       color: black;
       background-color: transparent;
