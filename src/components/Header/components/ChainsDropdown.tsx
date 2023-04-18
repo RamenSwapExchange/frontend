@@ -1,4 +1,4 @@
-import "./ChainsDropdown.scss";
+import "./chainsDropdown.scss";
 import { NavDropdown, OverlayTrigger } from "react-bootstrap";
 import { BiError } from "react-icons/bi";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";

@@ -1,4 +1,4 @@
-import "./AccountCanvas.scss";
+import "./accountCanvas.scss";
 import { Offcanvas } from "react-bootstrap";
 import { useAccount } from "wagmi";
 

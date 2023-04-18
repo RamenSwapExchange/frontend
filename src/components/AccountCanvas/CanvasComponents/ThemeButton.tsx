@@ -1,4 +1,4 @@
-import "./ThemeButton.scss";
+import "./themeButton.scss";
 import { useState } from "react";
 import { BsSun } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";

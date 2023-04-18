@@ -1,4 +1,4 @@
-import "./Account.scss";
+import "./account.scss";
 import { AiOutlinePoweroff, AiOutlineCopy } from "react-icons/ai";
 
 import { useAccount, useBalance } from "wagmi";

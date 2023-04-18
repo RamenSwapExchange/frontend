@@ -22,14 +22,14 @@ const Swap = () => {
         <div className="single-swap">
           <input type="text" placeholder="0" className="swap-input" />
           <button className="token-btn" onClick={handleShow}>
-            <img src={ethereumIcon} alt={ethereumIcon} /> ETH{" "}
+            <img src={ethereumIcon} alt={ethereumIcon} /> ETH
             <div className="arrow-down">&#x25BC;</div>
           </button>
         </div>
         <div className="single-swap">
           <input type="text" placeholder="0" className="swap-input" />
           <button className="token-btn" onClick={handleShow}>
-            <img src={ethereumIcon} alt={ethereumIcon} /> ETH{" "}
+            <img src={ethereumIcon} alt={ethereumIcon} /> ETH
             <div className="arrow-down">&#x25BC;</div>
           </button>
         </div>

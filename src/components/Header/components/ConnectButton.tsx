@@ -1,4 +1,4 @@
-import "./ConnectButton.scss";
+import "./connectButton.scss";
 import { useAccount } from "wagmi";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
