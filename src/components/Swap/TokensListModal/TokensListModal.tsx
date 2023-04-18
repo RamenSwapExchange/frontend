@@ -12,12 +12,12 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import "./tokensListModal.scss";
 
 const TokensListModal = () => {
-    const [filteredTokens, setFilteredTokens] = useState<TokensType[]>();
+    const [tokens, setTokens] = useState<TokensType[]>();
     const [tokensFilter, setTokensFilter] = useState("");
 
     const dispatch = useAppDispatch();
     const show = useAppSelector(selectModal);
-    const tokens = useAppSelector(selectTokens);
+    const reduxTokens = useAppSelector(selectTokens);
 
     console.log(tokens);
 
@@ -38,11 +38,11 @@ const TokensListModal = () => {
     }, [page, dispatch]);
 
     useEffect(() => {
-        let filteredArray = tokens.filter((token) =>
-            token.name.toLowerCase().includes(tokensFilter.toLowerCase())
-        );
-        setFilteredTokens(oldList => oldList ? [...oldList, ...filteredArray] : filteredArray);
-    }, [show, tokensFilter, page]);
+        // let filteredArray = tokens.filter((token) =>
+        //     token.name.toLowerCase().includes(tokensFilter.toLowerCase())
+        // );
+        setTokens(oldList => oldList ? [...oldList, ...reduxTokens] : reduxTokens);
+    }, [show, tokensFilter, page, reduxTokens]);
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -57,7 +57,7 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={handleScroll} ref={boxRef}>
-                    {filteredTokens?.map((token) => (
+                    {tokens?.map((token) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
                                 {token.images ? (
