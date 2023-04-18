@@ -9,9 +9,17 @@
     height: 100%;
     padding-top: 10px;
     cursor: pointer;
+
+    .copy-icon {
+      visibility: hidden;
+    }
   }
+
   .account-address:hover {
     color: gray;
+  }
+  .account-address:hover > .copy-icon {
+    visibility: visible;
   }
 
   .account-disconnect {
@@ -32,4 +40,33 @@
   padding-left: 20px;
   font-size: 30px;
   font-weight: 400;
+}
+
+.account-menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 20px;
+
+  .account-menu-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    gap: 20px;
+
+    font-weight: 900;
+    margin: 0px 10px 0px 10px;
+    color: gray;
+
+    .nav-link.active {
+      color: black;
+      background-color: transparent;
+    }
+  }
+
+  .account-menu-content {
+    flex-grow: 20;
+    margin: 10px;
+  }
 }

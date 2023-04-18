@@ -4,6 +4,7 @@ import polygonIcon from "/images/Polygon.svg";
 import optimismIcon from "/images/Optymism.svg";
 import arbitrumIcon from "/images/Arbitrum.svg";
 import celoIcon from "/images/Celo.svg";
+import missingIcon from "/missing_large.png";
 
 interface IChainIcons {
   [key: number]: string;
@@ -15,9 +16,9 @@ chainIcons[optimism.id] = optimismIcon;
 chainIcons[arbitrum.id] = arbitrumIcon;
 chainIcons[celo.id] = celoIcon;
 
-export const getChainIcon = (chainId: number) => {
+export const getChainIcon = (chainId: number): string => {
   if (chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId];
-  else return "error"; //TODO
+  else return missingIcon; //TODO
 };
 
 //do wywalenia chyba na razie uzywane tylko w tokens.jsx

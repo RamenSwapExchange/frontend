@@ -4,14 +4,16 @@
 }
 
 .connectors {
+  flex-grow: 1;
   margin: 10px;
-  border-radius: 5px;
-  background-color: gray;
   cursor: pointer;
 
   .connector-div {
     display: flex;
     align-items: center;
+    border-radius: 5px;
+    background-color: gray;
+
     height: 80px;
     gap: 20px;
 
@@ -31,8 +33,9 @@
       border-width: 2px;
     }
   }
-}
-.connectors:hover {
-  background-color: lightgray;
-  transition: 0.1s;
+
+  .connector-div:hover {
+    background-color: lightgray;
+    transition: 0.1s;
+  }
 }
