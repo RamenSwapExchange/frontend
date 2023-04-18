@@ -38,9 +38,6 @@ const TokensListModal = () => {
     }, [page, dispatch]);
 
     useEffect(() => {
-        // let filteredArray = tokens.filter((token) =>
-        //     token.name.toLowerCase().includes(tokensFilter.toLowerCase())
-        // );
         setTokens(oldList => oldList ? [...oldList, ...reduxTokens] : reduxTokens);
     }, [show, tokensFilter, page, reduxTokens]);
 
