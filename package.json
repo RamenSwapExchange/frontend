@@ -7,7 +7,7 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "format": "npx prettier --write .",
+        "format": "npx prettier --write ."
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.9.3",
