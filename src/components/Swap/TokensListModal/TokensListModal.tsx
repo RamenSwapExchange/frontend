@@ -1,45 +1,39 @@
-import { useEffect, useRef, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import {
-    changePage,
-    selectModal,
-    selectTokens,
-    showModal,
-    TokensType,
-} from "../../../redux/appSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import "./tokensListModal.scss";
+import { useEffect, useRef, useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import { changePage, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
+import './tokensListModal.scss'
 
 const TokensListModal = () => {
-    const [tokens, setTokens] = useState<TokensType[]>();
-    const [tokensFilter, setTokensFilter] = useState("");
+    const [tokens, setTokens] = useState<TokensType[]>()
+    const [tokensFilter, setTokensFilter] = useState('')
 
-    const dispatch = useAppDispatch();
-    const show = useAppSelector(selectModal);
-    const reduxTokens = useAppSelector(selectTokens);
+    const dispatch = useAppDispatch()
+    const show = useAppSelector(selectModal)
+    const reduxTokens = useAppSelector(selectTokens)
 
-    console.log(tokens);
+    console.log(tokens)
 
-    const handleClose = () => dispatch(showModal(false));
-    const [page, setPage] = useState(0);
-    const boxRef = useRef<HTMLDivElement>(null);
+    const handleClose = () => dispatch(showModal(false))
+    const [page, setPage] = useState(0)
+    const boxRef = useRef<HTMLDivElement>(null)
 
     const handleScroll = () => {
-        const box = boxRef.current;
+        const box = boxRef.current
         if (box && box.scrollTop + box.clientHeight === box.scrollHeight) {
-            setPage((prevPage) => prevPage + 1);
+            setPage((prevPage) => prevPage + 1)
         }
-    };
+    }
 
     useEffect(() => {
-        console.log("page: " + page);
-        dispatch(changePage(page));
-    }, [page, dispatch]);
+        console.log('page: ' + page)
+        dispatch(changePage(page))
+    }, [page, dispatch])
 
     useEffect(() => {
-        setTokens(oldList => oldList ? [...oldList, ...reduxTokens] : reduxTokens);
-    }, [show, tokensFilter, page, reduxTokens]);
+        setTokens((oldList) => (oldList ? [...oldList, ...reduxTokens] : reduxTokens))
+    }, [show, tokensFilter, page, reduxTokens])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -57,11 +51,7 @@ const TokensListModal = () => {
                     {tokens?.map((token) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
-                                {token.images ? (
-                                    <img src={token.images[1]}></img>
-                                ) : (
-                                    <img src={token.image}></img>
-                                )}
+                                {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
                             </div>
                             <div>
                                 <div className="token-name">{token.name}</div>
@@ -72,7 +62,7 @@ const TokensListModal = () => {
                 </div>
             </Modal.Body>
         </Modal>
-    );
-};
+    )
+}
 
-export default TokensListModal;
+export default TokensListModal

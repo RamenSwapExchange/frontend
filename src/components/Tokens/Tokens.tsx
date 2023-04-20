@@ -1,6 +1,6 @@
-import "./tokens.scss";
-import Dropdown from 'react-bootstrap/Dropdown';
-import Table from 'react-bootstrap/Table';
+import './tokens.scss'
+import Dropdown from 'react-bootstrap/Dropdown'
+import Table from 'react-bootstrap/Table'
 
 const Tokens = () => {
     return (

@@ -1,50 +1,41 @@
-import "./accountCanvas.scss";
-import { Offcanvas } from "react-bootstrap";
-import { useAccount } from "wagmi";
+import './accountCanvas.scss'
+import { Offcanvas } from 'react-bootstrap'
+import { useAccount } from 'wagmi'
 
-import ThemeButton from "./CanvasComponents/ThemeButton";
-import ConnectorList from "./CanvasComponents/ConnectorList";
-import Account from "./CanvasComponents/Account";
+import ThemeButton from './CanvasComponents/ThemeButton'
+import ConnectorList from './CanvasComponents/ConnectorList'
+import Account from './CanvasComponents/Account'
 
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectAccountCanvas, showAccountCanvas } from "../../redux/appSlice";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 
 const AccountCanvas = () => {
-  const { isConnected } = useAccount({
-    onDisconnect() {
-      handleClose();
-    },
-  });
+    const { isConnected } = useAccount({
+        onDisconnect() {
+            handleClose()
+        },
+    })
 
-  const handleClose = () => dispatch(showAccountCanvas(false));
+    const handleClose = () => dispatch(showAccountCanvas(false))
 
-  const isCanvas = useAppSelector(selectAccountCanvas);
-  const dispatch = useAppDispatch();
+    const isCanvas = useAppSelector(selectAccountCanvas)
+    const dispatch = useAppDispatch()
 
-  return (
-    <Offcanvas
-      show={isCanvas}
-      placement={"end"}
-      backdrop={false}
-      className="main-canvas"
-    >
-      <div className="main-div-canvas">
-        <div className="left-panel" onClick={handleClose}>
-          &gt;&gt;
-        </div>
+    return (
+        <Offcanvas show={isCanvas} placement={'end'} backdrop={false} className="main-canvas">
+            <div className="main-div-canvas">
+                <div className="left-panel" onClick={handleClose}>
+                    &gt;&gt;
+                </div>
 
-        <div className="right-panel">
-          {isConnected ? (
-            <Account />
-          ) : (
-            <ConnectorList onConnectAccount={handleClose} />
-          )}
+                <div className="right-panel">
+                    {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
 
-          <ThemeButton />
-        </div>
-      </div>
-    </Offcanvas>
-  );
-};
+                    <ThemeButton />
+                </div>
+            </div>
+        </Offcanvas>
+    )
+}
 
-export default AccountCanvas;
+export default AccountCanvas

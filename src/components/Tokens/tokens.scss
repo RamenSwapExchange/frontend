@@ -1,14 +1,14 @@
-@import "../../common/globals.scss";
+@import '../../common/globals.scss';
 
-.tokens-container{
+.tokens-container {
     margin-top: 100px;
 
     .tokens-title {
         font-size: 36px;
         margin-bottom: 32px;
-      }
+    }
 
-      .filter-section{
+    .filter-section {
         display: flex;
         gap: 8px;
         margin-bottom: 20px;
@@ -21,14 +21,14 @@
             border-radius: 10px;
             border: 1px solid lightgray;
             transition: $transition;
-      
-            &:hover {
-              border: 1px solid black;
-            }
-          }
-      }
 
-      .tokens-table{
+            &:hover {
+                border: 1px solid black;
+            }
+        }
+    }
+
+    .tokens-table {
         border-radius: 12px;
-      }
+    }
 }

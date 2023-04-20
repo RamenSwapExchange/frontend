@@ -1,4 +1,4 @@
-@import "../../../common/globals.scss";
+@import '../../../common/globals.scss';
 
 .tokens-modal {
     position: relative;
@@ -43,10 +43,9 @@
                 .token-image {
                     display: flex;
                     justify-content: center;
-
                 }
 
-                .token-image>img {
+                .token-image > img {
                     width: 36px;
                     margin-right: 10px;
                 }

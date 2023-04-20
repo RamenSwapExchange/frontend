@@ -1,78 +1,78 @@
 .chainDropdown-main {
-  //bootstrap class remove toggle
-  .dropdown-toggle::after {
-    display: none;
-  }
-
-  .chain-button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    border-radius: 15px;
-    padding: 8px;
-
-    .loader {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-
-      border: 2px solid black;
-      border-bottom-color: transparent;
-      border-radius: 50%;
-
-      box-sizing: border-box;
-      animation: rotation 1s linear infinite;
+    //bootstrap class remove toggle
+    .dropdown-toggle::after {
+        display: none;
     }
 
-    @keyframes rotation {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+    .chain-button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 15px;
+        padding: 8px;
+
+        .loader {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+
+            border: 2px solid black;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     }
-  }
-  .chain-button:hover {
-    background-color: lightgray;
-    transition: 0.5s;
-  }
+    .chain-button:hover {
+        background-color: lightgray;
+        transition: 0.5s;
+    }
 
-  .chain-icon {
-    height: 20px;
-    width: 20px;
-  }
+    .chain-icon {
+        height: 20px;
+        width: 20px;
+    }
 
-  .chain-item-div {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 20px;
+    .chain-item-div {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        gap: 20px;
 
-    width: 200px;
-    border-radius: 5px;
-    margin: 2px;
-    padding: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+        width: 200px;
+        border-radius: 5px;
+        margin: 2px;
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 
-  .chain-button-loading {
-    border: solid black 1px;
-  }
+    .chain-button-loading {
+        border: solid black 1px;
+    }
 }
 
 .overlay-unsupported {
-  height: 35px;
-  width: auto;
-  
-  background: lightgray;
-  font-size: 12px;
-  word-break: break-word;
+    height: 35px;
+    width: auto;
 
-  padding: 7px;
-  margin-right: 10px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  box-shadow: rgba(47, 128, 237, 0.1) 0px 4px 8px 0px;
+    background: lightgray;
+    font-size: 12px;
+    word-break: break-word;
+
+    padding: 7px;
+    margin-right: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: rgba(47, 128, 237, 0.1) 0px 4px 8px 0px;
 }
