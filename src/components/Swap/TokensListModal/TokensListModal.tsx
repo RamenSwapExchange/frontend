@@ -32,8 +32,15 @@ const TokensListModal = () => {
     }, [page, dispatch])
 
     useEffect(() => {
-        setTokens((oldList) => (oldList ? [...oldList, ...reduxTokens] : reduxTokens))
-    }, [show, tokensFilter, page, reduxTokens])
+        setTokens(oldList => {
+          const uniqueTokens = reduxTokens.filter(
+            newToken =>
+              !oldList ||
+              !oldList.some(oldToken => oldToken.key === newToken.key)
+          );
+          return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens;
+        });
+      }, [show, tokensFilter, page, reduxTokens]);
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
