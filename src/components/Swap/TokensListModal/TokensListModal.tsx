@@ -32,15 +32,13 @@ const TokensListModal = () => {
     }, [page, dispatch])
 
     useEffect(() => {
-        setTokens(oldList => {
-          const uniqueTokens = reduxTokens.filter(
-            newToken =>
-              !oldList ||
-              !oldList.some(oldToken => oldToken.key === newToken.key)
-          );
-          return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens;
-        });
-      }, [show, tokensFilter, page, reduxTokens]);
+        setTokens((oldList) => {
+            const uniqueTokens = reduxTokens.filter(
+                (newToken) => !oldList || !oldList.some((oldToken) => oldToken.key === newToken.key)
+            )
+            return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens
+        })
+    }, [show, tokensFilter, page, reduxTokens])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -55,17 +53,24 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={handleScroll} ref={boxRef}>
-                    {tokens?.map((token) => (
-                        <div key={token.key} className="single-token">
-                            <div className="token-image">
-                                {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
-                            </div>
-                            <div>
-                                <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">{token.symbol}</div>
-                            </div>
-                        </div>
-                    ))}
+                    {tokens &&
+                        tokens
+                            .filter((token) => token.network === 'polygon')
+                            .map((token) => (
+                                <div key={token.key} className="single-token">
+                                    <div className="token-image">
+                                        {token.images ? (
+                                            <img src={token.images[1]}></img>
+                                        ) : (
+                                            <img src={token.image}></img>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <div className="token-name">{token.name}</div>
+                                        <div className="token-symbol">{token.symbol}</div>
+                                    </div>
+                                </div>
+                            ))}
                 </div>
             </Modal.Body>
         </Modal>
