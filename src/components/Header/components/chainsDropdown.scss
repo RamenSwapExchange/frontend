@@ -1,12 +1,20 @@
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+}
+
 .chainDropdown-main {
+    height: 46px;
+    @include flexCenter();
+
     //bootstrap class remove toggle
     .dropdown-toggle::after {
         display: none;
     }
 
     .chain-button {
-        display: flex;
-        align-items: center;
+        @include flexCenter();
+        justify-content: center;
         gap: 5px;
         border-radius: 15px;
         padding: 8px;
@@ -44,9 +52,8 @@
     }
 
     .chain-item-div {
-        display: flex;
+        @include flexCenter();
         justify-content: left;
-        align-items: center;
         gap: 20px;
 
         width: 200px;
