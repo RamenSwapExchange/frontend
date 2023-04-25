@@ -2,19 +2,21 @@ import './swap.scss'
 import { FiSettings } from 'react-icons/fi'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import TokensListModal from './TokensListModal/TokensListModal'
-import ethereumIcon from '/images/Ethereum.png'
-import { useAccount } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectAccountCanvas, showAccountCanvas, showModal } from '../../redux/appSlice'
+import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
+import SingleSwap from './SingleSwap'
 
 const Swap = () => {
     const { isConnected } = useAccount()
+    const { chain } = useNetwork()
     const dispatch = useAppDispatch()
-    const handleShow = () => dispatch(showModal(true))
 
     const isCanvas = useAppSelector(selectAccountCanvas)
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
+    
+    const ReadyToSwap = chain?.unsupported! || !isConnected;
 
     return (
         <div className="swap-container">
@@ -26,37 +28,26 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <div className="single-swap">
-                    <input type="text" placeholder="0" className="swap-input" />
-                    <button className="token-btn" onClick={handleShow}>
-                        <img src={ethereumIcon} alt={ethereumIcon} /> ETH
-                        <div className="arrow-down">&#x25BC;</div>
-                    </button>
-                </div>
-                <div className="single-swap">
-                    <input type="text" placeholder="0" className="swap-input" />
-                    <button className="token-btn" onClick={handleShow}>
-                        <img src={ethereumIcon} alt={ethereumIcon} /> ETH
-                        <div className="arrow-down">&#x25BC;</div>
-                    </button>
-                </div>
+                <SingleSwap disabled={ReadyToSwap}/>
+                <SingleSwap disabled={ReadyToSwap} second/>
+                
+                <button className={ReadyToSwap? "swap-button swap-button-disabled" : "swap-button"}>
+                    <AiOutlineArrowDown />
+                </button>
 
                 {isConnected ? (
-                    <button className="connect-button">Select a token</button>
+                    <button className={ReadyToSwap ? "connect-button connect-button-disabled" : "connect-button"} >Select a token</button>
                 ) : (
                     <button
                         className="connect-button"
-                        onClick={() => {
-                            handleShowAccount()
-                        }}
+                        onClick={handleShowAccount}
                     >
                         Connect Wallet
                     </button>
                 )}
-                <button className="swap-button">
-                    <AiOutlineArrowDown />
-                </button>
+           
             </div>
+
             <TokensListModal />
         </div>
     )

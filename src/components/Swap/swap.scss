@@ -93,8 +93,15 @@ $gray-hover: #929396;
             font-size: 20px;
 
             &:hover {
+                color: lightgray;
                 background-color: darkgray;
             }
+        }
+
+        .connect-button-disabled {
+            pointer-events: none;
+            color: lightgray;
+            background-color: darkgray;
         }
 
         .swap-button {
@@ -116,6 +123,10 @@ $gray-hover: #929396;
             &:hover {
                 color: $gray-hover;
             }
+        }
+        .swap-button-disabled {
+            pointer-events: none;
+            color: $gray-hover;
         }
     }
 }
