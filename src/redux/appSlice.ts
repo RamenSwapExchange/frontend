@@ -54,6 +54,9 @@ export const appSlice = createSlice({
         changePage: (state, action: PayloadAction<number>) => {
             state.page = action.payload
         },
+        clearTokens: (state) => {
+            state.tokens = []
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAsyncTokens.pending, () => {})
@@ -64,7 +67,7 @@ export const appSlice = createSlice({
     },
 })
 
-export const { showPopUp, showAccountCanvas, changeChain, showModal, changePage } = appSlice.actions
+export const { showPopUp, showAccountCanvas, changeChain, showModal, changePage, clearTokens } = appSlice.actions
 
 export const selectPopUp = (state: RootState) => state.app.popUp
 export const selectAccountCanvas = (state: RootState) => state.app.isAccountCanvas

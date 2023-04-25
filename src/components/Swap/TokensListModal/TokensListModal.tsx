@@ -2,7 +2,7 @@ import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useNetwork } from 'wagmi'
-import { changePage, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
+import { changePage, clearTokens, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
 
@@ -28,28 +28,32 @@ const TokensListModal = () => {
         }
     }
 
-    useEffect(() => {
-        console.log('page: ' + page)
-        dispatch(changePage(page))
-    }, [page, dispatch])
-
-    useEffect(() => {
+    function updateTokens() {
         setTokens((oldList) => {
             const uniqueTokens = reduxTokens.filter(
                 (newToken) => !oldList || !oldList.some((oldToken) => oldToken.key === newToken.key)
             )
             return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens
         })
+    }
+
+    useEffect(() => {
+        console.log('page: ' + page)
+        dispatch(changePage(page))
+    }, [page, dispatch])
+
+    useEffect(() => {
+        updateTokens()
     }, [show, tokensFilter, page, reduxTokens])
 
-    // useEffect(() => {
-    //     setTokens([])
-    //     console.log('TOKENS: ' + tokens)
-    // }, [chain])
+    useEffect(() => {
+        dispatch(clearTokens())
+    }, [chain])
 
-    // watchNetwork(() => {
-    //     setTokens([])
-    // })
+    watchNetwork(() => {
+        setTokens([])
+        updateTokens()
+    })
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
