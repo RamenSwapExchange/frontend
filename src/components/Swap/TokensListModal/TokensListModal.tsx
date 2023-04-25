@@ -15,8 +15,6 @@ const TokensListModal = () => {
     const show = useAppSelector(selectModal)
     const reduxTokens = useAppSelector(selectTokens)
 
-    console.log(tokens)
-
     const handleClose = () => dispatch(showModal(false))
     const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
@@ -35,25 +33,16 @@ const TokensListModal = () => {
             )
             return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens
         })
+        console.log(tokens)
     }
 
     useEffect(() => {
-        console.log('page: ' + page)
         dispatch(changePage(page))
     }, [page, dispatch])
 
     useEffect(() => {
         updateTokens()
     }, [show, tokensFilter, page, reduxTokens])
-
-    useEffect(() => {
-        dispatch(clearTokens())
-    }, [chain])
-
-    watchNetwork(() => {
-        setTokens([])
-        updateTokens()
-    })
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
