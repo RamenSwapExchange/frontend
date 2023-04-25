@@ -1,6 +1,7 @@
+import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import { useNetwork } from 'wagmi'
 import { changePage, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
@@ -8,6 +9,7 @@ import './tokensListModal.scss'
 const TokensListModal = () => {
     const [tokens, setTokens] = useState<TokensType[]>()
     const [tokensFilter, setTokensFilter] = useState('')
+    const { chain } = useNetwork()
 
     const dispatch = useAppDispatch()
     const show = useAppSelector(selectModal)
@@ -40,6 +42,15 @@ const TokensListModal = () => {
         })
     }, [show, tokensFilter, page, reduxTokens])
 
+    // useEffect(() => {
+    //     setTokens([])
+    //     console.log('TOKENS: ' + tokens)
+    // }, [chain])
+
+    // watchNetwork(() => {
+    //     setTokens([])
+    // })
+
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
             <Modal.Header closeButton>
@@ -60,7 +71,9 @@ const TokensListModal = () => {
                             </div>
                             <div>
                                 <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">{token.symbol}</div>
+                                <div className="token-symbol">
+                                    {token.symbol} <br /> {token.network}
+                                </div>
                             </div>
                         </div>
                     ))}

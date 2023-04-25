@@ -9,13 +9,17 @@ import AccountCanvas from './components/AccountCanvas/AccountCanvas'
 import { useAppDispatch, useAppSelector } from './redux/hooks'
 import { useEffect } from 'react'
 import { fetchAsyncTokens, selectPage } from './redux/appSlice'
+import { useNetwork } from 'wagmi'
 
 const App = () => {
     const dispatch = useAppDispatch()
     const page = useAppSelector(selectPage)
+    const { chain } = useNetwork()
+    const chainName = chain?.name.toLocaleLowerCase()
 
     useEffect(() => {
-        dispatch(fetchAsyncTokens(`tokens?page=${page}`))
+        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
+        console.log(chainName)
     }, [dispatch, page])
 
     return (
