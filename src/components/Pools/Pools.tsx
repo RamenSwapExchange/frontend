@@ -1,13 +1,15 @@
 import './pools.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { AiOutlineContainer } from 'react-icons/ai'
-import { useAccount } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
+import { getChainIcon } from '../../common/ChainsIcons'
 
 const Pools = () => {
     const { isConnected } = useAccount()
+    const { chain } = useNetwork()
     const showCanvas = useAppSelector(selectAccountCanvas)
     const dispatch = useAppDispatch()
 
@@ -30,9 +32,16 @@ const Pools = () => {
                 </div>
             </div>
             <div className="liquidity-container">
-                <AiOutlineContainer className="container-icon" />
-                <div>Your active V3 liquidity positions will appear here.</div>
-
+                {chain?.unsupported ?
+                    <>  
+                        <img src={getChainIcon(chain.id)} className="container-icon"/>
+                        <div> Your connected network is unsupported. </div>
+                    </>
+                : 
+                <>
+                    <AiOutlineContainer className="container-icon" />
+                    <div> Your active V3 liquidity positions will appear here. </div>
+                </>}
                 {!isConnected && (
                     <button onClick={() => dispatch(showAccountCanvas(!showCanvas))} className="pools-connect-btn">
                         Connect a wallet
