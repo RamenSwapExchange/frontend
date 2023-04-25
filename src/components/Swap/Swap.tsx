@@ -15,7 +15,10 @@ const Swap = () => {
 
     const isCanvas = useAppSelector(selectAccountCanvas)
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
-    
+    const swapButtons = () => {
+
+    }
+
     const ReadyToSwap = chain?.unsupported! || !isConnected;
 
     return (
@@ -29,9 +32,9 @@ const Swap = () => {
                 </div>
 
                 <SingleSwap disabled={ReadyToSwap}/>
-                <SingleSwap disabled={ReadyToSwap} second/>
+                <SingleSwap disabled={ReadyToSwap}/>
                 
-                <button className={ReadyToSwap? "swap-button swap-button-disabled" : "swap-button"}>
+                <button className={ReadyToSwap? "swap-button swap-button-disabled" : "swap-button"} onClick={swapButtons}>
                     <AiOutlineArrowDown />
                 </button>
 

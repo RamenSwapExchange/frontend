@@ -49,7 +49,7 @@ const ChainsDropdown = () => {
                 className="chain-icon"
                 src={isConnected ? (isLoading ? getChainIcon(pendingChainId!) : getChainIcon(chain?.id!)) : icon}
             />
-            {isArrowUp ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
+            {isArrowUp ? <RiArrowDropUpLine fontSize={20}/> : <RiArrowDropDownLine fontSize={20}/>}
         </div>
     )
 

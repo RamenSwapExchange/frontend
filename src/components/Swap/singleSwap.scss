@@ -1,0 +1,42 @@
+@import '../../common/globals.scss';
+
+.single-swap {
+    background-color: #f8f4fc;
+    padding: 16px;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0px;
+    transition: $transition;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:focus-within {
+        outline: 1px solid #d6d3d8;
+    }
+
+    .swap-input {
+        font-size: 36px;
+        width: 50%;
+        outline: none;
+        border: none;
+        background-color: #f8f4fc;
+        position: relative;
+    }
+
+    .token-btn {
+        padding: 4px 8px;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        border: none;
+        font-weight: 600;
+
+        img {
+            height: 18px;
+        }
+    }
+}
