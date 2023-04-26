@@ -1,19 +1,19 @@
+import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import { changePage, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
+import { useNetwork } from 'wagmi'
+import { changePage, clearTokens, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
 
 const TokensListModal = () => {
-    const [tokens, setTokens] = useState<TokensType[]>()
+    const [tokens, setTokens] = useState<TokensType[]>([])
     const [tokensFilter, setTokensFilter] = useState('')
+    const { chain } = useNetwork()
 
     const dispatch = useAppDispatch()
     const show = useAppSelector(selectModal)
     const reduxTokens = useAppSelector(selectTokens)
-
-    console.log(tokens)
 
     const handleClose = () => dispatch(showModal(false))
     const [page, setPage] = useState(0)
@@ -26,19 +26,28 @@ const TokensListModal = () => {
         }
     }
 
+    function updateTokens() {
+        setTokens((prevTokens) => {
+            const uniqueTokens = reduxTokens
+                .filter((newToken) => !prevTokens.some((oldToken) => oldToken.key === newToken.key))
+                .filter((token) => token.network === chain?.name?.toLowerCase())
+            return [...prevTokens, ...uniqueTokens]
+        })
+    }
+
     useEffect(() => {
-        console.log('page: ' + page)
         dispatch(changePage(page))
     }, [page, dispatch])
 
     useEffect(() => {
-        setTokens((oldList) => {
-            const uniqueTokens = reduxTokens.filter(
-                (newToken) => !oldList || !oldList.some((oldToken) => oldToken.key === newToken.key)
-            )
-            return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens
-        })
-    }, [show, tokensFilter, page, reduxTokens])
+        dispatch(clearTokens())
+        setTokens([])
+        setPage(0)
+    }, [chain])
+
+    useEffect(() => {
+        updateTokens()
+    }, [show, tokensFilter, page, reduxTokens, chain])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -60,7 +69,9 @@ const TokensListModal = () => {
                             </div>
                             <div>
                                 <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">{token.symbol}</div>
+                                <div className="token-symbol">
+                                    {token.symbol} <br /> {token.network}
+                                </div>
                             </div>
                         </div>
                     ))}
