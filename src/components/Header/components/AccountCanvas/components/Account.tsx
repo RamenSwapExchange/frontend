@@ -13,8 +13,10 @@ const Account = () => {
     const { data } = useBalance({
         address: address,
     })
-    const addressSliced = address?.replace(address.substring(7, address.length - 5), '...')
     const [choosenPage, setChoosenPage] = useState<string | null>('tokens')
+
+    const addressSliced = address?.replace(address.substring(7, address.length - 5), '...')
+    const balanceSliced = data?.formatted.replace(data.formatted.substring(7, data.formatted.length), '...')
 
     return (
         <>
@@ -28,7 +30,7 @@ const Account = () => {
                 </div>
             </div>
             <div className="account-balance">
-                {data?.formatted} {data?.symbol}
+                {balanceSliced} {data?.symbol}
             </div>
 
             <div className="account-menu">

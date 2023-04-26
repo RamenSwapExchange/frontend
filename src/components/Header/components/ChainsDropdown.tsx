@@ -3,13 +3,18 @@ import { NavDropdown, OverlayTrigger } from 'react-bootstrap'
 import { BiError } from 'react-icons/bi'
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri'
 
-import { getChainIcon } from '../../../common/ChainsIcons'
-import { useNetwork, useSwitchNetwork } from 'wagmi'
+import { chainsIcons, getChainIcon } from '../../../common/ChainsIcons'
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import { useState } from 'react'
 import { watchNetwork } from '@wagmi/core'
 
 const ChainsDropdown = () => {
-    const { chain, chains } = useNetwork()
+    const { chain } = useNetwork()
+    const { isConnected } = useAccount({
+        onDisconnect() {
+            setIcon(getChainIcon(chain?.id!));
+        },
+    })
     const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork({
         onError() {
             setIsError(true)
@@ -17,6 +22,8 @@ const ChainsDropdown = () => {
     })
     const [isError, setIsError] = useState(false)
     const [isArrowUp, setIsArrowUp] = useState(false)
+    //state to change icon when user is not logged into MetaMask. Default ethereum icon
+    const [icon, setIcon] = useState<string>(getChainIcon(1))
 
     //fires when user change net in MetaMask settings
     watchNetwork(() => {
@@ -24,9 +31,16 @@ const ChainsDropdown = () => {
     })
 
     const ChangeChain = (chainId: number) => {
-        setIsError(false)
-        if (chain?.id == chainId) return
-        switchNetwork!(chainId)
+        switch (isConnected) {
+            case true:
+                setIsError(false)
+                if (chain?.id == chainId) return
+                switchNetwork!(chainId)
+                break
+            case false:
+                setIcon(getChainIcon(chainId))
+                break
+        }
     }
 
     let TitleDropdown = (
@@ -36,7 +50,7 @@ const ChainsDropdown = () => {
 
             <img
                 className="chain-icon"
-                src={isLoading ? getChainIcon(pendingChainId!) : getChainIcon(chain?.id!)}
+                src={isConnected ? (isLoading ? getChainIcon(pendingChainId!) : getChainIcon(chain?.id!)) : icon}
             />
             {isArrowUp ? <RiArrowDropUpLine fontSize={20} /> : <RiArrowDropDownLine fontSize={20} />}
         </div>
@@ -64,7 +78,7 @@ const ChainsDropdown = () => {
             align="end"
             onClick={() => setIsArrowUp(!isArrowUp)}
         >
-            {chains.map((chainMap, id) => {
+            {chainsIcons.map((chainMap, id) => {
                 return (
                     <NavDropdown.Item key={id} className="chain-item-div" onClick={() => ChangeChain(chainMap.id)}>
                         <img className="chain-icon" src={getChainIcon(chainMap.id)} />

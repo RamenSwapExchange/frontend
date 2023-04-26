@@ -17,6 +17,7 @@
         justify-content: center;
         gap: 5px;
         border-radius: 15px;
+        margin: 8px;
         padding: 8px;
 
         .loader {
@@ -53,12 +54,9 @@
 
     .chain-item-div {
         @include flexCenter();
-        justify-content: left;
-        gap: 20px;
-
-        width: 200px;
-        border-radius: 5px;
-        margin: 2px;
+        gap: 10px;
+        border-radius: 10px;
+        margin: 2.5px 0px 2.5px 0px;
         padding: 5px;
         padding-left: 15px;
         padding-right: 15px;

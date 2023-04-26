@@ -62,7 +62,7 @@ const Header = () => {
                     </NavDropdown.Item>
                 </Nav>
                 <Nav className="me-auto header-right">
-                    {isConnected && <ChainsDropdown />}
+                    <ChainsDropdown />
                     <ConnectButton />
                 </Nav>
             </Navbar.Collapse>
