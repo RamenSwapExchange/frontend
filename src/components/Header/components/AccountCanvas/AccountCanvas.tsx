@@ -2,12 +2,12 @@ import './accountCanvas.scss'
 import { Offcanvas } from 'react-bootstrap'
 import { useAccount } from 'wagmi'
 
-import ThemeButton from './CanvasComponents/ThemeButton'
-import ConnectorList from './CanvasComponents/ConnectorList'
-import Account from './CanvasComponents/Account'
+import ThemeButton from './components/ThemeButton'
+import ConnectorList from './components/ConnectorList'
+import Account from './components/Account'
 
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
+import { selectAccountCanvas, showAccountCanvas } from '../../../../redux/appSlice'
 
 const AccountCanvas = () => {
     const { isConnected } = useAccount({

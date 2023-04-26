@@ -2,7 +2,7 @@ import './connectButton.scss'
 import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../../redux/appSlice'
-import AccountCanvas from '../../AccountCanvas/AccountCanvas'
+import AccountCanvas from './AccountCanvas/AccountCanvas'
 
 const ConnectButton = () => {
     const { address, isConnected } = useAccount()
