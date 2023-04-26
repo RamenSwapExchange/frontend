@@ -19,3 +19,28 @@
         padding: 10px 50px 10px 50px;
     }
 }
+
+@media only screen and (max-width: 810px) {
+    .home-container {
+        margin: 0px;
+        margin-top: 15px;
+        gap: 20px;
+        .home-header {
+            font-size: 50px;
+        }
+    }
+}
+
+@media only screen and (max-height: 810px) {
+    .home-container {
+        margin: 0px;
+        margin-top: 15px;
+        gap: 20px;
+        .home-logo{
+            height: 300px;
+        }
+        .home-header {
+            font-size: 50px;
+        }
+    }
+}
