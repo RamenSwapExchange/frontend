@@ -3,14 +3,13 @@ import { NavDropdown, OverlayTrigger } from 'react-bootstrap'
 import { BiError } from 'react-icons/bi'
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri'
 
-import { chainsIcons, getChainIcon } from '../../../common/ChainsIcons'
-import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
-import { useRef, useState } from 'react'
+import { getChainIcon } from '../../../common/ChainsIcons'
+import { useNetwork, useSwitchNetwork } from 'wagmi'
+import { useState } from 'react'
 import { watchNetwork } from '@wagmi/core'
 
 const ChainsDropdown = () => {
-    const { chain } = useNetwork()
-    const { isConnected } = useAccount()
+    const { chain, chains } = useNetwork()
     const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork({
         onError() {
             setIsError(true)
@@ -18,9 +17,6 @@ const ChainsDropdown = () => {
     })
     const [isError, setIsError] = useState(false)
     const [isArrowUp, setIsArrowUp] = useState(false)
-    const dropdownRef = useRef(null)
-    //state to change icon when user is not logged into MetaMask. Default ethereum icon
-    const [icon, setIcon] = useState<string>(getChainIcon(1))
 
     //fires when user change net in MetaMask settings
     watchNetwork(() => {
@@ -28,26 +24,19 @@ const ChainsDropdown = () => {
     })
 
     const ChangeChain = (chainId: number) => {
-        switch (isConnected) {
-            case true:
-                setIsError(false)
-                if (chain?.id == chainId) return
-                switchNetwork!(chainId)
-                break
-            case false:
-                setIcon(getChainIcon(chainId))
-                break
-        }
+        setIsError(false)
+        if (chain?.id == chainId) return
+        switchNetwork!(chainId)
     }
 
     let TitleDropdown = (
-        <div className="chain-button" ref={dropdownRef}>
+        <div className="chain-button">
             {isError && <BiError />}
             {isLoading && <div className="loader" />}
 
             <img
                 className="chain-icon"
-                src={isConnected ? (isLoading ? getChainIcon(pendingChainId!) : getChainIcon(chain?.id!)) : icon}
+                src={isLoading ? getChainIcon(pendingChainId!) : getChainIcon(chain?.id!)}
             />
             {isArrowUp ? <RiArrowDropUpLine fontSize={20} /> : <RiArrowDropDownLine fontSize={20} />}
         </div>
@@ -63,6 +52,7 @@ const ChainsDropdown = () => {
             </OverlayTrigger>
         )
     }
+
     //TODO modal pop up on Error
     //https://react-bootstrap.github.io/components/modal/
 
@@ -74,10 +64,10 @@ const ChainsDropdown = () => {
             align="end"
             onClick={() => setIsArrowUp(!isArrowUp)}
         >
-            {chainsIcons.map((chainMap, id) => {
+            {chains.map((chainMap, id) => {
                 return (
                     <NavDropdown.Item key={id} className="chain-item-div" onClick={() => ChangeChain(chainMap.id)}>
-                        <img className="chain-icon" src={chainMap.icon} />
+                        <img className="chain-icon" src={getChainIcon(chainMap.id)} />
                         <div>{chainMap.name}</div>
                         {chain?.id == chainMap.id && <div> ✔ </div>}
                     </NavDropdown.Item>

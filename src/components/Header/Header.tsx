@@ -12,8 +12,11 @@ import { AiOutlineTwitter, AiFillGithub, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import ConnectButton from './components/ConnectButton'
 import ChainsDropdown from './components/ChainsDropdown'
+import { useAccount } from 'wagmi'
 
 const Header = () => {
+    const { isConnected } = useAccount();
+
     return (
         <Navbar className="header">
             <Navbar.Collapse id="basic-navbar-nav">
@@ -59,7 +62,7 @@ const Header = () => {
                     </NavDropdown.Item>
                 </Nav>
                 <Nav className="me-auto header-right">
-                    <ChainsDropdown />
+                    {isConnected && <ChainsDropdown />}
                     <ConnectButton />
                 </Nav>
             </Navbar.Collapse>

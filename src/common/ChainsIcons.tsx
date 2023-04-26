@@ -18,34 +18,5 @@ chainIcons[celo.id] = celoIcon
 
 export const getChainIcon = (chainId: number): string => {
     if (chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId]
-    else return missingIcon //TODO
+    else return missingIcon
 }
-
-//do wywalenia chyba na razie uzywane tylko w tokens.jsx
-export const chainsIcons = [
-    {
-        id: mainnet.id,
-        name: mainnet.name,
-        icon: ethereumIcon,
-    },
-    {
-        id: polygon.id,
-        name: polygon.name,
-        icon: polygonIcon,
-    },
-    {
-        id: optimism.id,
-        name: optimism.name,
-        icon: optimismIcon,
-    },
-    {
-        id: arbitrum.id,
-        name: arbitrum.name.substring(0, arbitrum.name.length - 4), //Arbitrum One -> Arbitrum
-        icon: arbitrumIcon,
-    },
-    {
-        id: celo.id,
-        name: celo.name,
-        icon: celoIcon,
-    },
-]
