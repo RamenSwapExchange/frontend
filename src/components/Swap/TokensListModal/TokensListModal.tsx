@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
 
 const TokensListModal = () => {
-    const [tokens, setTokens] = useState<TokensType[]>()
+    const [tokens, setTokens] = useState<TokensType[]>([])
     const [tokensFilter, setTokensFilter] = useState('')
     const { chain } = useNetwork()
 
@@ -27,13 +27,12 @@ const TokensListModal = () => {
     }
 
     function updateTokens() {
-        setTokens((oldList) => {
-            const uniqueTokens = reduxTokens.filter(
-                (newToken) => !oldList || !oldList.some((oldToken) => oldToken.key === newToken.key)
-            )
-            return oldList ? [...oldList, ...uniqueTokens] : uniqueTokens
+        setTokens((prevTokens) => {
+            const uniqueTokens = reduxTokens
+                .filter((newToken) => !prevTokens.some((oldToken) => oldToken.key === newToken.key))
+                .filter((token) => token.network === chain?.name?.toLowerCase())
+            return [...prevTokens, ...uniqueTokens]
         })
-        console.log(tokens)
     }
 
     useEffect(() => {
@@ -41,8 +40,14 @@ const TokensListModal = () => {
     }, [page, dispatch])
 
     useEffect(() => {
+        dispatch(clearTokens())
+        setTokens([])
+        setPage(0)
+    }, [chain])
+
+    useEffect(() => {
         updateTokens()
-    }, [show, tokensFilter, page, reduxTokens])
+    }, [show, tokensFilter, page, reduxTokens, chain])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
