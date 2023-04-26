@@ -1,9 +1,10 @@
 import { mainnet, polygon, optimism, arbitrum, celo } from 'wagmi/chains'
-import ethereumIcon from '/images/Ethereum.png'
-import polygonIcon from '/images/Polygon.svg'
-import optimismIcon from '/images/Optymism.svg'
-import arbitrumIcon from '/images/Arbitrum.svg'
-import celoIcon from '/images/Celo.svg'
+import ethereumIcon from '/chains/Ethereum.png'
+import polygonIcon from '/chains/Polygon.svg'
+import optimismIcon from '/chains/Optymism.svg'
+import arbitrumIcon from '/chains/Arbitrum.svg'
+import celoIcon from '/chains/Celo.svg'
+
 import missingIcon from '/missing_large.png'
 
 interface IChainIcons {

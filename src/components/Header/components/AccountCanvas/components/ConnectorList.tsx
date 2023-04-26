@@ -1,5 +1,5 @@
 import './connectorList.scss'
-import metaMaskLogo from '/images/MetaMaskLogo.svg'
+import metaMaskLogo from '/MetaMaskLogo.svg'
 import Spinner from 'react-bootstrap/Spinner'
 import { useConnect } from 'wagmi'
 

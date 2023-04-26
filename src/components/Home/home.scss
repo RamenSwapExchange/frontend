@@ -1,0 +1,21 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+    
+    .home-logo{
+        height: 400px;
+    }
+    .home-header {
+        font-size: 100px;
+    }
+    .home-button {
+        background-color: gray;
+        color: white;
+        border-radius: 25px;
+        padding: 10px 50px 10px 50px;
+    }
+}

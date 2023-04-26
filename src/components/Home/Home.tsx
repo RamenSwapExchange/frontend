@@ -1,8 +1,17 @@
-import React from 'react'
+import "./home.scss"
+import logo from "/logo.png"
+
+import { Link } from "react-router-dom"
 
 const Home = () => {
     return (
-        <div>Home</div>
+        <div className='home-container'>
+            <img src={logo} alt="logo" className="home-logo" />
+            <div className="home-header"> Ramen Swap </div>
+            <Link style={{ textDecoration: "none" }} to="/swap">
+                <div className="home-button"> Get started </div>
+            </Link>
+        </div>
     )
 }
 

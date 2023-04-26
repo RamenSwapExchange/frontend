@@ -4,6 +4,7 @@ import Tokens from './components/Tokens/Tokens'
 import Swap from './components/Swap/Swap'
 import Pools from './components/Pools/Pools'
 import Header from './components/Header/Header'
+import Home from './components/Home/Home'
 
 import { useAppDispatch, useAppSelector } from './redux/hooks'
 import { useEffect } from 'react'
@@ -22,7 +23,7 @@ const App = () => {
             <Router>
                 <Header />
                 <Routes>
-                    <Route path="/" element={<Navigate to="/swap" />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/swap" element={<Swap />}></Route>
                     <Route path="/tokens" element={<Tokens />}></Route>
                     <Route path="/pools" element={<Pools />}></Route>
