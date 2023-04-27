@@ -8,8 +8,7 @@
     @include flexCenter();
     flex-direction: column;
     gap: 10px;
-    padding: 100px;
-    padding-top: 0px;
+    padding-top: -100px;
 
     a {
         width: 100%;
@@ -17,7 +16,7 @@
         text-decoration: none;
         color: black;
     }
-    
+
     .home-swap {
         height: 422px;
         cursor: pointer;
@@ -41,12 +40,6 @@
         width: 100%;
         background: linear-gradient(0deg, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 0) 100%);
     }
-    .home-logo {
-        height: 400px;
-    }
-    .home-header {
-        font-size: 100px;
-    }
     .home-button {
         background-color: gray;
         color: white;
@@ -55,27 +48,18 @@
     }
 }
 
-// @media only screen and (max-width: 810px) {
-//     .home-container {
-//         margin: 0px;
-//         margin-top: 15px;
-//         gap: 20px;
-//         .home-header {
-//             font-size: 50px;
-//         }
-//     }
-// }
-
-// @media only screen and (max-height: 810px) {
-//     .home-container {
-//         margin: 0px;
-//         margin-top: 15px;
-//         gap: 20px;
-//         .home-logo {
-//             height: 300px;
-//         }
-//         .home-header {
-//             font-size: 50px;
-//         }
-//     }
-// }
+@media only screen and (max-width: 9999px) {
+    .home-header {
+        font-size: 5vw;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    .home-header {
+        font-size: 7vw;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .home-header {
+        font-size: 10vw;
+    }
+}

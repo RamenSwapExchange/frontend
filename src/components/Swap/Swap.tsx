@@ -22,7 +22,7 @@ const Swap = () => {
     const ReadyToSwap = chain?.unsupported!;
 
     return (
-        <div className="swap-container">
+        <>
             <div className="swap-box">
                 <div className="swap-top">
                     <div>Swap</div>
@@ -52,7 +52,7 @@ const Swap = () => {
             </div>
 
             <TokensListModal />
-        </div>
+        </>
     )
 }
 
