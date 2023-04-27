@@ -9,8 +9,9 @@ const Home = () => {
         <div className='home-container'>
             <div className="home-swap">
                 <Swap />
+                <div className="home-overlay">  </div>
             </div>
-            <img src={logo} alt="logo" className="home-logo" />
+
             <div className="home-header"> Ramen Swap </div>
             <Link style={{ textDecoration: "none" }} to="/swap">
                 <div className="home-button"> Get started </div>
