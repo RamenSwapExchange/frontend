@@ -50,7 +50,7 @@ const TokensListModal = () => {
     watchNetwork(() => {
         dispatch(clearTokens())
         setTokens([])
-        setPage(0)
+        dispatch(changePage(0))
     })
 
     useEffect(() => {
