@@ -47,7 +47,7 @@ const TokensListModal = () => {
 
     useEffect(() => {
         updateTokens()
-    }, [show, tokensFilter, page, reduxTokens, chain])
+    }, [show, page, reduxTokens, chain])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -62,16 +62,14 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={handleScroll} ref={boxRef}>
-                    {tokens?.map((token) => (
+                    {tokens?.map((token: TokensType) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
                                 {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
                             </div>
                             <div>
                                 <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">
-                                    {token.symbol} <br /> {token.network}
-                                </div>
+                                <div className="token-symbol">{token.symbol}</div>
                             </div>
                         </div>
                     ))}
