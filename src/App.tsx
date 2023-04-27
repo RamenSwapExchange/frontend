@@ -19,8 +19,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
-        console.log(chainName)
-    }, [dispatch, page])
+    }, [dispatch, page, chain])
 
     return (
         <>

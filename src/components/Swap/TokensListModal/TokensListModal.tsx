@@ -40,13 +40,16 @@ const TokensListModal = () => {
     }, [page, dispatch])
 
     useEffect(() => {
+        console.log(chain)
         dispatch(clearTokens())
         setTokens([])
         setPage(0)
+        console.log(tokens)
     }, [chain])
 
     useEffect(() => {
         updateTokens()
+        console.log(tokens)
     }, [show, tokensFilter, page, reduxTokens, chain])
 
     return (
