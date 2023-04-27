@@ -2,7 +2,14 @@ import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useNetwork } from 'wagmi'
-import { changePage, clearTokens, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
+import {
+    changePage,
+    clearTokens,
+    selectModal,
+    selectTokens,
+    showModal,
+    TokensType,
+} from '../../../redux/tokensModalSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
 
@@ -39,15 +46,16 @@ const TokensListModal = () => {
         dispatch(changePage(page))
     }, [page, dispatch])
 
+    //TODO dispatch setpage
     watchNetwork(() => {
         dispatch(clearTokens())
         setTokens([])
-        setPage(0)
+        dispatch(changePage(0))
     })
 
     useEffect(() => {
         updateTokens()
-    }, [show, tokensFilter, page, reduxTokens, chain])
+    }, [show, page, reduxTokens, chain])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -62,16 +70,14 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={handleScroll} ref={boxRef}>
-                    {tokens?.map((token) => (
+                    {tokens?.map((token: TokensType) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
                                 {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
                             </div>
                             <div>
                                 <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">
-                                    {token.symbol} <br /> {token.network}
-                                </div>
+                                <div className="token-symbol">{token.symbol}</div>
                             </div>
                         </div>
                     ))}
