@@ -10,7 +10,7 @@ import Home from './components/Home/Home'
 
 import { useAppDispatch, useAppSelector } from './redux/hooks'
 import { useEffect } from 'react'
-import { fetchAsyncTokens, selectPage } from './redux/appSlice'
+import { fetchAsyncTokens, selectPage } from './redux/tokensModalSlice'
 import { useNetwork } from 'wagmi'
 
 const App = () => {

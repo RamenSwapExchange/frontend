@@ -2,7 +2,14 @@ import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useNetwork } from 'wagmi'
-import { changePage, clearTokens, selectModal, selectTokens, showModal, TokensType } from '../../../redux/appSlice'
+import {
+    changePage,
+    clearTokens,
+    selectModal,
+    selectTokens,
+    showModal,
+    TokensType,
+} from '../../../redux/tokensModalSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
 
@@ -39,6 +46,7 @@ const TokensListModal = () => {
         dispatch(changePage(page))
     }, [page, dispatch])
 
+    //TODO dispatch setpage
     watchNetwork(() => {
         dispatch(clearTokens())
         setTokens([])
