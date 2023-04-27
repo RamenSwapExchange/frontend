@@ -1,19 +1,21 @@
-import Swap from "../Swap/Swap"
-import "./home.scss"
-import logo from "/logo.png"
+import Swap from '../Swap/Swap'
+import './home.scss'
+import logo from '/logo.png'
 
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
-        <div className='home-container'>
-            <div className="home-swap">
-                <Swap />
-                <div className="home-overlay">  </div>
-            </div>
+        <div className="home-container">
+            <Link to={'/swap'}>
+                <div className="home-swap">
+                    <Swap />
+                    <div className="home-overlay" />
+                </div>
+            </Link>
 
             <div className="home-header"> Ramen Swap </div>
-            <Link style={{ textDecoration: "none" }} to="/swap">
+            <Link style={{ textDecoration: 'none' }} to="/swap">
                 <div className="home-button"> Get started </div>
             </Link>
         </div>

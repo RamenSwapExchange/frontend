@@ -18,12 +18,13 @@
             text-align: center;
             font-weight: bold;
             cursor: pointer;
-        }
-        .left-panel:hover {
-            transition: 0.5s;
-            translate: 5px;
-            background-color: rgba(196, 196, 196, 0.37);
-            color: gray;
+
+            &:hover {
+                transition: 0.5s;
+                translate: 5px;
+                background-color: rgba(196, 196, 196, 0.37);
+                color: gray;
+            }
         }
 
         .right-panel {
