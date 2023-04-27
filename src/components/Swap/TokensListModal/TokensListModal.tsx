@@ -39,17 +39,14 @@ const TokensListModal = () => {
         dispatch(changePage(page))
     }, [page, dispatch])
 
-    useEffect(() => {
-        console.log(chain)
+    watchNetwork(() => {
         dispatch(clearTokens())
         setTokens([])
         setPage(0)
-        console.log(tokens)
-    }, [chain])
+    })
 
     useEffect(() => {
         updateTokens()
-        console.log(tokens)
     }, [show, tokensFilter, page, reduxTokens, chain])
 
     return (

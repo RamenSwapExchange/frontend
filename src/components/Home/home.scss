@@ -29,7 +29,7 @@
             .swap-box {
                 border: 1px solid red;
                 transition: 0.5s;
-                transform: translate(0px, -5px);
+                transform: translateY(-15px);
             }
         }
     }
@@ -38,7 +38,7 @@
         top: -410px;
         height: 100%;
         width: 100%;
-        background: linear-gradient(0deg, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(0deg, rgba(255, 255, 255, 1) 22%, rgba(255, 255, 255, 0) 100%);
     }
     .home-button {
         background-color: gray;

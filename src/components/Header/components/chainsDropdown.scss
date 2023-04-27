@@ -3,6 +3,27 @@
     align-items: center;
 }
 
+.chains-error-container {
+    position: fixed;
+    @include flexCenter();
+    gap: 15px;
+    top: 100px;
+    height: 80px;
+
+    padding: 10px;
+    border-radius: 15px;
+    border: solid black 2px;
+
+    .error-icon {
+        height: 50px;
+    }
+    .error-text {
+        width: 200px;
+    }
+}
+
+//on 700px change
+
 .chainDropdown-main {
     height: 46px;
     @include flexCenter();

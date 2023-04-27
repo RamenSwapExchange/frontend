@@ -3,7 +3,6 @@ import { FiSettings } from 'react-icons/fi'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import TokensListModal from './TokensListModal/TokensListModal'
 import { useAccount, useNetwork } from 'wagmi'
-
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 import SingleSwap from './SingleSwap'
@@ -12,14 +11,14 @@ const Swap = () => {
     const { isConnected } = useAccount()
     const { chain } = useNetwork()
     const dispatch = useAppDispatch()
-
     const isCanvas = useAppSelector(selectAccountCanvas)
+
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
     const swapButtons = () => {
         //TODO
     }
 
-    const ReadyToSwap = chain?.unsupported!;
+    const isUnsupportedChain = chain?.unsupported!;
 
     return (
         <>
@@ -31,15 +30,15 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={ReadyToSwap} />
-                <SingleSwap disabled={ReadyToSwap} />
+                <SingleSwap disabled={isUnsupportedChain} token={""} />
+                <SingleSwap disabled={isUnsupportedChain} token={""} />
 
-                <button className={ReadyToSwap ? "swap-button swap-button-disabled" : "swap-button"} onClick={swapButtons}>
+                <button className={isUnsupportedChain ? "swap-button swap-button-disabled" : "swap-button"} onClick={swapButtons}>
                     <AiOutlineArrowDown />
                 </button>
 
                 {isConnected ? (
-                    <button className={ReadyToSwap ? "connect-button connect-button-disabled" : "connect-button"} >Select a token</button>
+                    <button className={isUnsupportedChain ? "connect-button connect-button-disabled" : "connect-button"} > Select a token </button>
                 ) : (
                     <button
                         className="connect-button"

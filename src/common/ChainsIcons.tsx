@@ -5,7 +5,7 @@ import optimismIcon from '/chains/Optymism.svg'
 import arbitrumIcon from '/chains/Arbitrum.svg'
 import celoIcon from '/chains/Celo.svg'
 
-import missingIcon from '/missing_large.png'
+import errorIcon from '/error.png'
 
 interface IChainIcons {
     [key: number]: string
@@ -20,7 +20,7 @@ chainIcons[celo.id] = celoIcon
 
 export const getChainIcon = (chainId: number): string => {
     if (chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId]
-    else return missingIcon
+    else return errorIcon
 }
 
 // chains when not connected to MetaMask

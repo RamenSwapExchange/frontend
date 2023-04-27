@@ -10,26 +10,25 @@ interface ISingleSwap {
     disabled?: boolean
 }
 
-const SingleSwap = ({disabled = false}: ISingleSwap) => {
+const SingleSwap = ({ disabled = false }: ISingleSwap) => {
     const { chain } = useNetwork()
     const dispatch = useAppDispatch()
-    
+
     const handleShow = () => {
-        if(disabled) return;
         dispatch(showModal(true))
     }
 
     return (
         <div className="single-swap">
-            <input type="text" placeholder="0" className="swap-input" disabled={disabled}/>
+            <input type="text" placeholder="0" className="swap-input" disabled={disabled} />
             <button className="token-btn" onClick={handleShow} disabled={disabled}>
-                {disabled ? "Select token" : 
+                {disabled ? "Select token" :
                     <>
-                        <img src={getChainIcon(chain?.id!)} /> 
+                        <img src={getChainIcon(chain?.id!)} />
                         {chain?.nativeCurrency.symbol}
                     </>
                 }
-                <RiArrowDropDownLine fontSize={25}/>
+                <RiArrowDropDownLine fontSize={25} />
             </button>
         </div>
     )
