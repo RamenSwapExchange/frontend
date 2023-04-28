@@ -1,5 +1,4 @@
 import './pools.scss'
-import Dropdown from 'react-bootstrap/Dropdown'
 import { AiOutlineContainer } from 'react-icons/ai'
 import { useAccount, useNetwork } from 'wagmi'
 
@@ -17,31 +16,21 @@ const Pools = () => {
         <div className="container-sm pools-container">
             <div className="pools-header">
                 <div className="pools-title">Pools</div>
-                <div className="pools-controls">
-                    <Dropdown>
-                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                            More
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item>Migrate</Dropdown.Item>
-                            <Dropdown.Item>V2 liquidity</Dropdown.Item>
-                            <Dropdown.Item>Learn</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <button>+ New Position</button>
-                </div>
+                <button>+ New Position</button>
             </div>
             <div className="liquidity-container">
-                {chain?.unsupported ?
-                    <>  
-                        <img src={getChainIcon(chain.id)} className="container-icon"/>
+                {chain?.unsupported ? (
+                    <>
+                        <img src={getChainIcon(chain.id)} className="container-icon" />
                         <div> Your connected network is unsupported. </div>
                     </>
-                : 
-                <>
-                    <AiOutlineContainer className="container-icon" />
-                    <div> Your active V3 liquidity positions will appear here. </div>
-                </>}
+                ) : (
+                    <>
+                        <AiOutlineContainer className="container-icon" />
+                        <div> Your active V3 liquidity positions will appear here. </div>
+                    </>
+                )}
+
                 {!isConnected && (
                     <button onClick={() => dispatch(showAccountCanvas(!showCanvas))} className="pools-connect-btn">
                         Connect a wallet

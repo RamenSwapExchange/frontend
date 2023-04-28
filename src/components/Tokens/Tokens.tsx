@@ -1,8 +1,13 @@
 import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
+import { useAccount, useNetwork } from 'wagmi'
+import { chainsIcons, getChainIcon } from '../../common/ChainsIcons'
 
 const Tokens = () => {
+    const { isConnected } = useAccount()
+    const { chain } = useNetwork()
+
     return (
         <div className="container-sm tokens-container">
             <div className="tokens-title">Top tokens on Ramenswap</div>
@@ -12,9 +17,9 @@ const Tokens = () => {
                         Ethereum
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item>A</Dropdown.Item>
-                        <Dropdown.Item>B</Dropdown.Item>
-                        <Dropdown.Item>C</Dropdown.Item>
+                        {chainsIcons.map((chainMap) => {
+                            return <Dropdown.Item key={chainMap.id}>{chainMap.name}</Dropdown.Item>
+                        })}
                     </Dropdown.Menu>
                 </Dropdown>
 
@@ -23,9 +28,11 @@ const Tokens = () => {
                         1D
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item>A</Dropdown.Item>
-                        <Dropdown.Item>B</Dropdown.Item>
-                        <Dropdown.Item>C</Dropdown.Item>
+                        <Dropdown.Item>1H</Dropdown.Item>
+                        <Dropdown.Item>1D</Dropdown.Item>
+                        <Dropdown.Item>1W</Dropdown.Item>
+                        <Dropdown.Item>1M</Dropdown.Item>
+                        <Dropdown.Item>1Y</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
 

@@ -1,7 +1,5 @@
-import Swap from '../Swap/Swap'
 import './home.scss'
-import logo from '/logo.png'
-
+import Swap from '../Swap/Swap'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
@@ -15,7 +13,7 @@ const Home = () => {
             </Link>
 
             <div className="home-header"> Ramen Swap </div>
-            <Link style={{ textDecoration: 'none' }} to="/swap">
+            <Link to="/swap">
                 <div className="home-button"> Get started </div>
             </Link>
         </div>

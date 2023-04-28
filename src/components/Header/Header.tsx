@@ -12,11 +12,8 @@ import { AiOutlineTwitter, AiFillGithub, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import ConnectButton from './components/ConnectButton'
 import ChainsDropdown from './components/ChainsDropdown'
-import { useAccount } from 'wagmi'
 
 const Header = () => {
-    const { isConnected } = useAccount();
-
     return (
         <Navbar className="header">
             <Navbar.Collapse id="basic-navbar-nav">
@@ -36,6 +33,7 @@ const Header = () => {
                     <Link to="/pools" className="nav-link">
                         Pools
                     </Link>
+
                     <NavDropdown title={<BiDotsHorizontalRounded className="dots-icon" />} id="basic-nav-dropdown">
                         <NavDropdown.Item className="dropdown-li">
                             <FaScroll className="dropdown-icon" />
@@ -56,11 +54,13 @@ const Header = () => {
                         </NavDropdown.ItemText>
                     </NavDropdown>
                 </Nav>
+
                 <Nav className="me-auto header-middle">
                     <NavDropdown.Item>
                         <input type="text" placeholder="Search Tokens" />
                     </NavDropdown.Item>
                 </Nav>
+
                 <Nav className="me-auto header-right">
                     <ChainsDropdown />
                     <ConnectButton />
