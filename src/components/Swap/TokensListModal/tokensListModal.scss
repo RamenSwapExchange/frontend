@@ -11,9 +11,10 @@
         justify-content: center;
         flex-direction: column;
         max-height: 40vh;
+        padding: 10px 0px;
 
         .search-token-input {
-            width: 100%;
+            width: 95%;
             padding: 7px;
             font-size: 16px;
             color: black;
@@ -21,6 +22,7 @@
             border-radius: 10px;
             border: 1px solid lightgray;
             transition: $transition;
+            margin: 0px auto;
             margin-bottom: 10px;
 
             &:hover {
@@ -40,10 +42,16 @@
                 display: flex;
                 align-items: center;
                 height: 56px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f8fcfc;
+                }
 
                 .token-image {
                     display: flex;
                     justify-content: center;
+                    margin-left: 10px;
                 }
 
                 .token-image > img {
