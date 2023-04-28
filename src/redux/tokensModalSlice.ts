@@ -21,12 +21,14 @@ interface AppState {
     tokens: TokensType[]
     modal: boolean
     page: number
+    tokensFilter: string
 }
 
 const initialState: AppState = {
     tokens: [],
     modal: false,
     page: 0,
+    tokensFilter: '',
 }
 
 export const tokensModalSlice = createSlice({
@@ -42,6 +44,9 @@ export const tokensModalSlice = createSlice({
         showModal: (state, action: PayloadAction<boolean>) => {
             state.modal = action.payload
         },
+        filterTokens: (state, action: PayloadAction<string>) => {
+            state.tokensFilter = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAsyncTokens.pending, () => {})
@@ -52,10 +57,11 @@ export const tokensModalSlice = createSlice({
     },
 })
 
-export const { changePage, clearTokens, showModal } = tokensModalSlice.actions
+export const { changePage, clearTokens, showModal, filterTokens } = tokensModalSlice.actions
 
 export const selectTokens = (state: RootState) => state.tokensModal.tokens
 export const selectModal = (state: RootState) => state.tokensModal.modal
 export const selectPage = (state: RootState) => state.tokensModal.page
+export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter
 
 export default tokensModalSlice.reducer

@@ -10,18 +10,19 @@ import Home from './components/Home/Home'
 
 import { useAppDispatch, useAppSelector } from './redux/hooks'
 import { useEffect } from 'react'
-import { fetchAsyncTokens, selectPage } from './redux/tokensModalSlice'
+import { fetchAsyncTokens, selectPage, selectTokensFilter } from './redux/tokensModalSlice'
 import { useNetwork } from 'wagmi'
 
 const App = () => {
     const dispatch = useAppDispatch()
     const page = useAppSelector(selectPage)
+    const tokensFilter = useAppSelector(selectTokensFilter)
     const { chain } = useNetwork()
     const chainName = chain?.name.toLocaleLowerCase()
 
     useEffect(() => {
-        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
-    }, [dispatch, page, chain])
+        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}&search=${tokensFilter}`))
+    }, [dispatch, page, chain, tokensFilter])
 
     return (
         <>

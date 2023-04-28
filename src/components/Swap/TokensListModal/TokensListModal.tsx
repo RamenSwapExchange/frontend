@@ -5,6 +5,7 @@ import { useNetwork } from 'wagmi'
 import {
     changePage,
     clearTokens,
+    filterTokens,
     selectModal,
     selectTokens,
     showModal,
@@ -42,11 +43,14 @@ const TokensListModal = () => {
         })
     }
 
+    function filterLocalTokens() {
+        setTokens(tokens.filter((token) => token.name.toLowerCase() === tokensFilter.toLowerCase()))
+    }
+
     useEffect(() => {
         dispatch(changePage(page))
     }, [page, dispatch])
 
-    //TODO dispatch setpage
     watchNetwork(() => {
         dispatch(clearTokens())
         setTokens([])
@@ -56,6 +60,11 @@ const TokensListModal = () => {
     useEffect(() => {
         updateTokens()
     }, [show, page, reduxTokens, chain])
+
+    useEffect(() => {
+        dispatch(filterTokens(tokensFilter))
+        filterLocalTokens()
+    }, [tokensFilter])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
