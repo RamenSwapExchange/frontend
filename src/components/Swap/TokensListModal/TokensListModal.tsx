@@ -1,6 +1,7 @@
 import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import { useNetwork } from 'wagmi'
 import {
     changePage,
     clearTokens,
@@ -14,7 +15,9 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import './tokensListModal.scss'
 
 const TokensListModal = () => {
+    const [tokens, setTokens] = useState<TokensType[]>([])
     const [tokensFilter, setTokensFilter] = useState('')
+    const { chain } = useNetwork()
 
     const dispatch = useAppDispatch()
     const show = useAppSelector(selectModal)
@@ -31,15 +34,37 @@ const TokensListModal = () => {
         }
     }
 
+    function updateTokens() {
+        setTokens((prevTokens) => {
+            const uniqueTokens = reduxTokens
+                .filter((newToken) => !prevTokens.some((oldToken) => oldToken.key === newToken.key))
+                .filter((token) => token.network === chain?.name?.toLowerCase())
+            return [...prevTokens, ...uniqueTokens]
+        })
+    }
+
+    function filterLocalTokens() {
+        setTokens(tokens.filter((token) => token.name.toLowerCase() === tokensFilter.toLowerCase()))
+    }
+
     useEffect(() => {
         dispatch(changePage(page))
-        dispatch(filterTokens(tokensFilter))
-    }, [page, dispatch, tokensFilter])
+    }, [page, dispatch])
 
     watchNetwork(() => {
         dispatch(clearTokens())
+        setTokens([])
         dispatch(changePage(0))
     })
+
+    useEffect(() => {
+        updateTokens()
+    }, [show, page, reduxTokens, chain])
+
+    useEffect(() => {
+        dispatch(filterTokens(tokensFilter))
+        filterLocalTokens()
+    }, [tokensFilter])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -54,7 +79,7 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={handleScroll} ref={boxRef}>
-                    {reduxTokens?.map((token: TokensType) => (
+                    {tokens?.map((token: TokensType) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
                                 {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
