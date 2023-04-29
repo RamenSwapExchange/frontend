@@ -24,7 +24,7 @@ export const getChainIcon = (chainId: number): string => {
 }
 
 // chains when not connected to MetaMask
-export const chainsIcons = [
+export const localChains = [
     {
         id: polygonMumbai.id,
         name: polygonMumbai.name,

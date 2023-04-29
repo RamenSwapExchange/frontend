@@ -4,17 +4,19 @@ import { BiError } from 'react-icons/bi'
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri'
 import errorIcon from "/error.png"
 
-import { chainsIcons, getChainIcon } from '../../../common/ChainsIcons'
+import { localChains, getChainIcon } from '../../../common/ChainsIcons'
 import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import { watchNetwork } from '@wagmi/core'
 import { useState } from 'react'
 
 const ChainsDropdown = () => {
+    const polygonMumbaiId = 80001;
     const resetErrorTime = 15 * 1000; //seconds
+
     const { chain } = useNetwork()
     const { isConnected } = useAccount({
         onDisconnect() {
-            setChainOfflineId(chain?.id!)
+            setLocalChainId(chain?.id!)
             setIsError(false)
         },
     })
@@ -34,9 +36,8 @@ const ChainsDropdown = () => {
         setIsError(false)
     })
 
-    //state to change chain when user is not logged into MetaMask. Default polygon mumbai id
-    const [chainOfflineId, setChainOfflineId] = useState(80001)
-
+    //state to change chain when user is not logged into MetaMask
+    const [localChainId, setLocalChainId] = useState(polygonMumbaiId)
 
     const ChangeChain = (chainId: number) => {
         switch (isConnected) {
@@ -46,7 +47,7 @@ const ChainsDropdown = () => {
                 switchNetwork!(chainId)
                 break
             case false:
-                setChainOfflineId(chainId)
+                setLocalChainId(chainId)
                 break
         }
     }
@@ -58,7 +59,7 @@ const ChainsDropdown = () => {
 
             <img
                 className="chain-icon"
-                src={isLoading ? getChainIcon(pendingChainId!) : getChainIcon(isConnected ? chain?.id! : chainOfflineId)}
+                src={isLoading ? getChainIcon(pendingChainId!) : getChainIcon(isConnected ? chain?.id! : localChainId)}
             />
             {isArrowUp ? <RiArrowDropUpLine fontSize={20} /> : <RiArrowDropDownLine fontSize={20} />}
         </div>
@@ -84,12 +85,12 @@ const ChainsDropdown = () => {
                 align="end"
                 onClick={() => setIsArrowUp(!isArrowUp)}
             >
-                {chainsIcons.map((chainMap, id) => {
+                {localChains.map((chainMap, id) => {
                     return (
                         <NavDropdown.Item key={id} className="chain-item-div" onClick={() => ChangeChain(chainMap.id)}>
                             <img className="chain-icon" src={getChainIcon(chainMap.id)} />
                             <div>{chainMap.name}</div>
-                            {(isConnected ? chainMap.id == chain?.id! : chainMap.id == chainOfflineId) && <div> ✔ </div>}
+                            {(isConnected ? chainMap.id == chain?.id! : chainMap.id == localChainId) && <div> ✔ </div>}
                         </NavDropdown.Item>
                     )
                 })}

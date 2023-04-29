@@ -2,7 +2,7 @@ import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
 import { useAccount, useNetwork } from 'wagmi'
-import { chainsIcons, getChainIcon } from '../../common/ChainsIcons'
+import { localChains, getChainIcon } from '../../common/ChainsIcons'
 
 const Tokens = () => {
     const { isConnected } = useAccount()
@@ -17,7 +17,7 @@ const Tokens = () => {
                         Ethereum
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        {chainsIcons.map((chainMap) => {
+                        {localChains.map((chainMap) => {
                             return <Dropdown.Item key={chainMap.id}>{chainMap.name}</Dropdown.Item>
                         })}
                     </Dropdown.Menu>
