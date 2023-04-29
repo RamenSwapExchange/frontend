@@ -52,11 +52,7 @@ export const tokensModalSlice = createSlice({
         builder.addCase(fetchAsyncTokens.pending, () => {})
         builder.addCase(fetchAsyncTokens.rejected, () => {})
         builder.addCase(fetchAsyncTokens.fulfilled, (state, { payload }) => {
-            const prevTokens = state.tokens
-            const uniqueTokens = payload.filter(
-                (token: TokensType) => !prevTokens.some((prevToken) => prevToken.key === token.key)
-            )
-            state.tokens = [...prevTokens, ...uniqueTokens]
+            state.tokens = payload
         })
     },
 })
