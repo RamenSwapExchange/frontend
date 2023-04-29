@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../redux/hooks'
 
 interface ISingleSwap {
     disabled?: boolean
+    token: string
 }
 
 const SingleSwap = ({ disabled = false }: ISingleSwap) => {

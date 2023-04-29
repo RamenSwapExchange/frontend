@@ -18,7 +18,7 @@ const Swap = () => {
         //TODO
     }
 
-    const isUnsupportedChain = chain?.unsupported!;
+    const isUnsupportedChain = chain?.unsupported!
 
     return (
         <>
@@ -30,24 +30,28 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={isUnsupportedChain} token={""} />
-                <SingleSwap disabled={isUnsupportedChain} token={""} />
+                <SingleSwap disabled={isUnsupportedChain} token={''} />
+                <SingleSwap disabled={isUnsupportedChain} token={''} />
 
-                <button className={isUnsupportedChain ? "swap-button swap-button-disabled" : "swap-button"} onClick={swapButtons}>
+                <button
+                    className={isUnsupportedChain ? 'swap-button swap-button-disabled' : 'swap-button'}
+                    onClick={swapButtons}
+                >
                     <AiOutlineArrowDown />
                 </button>
 
                 {isConnected ? (
-                    <button className={isUnsupportedChain ? "connect-button connect-button-disabled" : "connect-button"} > Select a token </button>
-                ) : (
                     <button
-                        className="connect-button"
-                        onClick={handleShowAccount}
+                        className={isUnsupportedChain ? 'connect-button connect-button-disabled' : 'connect-button'}
                     >
+                        {' '}
+                        Select a token{' '}
+                    </button>
+                ) : (
+                    <button className="connect-button" onClick={handleShowAccount}>
                         Connect Wallet
                     </button>
                 )}
-
             </div>
 
             <TokensListModal />
