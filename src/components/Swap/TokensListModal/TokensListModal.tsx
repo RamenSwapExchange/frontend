@@ -58,13 +58,10 @@ const TokensListModal = () => {
     })
 
     useEffect(() => {
-        updateTokens()
-    }, [show, page, reduxTokens, chain])
-
-    useEffect(() => {
         dispatch(filterTokens(tokensFilter))
         filterLocalTokens()
-    }, [tokensFilter])
+        updateTokens()
+    }, [show, page, reduxTokens, chain, tokensFilter])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
