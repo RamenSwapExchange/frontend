@@ -1,18 +1,16 @@
 import './singleSwap.scss'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 
-import { useNetwork } from 'wagmi'
 import { getChainIcon } from '../../common/ChainsIcons'
 import { showModal } from '../../redux/tokensModalSlice'
 import { useAppDispatch } from '../../redux/hooks'
 
 interface ISingleSwap {
     disabled?: boolean
-    token: string
+    token: any
 }
 
-const SingleSwap = ({ disabled = false }: ISingleSwap) => {
-    const { chain } = useNetwork()
+const SingleSwap = ({ disabled = false, token }: ISingleSwap) => {
     const dispatch = useAppDispatch()
 
     const handleShow = () => {
@@ -27,8 +25,8 @@ const SingleSwap = ({ disabled = false }: ISingleSwap) => {
                     'Select token'
                 ) : (
                     <>
-                        <img src={getChainIcon(chain?.id!)} />
-                        {chain?.nativeCurrency.symbol}
+                        <img src={getChainIcon(token.id)} />
+                        {token.nativeCurrency?.symbol}
                     </>
                 )}
                 <RiArrowDropDownLine fontSize={25} />

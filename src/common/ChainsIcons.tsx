@@ -10,43 +10,25 @@ import errorIcon from '/error.png'
 interface IChainIcons {
     [key: number]: string
 }
-const chainIcons: IChainIcons = {}
-chainIcons[polygonMumbai.id] = polygonIcon
-chainIcons[mainnet.id] = ethereumIcon
-chainIcons[polygon.id] = polygonIcon
-chainIcons[optimism.id] = optimismIcon
-chainIcons[arbitrum.id] = arbitrumIcon
-chainIcons[celo.id] = celoIcon
+const chainIcons: IChainIcons = {
+    [polygonMumbai.id]: polygonIcon,
+    [mainnet.id]: ethereumIcon,
+    [polygon.id]: polygonIcon,
+    [optimism.id]: optimismIcon,
+    [arbitrum.id]: arbitrumIcon,
+    [celo.id]: celoIcon
+}
 
 export const getChainIcon = (chainId: number): string => {
     if (chainIcons.hasOwnProperty(chainId)) return chainIcons[chainId]
     else return errorIcon
 }
 
+export const getLocalChain = (chainId: number) => {
+    return localChains.find(chain => {
+        return chain.id === chainId
+    });
+}
+
 // chains when not connected to MetaMask
-export const localChains = [
-    {
-        id: polygonMumbai.id,
-        name: polygonMumbai.name,
-    },
-    {
-        id: mainnet.id,
-        name: mainnet.name,
-    },
-    {
-        id: polygon.id,
-        name: polygon.name,
-    },
-    {
-        id: optimism.id,
-        name: optimism.name,
-    },
-    {
-        id: arbitrum.id,
-        name: arbitrum.name.substring(0, arbitrum.name.length - 4), //Arbitrum One -> Arbitrum
-    },
-    {
-        id: celo.id,
-        name: celo.name,
-    },
-]
+export const localChains = [polygonMumbai, mainnet, polygon, optimism, arbitrum, celo]

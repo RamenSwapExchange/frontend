@@ -1,17 +1,21 @@
 import './swap.scss'
 import { FiSettings } from 'react-icons/fi'
 import { AiOutlineArrowDown } from 'react-icons/ai'
+
+import SingleSwap from './SingleSwap'
 import TokensListModal from './TokensListModal/TokensListModal'
+
 import { useAccount, useNetwork } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
-import SingleSwap from './SingleSwap'
+import { selectAccountCanvas, selectLocalChainId, showAccountCanvas } from '../../redux/appSlice'
+import { getLocalChain } from '../../common/ChainsIcons'
 
 const Swap = () => {
     const { isConnected } = useAccount()
     const { chain } = useNetwork()
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
+    const localChainId = useAppSelector(selectLocalChainId)
 
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
     const swapButtons = () => {
@@ -30,8 +34,8 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={isUnsupportedChain} token={''} />
-                <SingleSwap disabled={isUnsupportedChain} token={''} />
+                <SingleSwap disabled={isUnsupportedChain} token={getLocalChain(localChainId)} />
+                <SingleSwap disabled={isUnsupportedChain} token={getLocalChain(localChainId)} />
 
                 <button
                     className={isUnsupportedChain ? 'swap-button swap-button-disabled' : 'swap-button'}
@@ -44,8 +48,7 @@ const Swap = () => {
                     <button
                         className={isUnsupportedChain ? 'connect-button connect-button-disabled' : 'connect-button'}
                     >
-                        {' '}
-                        Select a token{' '}
+                        Select a token
                     </button>
                 ) : (
                     <button className="connect-button" onClick={handleShowAccount}>

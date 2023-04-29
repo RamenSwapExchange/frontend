@@ -9,14 +9,17 @@ import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import { watchNetwork } from '@wagmi/core'
 import { useState } from 'react'
 
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
+import { selectLocalChainId } from '../../../redux/appSlice'
+import { changeLocalChainId } from '../../../redux/appSlice'
+
 const ChainsDropdown = () => {
-    const polygonMumbaiId = 80001;
     const resetErrorTime = 15 * 1000; //seconds
 
     const { chain } = useNetwork()
     const { isConnected } = useAccount({
         onDisconnect() {
-            setLocalChainId(chain?.id!)
+            dispatch(changeLocalChainId(chain?.id!))
             setIsError(false)
         },
     })
@@ -37,7 +40,8 @@ const ChainsDropdown = () => {
     })
 
     //state to change chain when user is not logged into MetaMask
-    const [localChainId, setLocalChainId] = useState(polygonMumbaiId)
+    const dispatch = useAppDispatch()
+    const localChainId = useAppSelector(selectLocalChainId)
 
     const ChangeChain = (chainId: number) => {
         switch (isConnected) {
@@ -47,7 +51,7 @@ const ChainsDropdown = () => {
                 switchNetwork!(chainId)
                 break
             case false:
-                setLocalChainId(chainId)
+                dispatch(changeLocalChainId(chainId))
                 break
         }
     }
@@ -89,7 +93,11 @@ const ChainsDropdown = () => {
                     return (
                         <NavDropdown.Item key={id} className="chain-item-div" onClick={() => ChangeChain(chainMap.id)}>
                             <img className="chain-icon" src={getChainIcon(chainMap.id)} />
-                            <div>{chainMap.name}</div>
+                            <div>
+                                {chainMap.name == "Arbitrum One"
+                                    ? chainMap.name.substring(0, chainMap.name.length - 4)
+                                    : chainMap.name}
+                            </div>
                             {(isConnected ? chainMap.id == chain?.id! : chainMap.id == localChainId) && <div> ✔ </div>}
                         </NavDropdown.Item>
                     )
