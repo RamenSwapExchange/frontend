@@ -20,14 +20,12 @@ export interface TokensType {
 interface AppState {
     tokens: TokensType[]
     modal: boolean
-    page: number
     tokensFilter: string
 }
 
 const initialState: AppState = {
     tokens: [],
     modal: false,
-    page: 0,
     tokensFilter: '',
 }
 
@@ -35,9 +33,6 @@ export const tokensModalSlice = createSlice({
     name: 'tokensModal',
     initialState,
     reducers: {
-        changePage: (state, action: PayloadAction<number>) => {
-            state.page = action.payload
-        },
         clearTokens: (state) => {
             state.tokens = []
         },
@@ -52,16 +47,19 @@ export const tokensModalSlice = createSlice({
         builder.addCase(fetchAsyncTokens.pending, () => {})
         builder.addCase(fetchAsyncTokens.rejected, () => {})
         builder.addCase(fetchAsyncTokens.fulfilled, (state, { payload }) => {
-            state.tokens = payload
+            const prevTokens = state.tokens
+            const uniqueTokens = payload.filter(
+                (token: TokensType) => !prevTokens.some((prevToken) => prevToken.key === token.key)
+            )
+            state.tokens = [...prevTokens, ...uniqueTokens]
         })
     },
 })
 
-export const { changePage, clearTokens, showModal, filterTokens } = tokensModalSlice.actions
+export const { clearTokens, showModal, filterTokens } = tokensModalSlice.actions
 
 export const selectTokens = (state: RootState) => state.tokensModal.tokens
 export const selectModal = (state: RootState) => state.tokensModal.modal
-export const selectPage = (state: RootState) => state.tokensModal.page
 export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter
 
 export default tokensModalSlice.reducer
