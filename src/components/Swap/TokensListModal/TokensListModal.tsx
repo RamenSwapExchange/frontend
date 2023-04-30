@@ -36,18 +36,28 @@ const TokensListModal = () => {
     }
 
     //TODO 2 rozne requesty - jesli filtr jest czysty, odpala sie request bez filtra &search=${tokensFilter}
+    function updateTokens() {
+        if (tokensFilter.length === 0) {
+            dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
+        } else {
+            dispatch(clearTokens())
+            dispatch(fetchAsyncTokens(`tokens?search=${tokensFilter}&networks=${chainName}`))
+        }
+    }
 
     useEffect(() => {
         dispatch(clearTokens())
+        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
     }, [chain])
 
     useEffect(() => {
         setPage(0)
+        setTokensFilter('')
     }, [chain, show])
 
     useEffect(() => {
-        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
-    }, [dispatch, page, chain])
+        updateTokens()
+    }, [dispatch, page, chain, tokensFilter])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
@@ -69,10 +79,7 @@ const TokensListModal = () => {
                             </div>
                             <div>
                                 <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">
-                                    {token.symbol} <br />
-                                    {token.network}
-                                </div>
+                                <div className="token-symbol">{token.symbol}</div>
                             </div>
                         </div>
                     ))}
