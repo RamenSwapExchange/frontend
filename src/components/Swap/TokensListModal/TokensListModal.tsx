@@ -38,7 +38,6 @@ const TokensListModal = () => {
     function disableScroll() {
         if (tokensFilter.length === 0) {
             handleScroll()
-        } else {
         }
     }
 
