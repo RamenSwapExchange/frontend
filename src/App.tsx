@@ -1,29 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './app.scss'
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Tokens from './components/Tokens/Tokens'
 import Swap from './components/Swap/Swap'
 import Pools from './components/Pools/Pools'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 
-import { useAppDispatch, useAppSelector } from './redux/hooks'
-import { useEffect } from 'react'
-import { fetchAsyncTokens, selectPage, selectTokensFilter } from './redux/tokensModalSlice'
-import { useNetwork } from 'wagmi'
-
 const App = () => {
-    const dispatch = useAppDispatch()
-    const page = useAppSelector(selectPage)
-    const tokensFilter = useAppSelector(selectTokensFilter)
-    const { chain } = useNetwork()
-    const chainName = chain?.name.toLocaleLowerCase()
-
-    useEffect(() => {
-        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}&search=${tokensFilter}`))
-    }, [dispatch, page, chain, tokensFilter])
-
     return (
         <>
             <Router>
