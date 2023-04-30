@@ -37,6 +37,12 @@
             overflow-y: scroll;
             height: 100%;
 
+            .no-results-found {
+                margin-top: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+
             .hide-token {
                 display: none;
             }

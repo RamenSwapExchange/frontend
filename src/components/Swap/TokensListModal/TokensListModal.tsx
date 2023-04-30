@@ -4,6 +4,7 @@ import {
     clearTokens,
     fetchAsyncTokens,
     selectModal,
+    selectNotFound,
     selectTokens,
     showModal,
     TokensType,
@@ -18,6 +19,7 @@ const TokensListModal = () => {
     const dispatch = useAppDispatch()
     const show = useAppSelector(selectModal)
     const reduxTokens = useAppSelector(selectTokens)
+    const resultsNotFound = useAppSelector(selectNotFound)
 
     const handleClose = () => dispatch(showModal(false))
     const [page, setPage] = useState(0)
@@ -76,17 +78,21 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={disableScroll} ref={boxRef}>
-                    {reduxTokens?.map((token: TokensType) => (
-                        <div key={token.key} className="single-token">
-                            <div className="token-image">
-                                {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
+                    {resultsNotFound ? (
+                        <div className="no-results-found">No results found.</div>
+                    ) : (
+                        reduxTokens?.map((token: TokensType) => (
+                            <div key={token.key} className="single-token">
+                                <div className="token-image">
+                                    {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
+                                </div>
+                                <div>
+                                    <div className="token-name">{token.name}</div>
+                                    <div className="token-symbol">{token.symbol}</div>
+                                </div>
                             </div>
-                            <div>
-                                <div className="token-name">{token.name}</div>
-                                <div className="token-symbol">{token.symbol}</div>
-                            </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             </Modal.Body>
         </Modal>

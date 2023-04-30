@@ -21,12 +21,14 @@ interface AppState {
     tokens: TokensType[]
     modal: boolean
     tokensFilter: string
+    resultsNotFound: boolean
 }
 
 const initialState: AppState = {
     tokens: [],
     modal: false,
     tokensFilter: '',
+    resultsNotFound: false,
 }
 
 export const tokensModalSlice = createSlice({
@@ -52,6 +54,7 @@ export const tokensModalSlice = createSlice({
                 (token: TokensType) => !prevTokens.some((prevToken) => prevToken.key === token.key)
             )
             state.tokens = [...prevTokens, ...uniqueTokens]
+            state.resultsNotFound = state.tokens.length === 0
         })
     },
 })
@@ -61,5 +64,6 @@ export const { clearTokens, showModal, filterTokens } = tokensModalSlice.actions
 export const selectTokens = (state: RootState) => state.tokensModal.tokens
 export const selectModal = (state: RootState) => state.tokensModal.modal
 export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter
+export const selectNotFound = (state: RootState) => state.tokensModal.resultsNotFound
 
 export default tokensModalSlice.reducer
