@@ -1,14 +1,15 @@
 import './pools.scss'
 import { AiOutlineContainer } from 'react-icons/ai'
-import { useAccount, useNetwork } from 'wagmi'
+import errorIcon from "/error.png"
 
+import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
-import { getChainIcon } from '../../common/ChainsIcons'
+import useCurrentNet from '../../common/useCurrentNet'
 
 const Pools = () => {
     const { isConnected } = useAccount()
-    const { chain } = useNetwork()
+    const { netUnsupported } = useCurrentNet();
     const showCanvas = useAppSelector(selectAccountCanvas)
     const dispatch = useAppDispatch()
 
@@ -19,9 +20,9 @@ const Pools = () => {
                 <button>+ New Position</button>
             </div>
             <div className="liquidity-container">
-                {chain?.unsupported ? (
+                {netUnsupported ? (
                     <>
-                        <img src={getChainIcon(chain.id)} className="container-icon" />
+                        <img src={errorIcon} className="container-icon" />
                         <div> Your connected network is unsupported. </div>
                     </>
                 ) : (

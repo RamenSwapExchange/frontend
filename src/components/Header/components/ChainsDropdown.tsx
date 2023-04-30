@@ -1,75 +1,72 @@
 import './chainsDropdown.scss'
-import { NavDropdown, OverlayTrigger, ProgressBar } from 'react-bootstrap'
+import { NavDropdown, OverlayTrigger } from 'react-bootstrap'
 import { BiError } from 'react-icons/bi'
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri'
 import errorIcon from "/error.png"
 
-import { localChains, getChainIcon } from '../../../common/ChainsIcons'
-import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { watchNetwork } from '@wagmi/core'
 import { useState } from 'react'
 
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import { selectLocalChainId } from '../../../redux/appSlice'
-import { changeLocalChainId } from '../../../redux/appSlice'
+import useCurrentNet from '../../../common/useCurrentNet'
+import useNetIcon from '../../../common/useNetIcon'
 
 const ChainsDropdown = () => {
     const resetErrorTime = 15 * 1000; //seconds
 
-    const { chain } = useNetwork()
-    const { isConnected } = useAccount({
-        onDisconnect() {
-            dispatch(changeLocalChainId(chain?.id!))
-            setIsError(false)
-        },
-    })
-    const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork({
-        onError() {
+    const { netId, offlineNets, netUnsupported, changeOfflineNet, changeNet } = useCurrentNet({
+        onErrorChangeNet() {
             setIsError(true)
             setTimeout(() => {
                 setIsError(false)
             }, resetErrorTime);
         }
     })
+    const { isLoading, pendingChainId, switchNetwork } = changeNet;
+    const { getIcon } = useNetIcon();
+
+    const { isConnected } = useAccount({
+        onDisconnect() {
+            changeOfflineNet(netId)
+            setIsError(false)
+        },
+    })
 
     const [isArrowUp, setIsArrowUp] = useState(false)
     const [isError, setIsError] = useState(false);
+
     //fires when chain changed
     watchNetwork(() => {
         setIsError(false)
     })
 
-    //state to change chain when user is not logged into MetaMask
-    const dispatch = useAppDispatch()
-    const localChainId = useAppSelector(selectLocalChainId)
-
-    const ChangeChain = (chainId: number) => {
+    const ChangeChain = (id: number) => {
         switch (isConnected) {
             case true:
                 setIsError(false)
-                if (chain?.id == chainId) return
-                switchNetwork!(chainId)
+                if (netId == id) return
+                switchNetwork!(id)
                 break
             case false:
-                dispatch(changeLocalChainId(chainId))
+                changeOfflineNet(id)
                 break
         }
     }
 
     let TitleDropdown = (
         <div className="chain-button">
-            {isError && isConnected && <BiError />}
+            {isError && <BiError />}
             {isLoading && <div className="loader" />}
 
             <img
                 className="chain-icon"
-                src={isLoading ? getChainIcon(pendingChainId!) : getChainIcon(isConnected ? chain?.id! : localChainId)}
+                src={getIcon(isLoading ? pendingChainId! : netId)}
             />
             {isArrowUp ? <RiArrowDropUpLine fontSize={20} /> : <RiArrowDropDownLine fontSize={20} />}
         </div>
     )
 
-    if (chain?.unsupported) {
+    if (netUnsupported) {
         TitleDropdown = (
             <OverlayTrigger
                 placement="left"
@@ -89,16 +86,12 @@ const ChainsDropdown = () => {
                 align="end"
                 onClick={() => setIsArrowUp(!isArrowUp)}
             >
-                {localChains.map((chainMap, id) => {
+                {offlineNets.map((net) => {
                     return (
-                        <NavDropdown.Item key={id} className="chain-item-div" onClick={() => ChangeChain(chainMap.id)}>
-                            <img className="chain-icon" src={getChainIcon(chainMap.id)} />
-                            <div>
-                                {chainMap.name == "Arbitrum One"
-                                    ? chainMap.name.substring(0, chainMap.name.length - 4)
-                                    : chainMap.name}
-                            </div>
-                            {(isConnected ? chainMap.id == chain?.id! : chainMap.id == localChainId) && <div> ✔ </div>}
+                        <NavDropdown.Item key={net.id} className="chain-item-div" onClick={() => ChangeChain(net.id)}>
+                            <img className="chain-icon" src={getIcon(net.id)} />
+                            <div> {net.name} </div>
+                            {net.id == netId && <div> ✔ </div>}
                         </NavDropdown.Item>
                     )
                 })}

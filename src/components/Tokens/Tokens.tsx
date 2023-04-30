@@ -2,11 +2,10 @@ import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
 import { useAccount, useNetwork } from 'wagmi'
-import { localChains, getChainIcon } from '../../common/ChainsIcons'
+import useCurrentNet from '../../common/useCurrentNet'
 
 const Tokens = () => {
-    const { isConnected } = useAccount()
-    const { chain } = useNetwork()
+    const { net, offlineNets } = useCurrentNet();
 
     return (
         <div className="container-sm tokens-container">
@@ -14,11 +13,11 @@ const Tokens = () => {
             <div className="filter-section">
                 <Dropdown>
                     <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                        Ethereum
+                        ETHEREUM
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        {localChains.map((chainMap) => {
-                            return <Dropdown.Item key={chainMap.id}>{chainMap.name}</Dropdown.Item>
+                        {offlineNets.map((net) => {
+                            return <Dropdown.Item key={net.id}>{net.name}</Dropdown.Item>
                         })}
                     </Dropdown.Menu>
                 </Dropdown>

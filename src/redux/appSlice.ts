@@ -6,13 +6,13 @@ import { polygonMumbai } from 'wagmi/chains'
 interface AppState {
     popUp: boolean
     isAccountCanvas: boolean
-    localChainId: number
+    offlineNetId: number
 }
 
 const initialState: AppState = {
     popUp: false,
     isAccountCanvas: false,
-    localChainId: polygonMumbai.id,
+    offlineNetId: polygonMumbai.id,
 }
 
 export const appSlice = createSlice({
@@ -25,16 +25,16 @@ export const appSlice = createSlice({
         showAccountCanvas: (state, action: PayloadAction<boolean>) => {
             state.isAccountCanvas = action.payload
         },
-        changeLocalChainId: (state, action: PayloadAction<number>) => {
-            state.localChainId = action.payload
+        changeOfflineNetId: (state, action: PayloadAction<number>) => {
+            state.offlineNetId = action.payload
         },
     },
 })
 
-export const { showPopUp, showAccountCanvas, changeLocalChainId } = appSlice.actions
+export const { showPopUp, showAccountCanvas, changeOfflineNetId } = appSlice.actions
 
 export const selectPopUp = (state: RootState) => state.app.popUp
 export const selectAccountCanvas = (state: RootState) => state.app.isAccountCanvas
-export const selectLocalChainId = (state: RootState) => state.app.localChainId
+export const selectOfflineNetId = (state: RootState) => state.app.offlineNetId
 
 export default appSlice.reducer

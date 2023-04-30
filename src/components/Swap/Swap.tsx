@@ -5,25 +5,22 @@ import { AiOutlineArrowDown } from 'react-icons/ai'
 import SingleSwap from './SingleSwap'
 import TokensListModal from './TokensListModal/TokensListModal'
 
-import { useAccount, useNetwork } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectAccountCanvas, selectLocalChainId, showAccountCanvas } from '../../redux/appSlice'
-import { getLocalChain } from '../../common/ChainsIcons'
+import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
+import useCurrentNet from '../../common/useCurrentNet'
 
 const Swap = () => {
     const { isConnected } = useAccount()
-    const { chain } = useNetwork()
 
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
-    const localChainId = useAppSelector(selectLocalChainId)
 
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
     const swapButtons = () => {
         //TODO
     }
-
-    const isUnsupportedChain = chain?.unsupported!
+    const { net, netUnsupported } = useCurrentNet();
 
     return (
         <>
@@ -35,11 +32,11 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={isUnsupportedChain} token={isConnected ? chain : getLocalChain(localChainId)} />
-                <SingleSwap disabled={isUnsupportedChain} token={isConnected ? chain : getLocalChain(localChainId)} />
+                <SingleSwap disabled={netUnsupported} token={net} />
+                <SingleSwap disabled={netUnsupported} token={net} />
 
                 <button
-                    className={isUnsupportedChain ? 'swap-button swap-button-disabled' : 'swap-button'}
+                    className={netUnsupported ? 'swap-button swap-button-disabled' : 'swap-button'}
                     onClick={swapButtons}
                 >
                     <AiOutlineArrowDown />
@@ -47,7 +44,7 @@ const Swap = () => {
 
                 {isConnected ? (
                     <button
-                        className={isUnsupportedChain ? 'connect-button connect-button-disabled' : 'connect-button'}
+                        className={netUnsupported ? 'connect-button connect-button-disabled' : 'connect-button'}
                     >
                         Select a token
                     </button>
