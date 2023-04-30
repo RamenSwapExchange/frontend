@@ -1,4 +1,3 @@
-import { watchNetwork } from '@wagmi/core'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import {
@@ -34,7 +33,13 @@ const TokensListModal = () => {
         }
     }
 
-    //TODO 2 rozne requesty - jesli filtr jest czysty, odpala sie request bez filtra &search=${tokensFilter}
+    function disableScroll() {
+        if (tokensFilter.length === 0) {
+            handleScroll()
+        } else {
+        }
+    }
+
     function updateTokens() {
         if (tokensFilter.length === 0) {
             dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
@@ -70,7 +75,7 @@ const TokensListModal = () => {
                     className="search-token-input"
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
-                <div className="tokens-list" onScroll={handleScroll} ref={boxRef}>
+                <div className="tokens-list" onScroll={disableScroll} ref={boxRef}>
                     {reduxTokens?.map((token: TokensType) => (
                         <div key={token.key} className="single-token">
                             <div className="token-image">
