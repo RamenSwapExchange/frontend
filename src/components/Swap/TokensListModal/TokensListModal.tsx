@@ -4,7 +4,6 @@ import Modal from 'react-bootstrap/Modal'
 import {
     clearTokens,
     fetchAsyncTokens,
-    filterTokens,
     selectModal,
     selectTokens,
     showModal,

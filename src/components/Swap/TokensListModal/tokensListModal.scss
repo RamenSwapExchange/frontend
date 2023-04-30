@@ -3,14 +3,17 @@
 .tokens-modal {
     position: relative;
     top: 50%;
-    transform: translate(0%, -70%);
+    transform: translate(0%, -50%);
+    .modal-content {
+        height: 677px;
+    }
 
     .tokens-modal-body {
         width: 100%;
         display: flex;
         justify-content: center;
         flex-direction: column;
-        max-height: 40vh;
+        height: 452px;
         padding: 10px 0px;
 
         .search-token-input {
@@ -32,7 +35,7 @@
 
         .tokens-list {
             overflow-y: scroll;
-            height: 278px;
+            height: 100%;
 
             .hide-token {
                 display: none;
