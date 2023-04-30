@@ -1,9 +1,7 @@
-import { mainnet, polygon, optimism, arbitrum, celo, polygonMumbai } from 'wagmi/chains'
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi"
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { changeOfflineNetId, selectOfflineNetId } from "../redux/appSlice";
-
-const offlineNets = [polygonMumbai, mainnet, polygon, optimism, arbitrum, celo]
+import { nets } from './WagmiClient';
 
 type useCurrentNetConfig = {
     /** Function to invoke when error occurs in changing net in wallet */
@@ -27,10 +25,10 @@ const useCurrentNet = ({ onErrorChangeNet }: useCurrentNetConfig = {}) => {
     })
 
     const netId = isConnected ? chain?.id! : offlineNetId;
-    const net = isConnected ? chain : offlineNets.find(net => netId == net.id)
+    const net = isConnected ? chain : nets.find(net => netId == net.id)
     const unsupported = chain?.unsupported;
 
-    return { net, netId: netId, netUnsupported: unsupported, changeNet, offlineNets, changeOfflineNet };
+    return { net, netId: netId, netUnsupported: unsupported, changeNet, offlineNets: nets, changeOfflineNet };
 }
 
 export default useCurrentNet

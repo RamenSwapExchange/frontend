@@ -3,9 +3,11 @@ import { mainnet, polygon, optimism, arbitrum, celo, polygonMumbai } from 'wagmi
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
+export const nets = [polygonMumbai, mainnet, polygon, optimism, arbitrum, celo]
+
 //TODO: alchemy or infura provider and polygonMumbai
 const { chains, provider, webSocketProvider } = configureChains(
-    [polygonMumbai, mainnet, polygon, optimism, arbitrum, celo],
+    nets,
     [publicProvider()]
 )
 
