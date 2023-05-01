@@ -1,0 +1,25 @@
+.mobile-nav {
+    display: none;
+}
+
+@media only screen and (max-width: 990px) {
+    .mobile-nav {
+        z-index: 1000;
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100vw;
+        height: 52px;
+        border-top: 1px solid rgb(210, 217, 238);
+        padding: 4px 8px;
+
+        .nav-link {
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
