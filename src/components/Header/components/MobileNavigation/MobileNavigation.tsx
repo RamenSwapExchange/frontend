@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './mobileNavigation.scss'
-import ChainsDropdown from './ChainsDropdown'
+import InfoDropdown from '../InfoDropdown/InfoDropdown'
 
 const MobileNavigation = () => {
     return (
@@ -15,7 +15,7 @@ const MobileNavigation = () => {
                 Pools
             </Link>
             <div className="nav-link">
-                <ChainsDropdown />
+                <InfoDropdown />
             </div>
         </div>
     )

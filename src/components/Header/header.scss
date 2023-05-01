@@ -14,6 +14,10 @@
         gap: 10px;
         @include flexCenter();
 
+        .dots-icon {
+            font-size: 24px;
+        }
+
         .logo {
             margin-right: 15px;
         }
@@ -25,37 +29,6 @@
 
         .dropdown-toggle::after {
             display: none;
-        }
-
-        .dropdown-li {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 16px;
-
-            .dropdown-icon {
-                font-size: 22px;
-            }
-        }
-
-        .info-item {
-            font-size: 13px;
-        }
-
-        .dropdown-socials {
-            margin-top: 10px;
-            display: flex;
-            gap: 10px;
-
-            .social-link {
-                transition: $transition;
-                cursor: pointer;
-                font-size: 18px;
-
-                &:hover {
-                    color: gray;
-                }
-            }
         }
     }
 
@@ -93,10 +66,6 @@
         margin-right: 0px;
     }
 
-    .dots-icon {
-        font-size: 24px;
-    }
-
     .nav-link {
         font-weight: 600;
     }
@@ -107,6 +76,10 @@
         .header-left {
             width: 50%;
             gap: 10px;
+
+            .info-dropdown {
+                display: none;
+            }
 
             .nav-link {
                 display: none;
