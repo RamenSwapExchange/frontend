@@ -12,7 +12,8 @@ import { AiOutlineTwitter, AiFillGithub, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import ConnectButton from './components/ConnectButton'
 import ChainsDropdown from './components/ChainsDropdown'
-import MobileNavigation from './components/MobileNavigation'
+import MobileNavigation from './components/MobileNavigation/MobileNavigation'
+import InfoDropdown from './components/InfoDropdown/InfoDropdown'
 
 const Header = () => {
     return (
@@ -35,26 +36,9 @@ const Header = () => {
                         <Link to="/pools" className="nav-link">
                             Pools
                         </Link>
-
-                        <NavDropdown title={<BiDotsHorizontalRounded className="dots-icon" />} id="basic-nav-dropdown">
-                            <NavDropdown.Item className="dropdown-li">
-                                <FaScroll className="dropdown-icon" />
-                                Vote in governance
-                            </NavDropdown.Item>
-                            <NavDropdown.Item className="dropdown-li">
-                                <FiBarChart className="dropdown-icon" />
-                                View more analytics
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item className="info-item">Help center &#8599;</NavDropdown.Item>
-                            <NavDropdown.Item className="info-item">Documentation &#8599;</NavDropdown.Item>
-                            <NavDropdown.Item className="info-item">Feedback &#8599;</NavDropdown.Item>
-                            <NavDropdown.Item className="info-item">Legal & Privacy &#8599;</NavDropdown.Item>
-                            <NavDropdown.ItemText className="dropdown-socials">
-                                <AiOutlineTwitter className="social-link" />
-                                <AiFillGithub className="social-link" />
-                            </NavDropdown.ItemText>
-                        </NavDropdown>
+                        <div className="info-dropdown">
+                            <InfoDropdown />
+                        </div>
                     </Nav>
 
                     <Nav className="me-auto header-middle">
