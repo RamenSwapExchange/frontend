@@ -5,7 +5,7 @@ $gray-hover: #929396;
 .swap-box {
     position: relative;
     align-self: center;
-    width: 25vw;
+    width: 450px;
     margin-top: 100px;
     padding: 8px;
     background-color: white;
@@ -81,19 +81,7 @@ $gray-hover: #929396;
     }
 }
 
-@media only screen and (max-width: 1200px) {
-    .swap-box {
-        width: 40vw;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .swap-box {
-        width: 50vw;
-    }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
     .swap-box {
         width: 90vw;
     }
