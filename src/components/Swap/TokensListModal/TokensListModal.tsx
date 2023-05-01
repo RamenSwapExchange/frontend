@@ -6,6 +6,7 @@ import {
     fetchAsyncTokens,
     selectModal,
     selectNotFound,
+    selectToken,
     selectTokens,
     showModal,
     TokensType,
@@ -25,7 +26,7 @@ const TokensListModal = () => {
     const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
 
-    const { net } = useCurrentNet();
+    const { net } = useCurrentNet()
     const netName = net?.name.toLocaleLowerCase()
 
     function handleScroll() {
@@ -39,6 +40,13 @@ const TokensListModal = () => {
         if (tokensFilter.length === 0) {
             handleScroll()
         }
+    }
+
+    function handleSelectToken(token: TokensType) {
+        if (token) {
+            dispatch(selectToken(token))
+        }
+        handleClose()
     }
 
     function updateTokens() {
@@ -81,7 +89,7 @@ const TokensListModal = () => {
                         <div className="no-results-found">No results found.</div>
                     ) : (
                         reduxTokens?.map((token: TokensType) => (
-                            <div key={token.key} className="single-token">
+                            <div key={token.key} className="single-token" onClick={() => handleSelectToken(token)}>
                                 <div className="token-image">
                                     {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
                                 </div>
