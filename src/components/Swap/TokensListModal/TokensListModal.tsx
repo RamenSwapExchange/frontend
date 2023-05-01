@@ -1,3 +1,4 @@
+import './tokensListModal.scss'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import {
@@ -10,8 +11,7 @@ import {
     TokensType,
 } from '../../../redux/tokensModalSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import './tokensListModal.scss'
-import { useNetwork } from 'wagmi'
+import useCurrentNet from '../../../common/useCurrentNet'
 
 const TokensListModal = () => {
     const [tokensFilter, setTokensFilter] = useState('')
@@ -25,10 +25,10 @@ const TokensListModal = () => {
     const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
 
-    const { chain } = useNetwork()
-    const chainName = chain?.name.toLocaleLowerCase()
+    const { net } = useCurrentNet();
+    const netName = net?.name.toLocaleLowerCase()
 
-    const handleScroll = () => {
+    function handleScroll() {
         const box = boxRef.current
         if (box && box.scrollTop + box.clientHeight === box.scrollHeight) {
             setPage((prevPage) => prevPage + 1)
@@ -43,26 +43,26 @@ const TokensListModal = () => {
 
     function updateTokens() {
         if (tokensFilter.length === 0) {
-            dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
+            dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${netName}`))
         } else {
             dispatch(clearTokens())
-            dispatch(fetchAsyncTokens(`tokens?search=${tokensFilter}&networks=${chainName}`))
+            dispatch(fetchAsyncTokens(`tokens?search=${tokensFilter}&networks=${netName}`))
         }
     }
 
     useEffect(() => {
         dispatch(clearTokens())
-        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${chainName}`))
-    }, [chain])
+        dispatch(fetchAsyncTokens(`tokens?page=${page}&networks=${netName}`))
+    }, [net])
 
     useEffect(() => {
         setPage(0)
         setTokensFilter('')
-    }, [chain, show])
+    }, [net, show])
 
     useEffect(() => {
         updateTokens()
-    }, [dispatch, page, chain, tokensFilter])
+    }, [dispatch, page, net, tokensFilter])
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
