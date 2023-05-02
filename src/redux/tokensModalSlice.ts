@@ -15,6 +15,7 @@ export interface TokensType {
     image: string
     images: string[]
     network: string
+    price: number
 }
 
 interface AppState {

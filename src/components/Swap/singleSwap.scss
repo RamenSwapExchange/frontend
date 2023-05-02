@@ -9,8 +9,13 @@
     margin: 5px 0px;
     transition: $transition;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+
+    .swap-bottom {
+        padding: 0px 12px;
+        color: lightgray;
+    }
 
     &:focus-within {
         outline: 1px solid #d6d3d8;
@@ -22,6 +27,7 @@
         outline: none;
         border: none;
         background-color: #f8f4fc;
+        color: black;
         position: relative;
     }
 
