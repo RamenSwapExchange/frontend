@@ -1,3 +1,5 @@
+@import '../../common/globals.scss';
+
 @mixin flexCenter() {
     display: flex;
     justify-content: center;
@@ -45,6 +47,7 @@
         color: white;
         border-radius: 25px;
         padding: 10px 50px 10px 50px;
+        transition: $transition;
         &:hover {
             box-shadow: 0px 0px 42px -10px rgba(0, 0, 0, 1);
             transition: 0.5s;
