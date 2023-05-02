@@ -3,7 +3,9 @@
 .tokens-modal {
     position: relative;
     top: 50%;
-    transform: translate(0%, -50%);
+    left: 0;
+    right: 0;
+    transform: translate(0%, -60%);
     .modal-content {
         height: 677px;
     }
