@@ -12,9 +12,9 @@ const Home = () => {
                 </div>
             </Link>
 
-            <div className="home-header"> Ramen Swap </div>
+            <div className="home-header">Ramen Swap</div>
             <Link to="/swap">
-                <div className="home-button"> Get started </div>
+                <div className="home-button">Get started</div>
             </Link>
         </div>
     )
