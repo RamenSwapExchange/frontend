@@ -36,16 +36,15 @@ $gray-hover: #929396;
         transition: $transition;
         padding: 16px;
         cursor: pointer;
-        background-color: gray;
-        color: darkgray;
+        background-color: $primary-color;
+        color: white;
         border: none;
         border-radius: 20px;
         font-weight: 600;
         font-size: 20px;
 
         &:hover {
-            color: lightgray;
-            background-color: darkgray;
+            background-color: #9f75e7;
         }
     }
 
