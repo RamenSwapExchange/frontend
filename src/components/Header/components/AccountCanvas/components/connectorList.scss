@@ -1,3 +1,5 @@
+@import '../../../../../common/globals.scss';
+
 .connector-header {
     margin: 20px 15px 20px 15px;
     justify-content: space-between;
@@ -12,10 +14,14 @@
         display: flex;
         align-items: center;
         border-radius: 5px;
-        background-color: gray;
-
+        background-color: #f8f4fc;
         height: 80px;
         gap: 20px;
+        transition: $transition;
+
+        &:hover {
+            background-color: #f0ecfc;
+        }
 
         .connector-logo {
             height: 30px;
@@ -32,10 +38,5 @@
             margin-right: 20px;
             border-width: 2px;
         }
-    }
-
-    .connector-div:hover {
-        background-color: lightgray;
-        transition: 0.1s;
     }
 }
