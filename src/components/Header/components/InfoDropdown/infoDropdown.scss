@@ -1,36 +1,48 @@
 @import '../../../../common/globals.scss';
 
-// .dropdown-menu {
-//     inset: auto 0px 16px auto;
-// }
-
-.dropdown-li {
+.info-dropdown-container {
+    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
-    font-size: 16px;
 
-    .dropdown-icon {
-        font-size: 22px;
+    .dots-icon {
+        font-size: 24px;
     }
-}
 
-.info-item {
-    font-size: 13px;
-}
+    .dropdown-toggle::after {
+        display: none;
+    }
 
-.dropdown-socials {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
+    .dropdown-li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-size: 16px;
 
-    .social-link {
-        transition: $transition;
-        cursor: pointer;
-        font-size: 18px;
+        .dropdown-icon {
+            font-size: 22px;
+        }
+    }
 
-        &:hover {
-            color: gray;
+    .info-item {
+        font-size: 13px;
+    }
+
+    .dropdown-socials {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+
+        .social-link {
+            transition: $transition;
+            cursor: pointer;
+            font-size: 18px;
+
+            &:hover {
+                color: gray;
+            }
         }
     }
 }

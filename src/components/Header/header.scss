@@ -14,20 +14,12 @@
         gap: 10px;
         @include flexCenter();
 
-        .dots-icon {
-            font-size: 24px;
-        }
-
         .logo {
             margin-right: 15px;
         }
 
         .mobile-search {
             font-size: 30px;
-            display: none;
-        }
-
-        .dropdown-toggle::after {
             display: none;
         }
     }
