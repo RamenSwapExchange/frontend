@@ -49,7 +49,6 @@
         width: 33%;
         @include flexCenter();
         justify-content: flex-end;
-        gap: 20px;
     }
 
     .logo {
@@ -89,7 +88,6 @@
 
         .header-right {
             width: 50%;
-            gap: 10px;
         }
     }
 }
