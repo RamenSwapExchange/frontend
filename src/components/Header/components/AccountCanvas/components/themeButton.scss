@@ -13,7 +13,7 @@
     margin: 5px;
     .theme-buttons {
         @include flexCenter();
-        border: solid black 1px;
+        border: 1px solid lightgray;
         border-radius: 15px;
 
         div {
@@ -29,7 +29,7 @@
             }
         }
         .active-theme {
-            background-color: aqua;
+            background-color: #f0ecfc;
         }
     }
 }
