@@ -16,7 +16,7 @@ const AccountCanvas = () => {
         },
     })
 
-    const handleClose = () => dispatch(showAccountCanvas(false));
+    const handleClose = () => dispatch(showAccountCanvas(false))
 
     const isCanvas = useAppSelector(selectAccountCanvas)
     const dispatch = useAppDispatch()
