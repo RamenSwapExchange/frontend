@@ -22,7 +22,6 @@
     .home-swap {
         height: 422px;
         cursor: pointer;
-        box-shadow: 0px -73px 100px 0px rgba(130, 71, 229, 1);
 
         .swap-box {
             transition: 0.5s;
@@ -31,17 +30,24 @@
         &:hover {
             .swap-box {
                 border: 1px solid $primary-color;
-                transition: 0.5s;
                 transform: translateY(-15px);
             }
         }
     }
     .home-overlay {
         position: relative;
-        top: -410px;
-        height: 100%;
+        top: -370px;
+        height: 380px;
         width: 100%;
+        border-radius: 16px;
         background: linear-gradient(0deg, rgba(255, 255, 255, 1) 22%, rgba(255, 255, 255, 0) 100%);
+        box-shadow: 0px -73px 100px 0px rgba(130, 71, 229, 1);
+        transition: 0.5s;
+
+        &:hover {
+            transition: 0.5s;
+            transform: translateY(-15px);
+        }
     }
     .home-button {
         background: linear-gradient(to right, $primary-color, #9f75e7);
