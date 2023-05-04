@@ -13,6 +13,19 @@
         gap: 8px;
         margin-bottom: 20px;
 
+        .dropdown {
+            background-color: $primary-color;
+            color: white;
+            border: none;
+            font-weight: bold;
+            border-radius: 12px;
+            transition: $transition;
+
+            &:hover {
+                background-color: #9f75e7;
+            }
+        }
+
         input {
             padding: 0px 10px;
             font-size: 14px;
@@ -20,15 +33,38 @@
             outline: none;
             border-radius: 10px;
             border: 1px solid lightgray;
+            background-color: #f8f4fc;
             transition: $transition;
 
             &:hover {
-                border: 1px solid black;
+                background-color: white;
             }
         }
     }
 
+    tbody,
+    td,
+    tfoot,
+    th,
+    thead,
+    tr {
+        border: none;
+    }
+
     .tokens-table {
         border-radius: 12px;
+        background-color: white;
+
+        thead {
+            border-bottom: 1px solid lightgray;
+        }
+
+        tbody {
+            border: none;
+
+            tr {
+                cursor: pointer;
+            }
+        }
     }
 }

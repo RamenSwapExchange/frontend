@@ -5,14 +5,14 @@ import { useAccount, useNetwork } from 'wagmi'
 import useCurrentNet from '../../common/useCurrentNet'
 
 const Tokens = () => {
-    const { net, offlineNets } = useCurrentNet();
+    const { net, offlineNets } = useCurrentNet()
 
     return (
         <div className="container-sm tokens-container">
             <div className="tokens-title">Top tokens on Ramenswap</div>
             <div className="filter-section">
                 <Dropdown>
-                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    <Dropdown.Toggle id="dropdown-basic" className="dropdown">
                         ETHEREUM
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -23,7 +23,7 @@ const Tokens = () => {
                 </Dropdown>
 
                 <Dropdown>
-                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    <Dropdown.Toggle id="dropdown-basic" className="dropdown">
                         1D
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -37,7 +37,7 @@ const Tokens = () => {
 
                 <input type="text" placeholder="Filter Tokens" />
             </div>
-            <Table className="tokens-table" striped bordered hover>
+            <Table className="tokens-table" hover>
                 <thead>
                     <tr>
                         <th>#</th>
