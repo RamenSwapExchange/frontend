@@ -2,7 +2,7 @@ import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
 import useCurrentNet from '../../common/useCurrentNet'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TokensType } from '../../redux/tokensModalSlice'
 import tokensApi from '../../common/tokensApi'
 
@@ -13,9 +13,13 @@ const Tokens = () => {
 
     async function fetchTokens() {
         const res = await tokensApi.get('/tokens?limit=100&sortBy=price&sortDirection=desc')
-        setTokens(res.data)
-        console.log(tokens)
+        setTokens(res.data.tokens)
+        console.log(res.data.tokens)
     }
+
+    useEffect(() => {
+        fetchTokens()
+    }, [])
 
     return (
         <div className="container-sm tokens-container">
@@ -62,16 +66,14 @@ const Tokens = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                    </tr>
+                    {tokens &&
+                        tokens.map((token: TokensType, id) => (
+                            <tr>
+                                <td>{id + 1}</td>
+                                <td>{token.name}</td>
+                                <td>{token.price}</td>
+                            </tr>
+                        ))}
                 </tbody>
             </Table>
         </div>
