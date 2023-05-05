@@ -48,7 +48,7 @@ const SingleSwap = ({ disabled = false, token }: ISingleSwap) => {
                 </button>
             </div>
             <div className="swap-bottom">
-                ${selectedToken?.price ? (selectedToken?.price * inputAmount).toFixed(2) : '0'}
+                ${selectedToken?.price ? Math.ceil(selectedToken?.price * inputAmount * 100) / 100 : '0'}
             </div>
         </div>
     )

@@ -1,11 +1,34 @@
 import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
-import { useAccount, useNetwork } from 'wagmi'
 import useCurrentNet from '../../common/useCurrentNet'
+import { useEffect, useState } from 'react'
+import { TokensType } from '../../redux/tokensModalSlice'
+import tokensApi from '../../common/tokensApi'
 
 const Tokens = () => {
-    const { net, offlineNets } = useCurrentNet()
+    const { offlineNets } = useCurrentNet()
+
+    const [tokens, setTokens] = useState<TokensType[]>([])
+    const [sortDirection, setSortDirection] = useState('asc')
+
+    async function fetchTokens() {
+        const res = await tokensApi.get(`/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}`)
+        setTokens(res.data.tokens)
+        console.log(res.data.tokens)
+    }
+
+    function sortTokens() {
+        if (sortDirection === 'asc') {
+            setSortDirection('desc')
+        } else {
+            setSortDirection('asc')
+        }
+    }
+
+    useEffect(() => {
+        fetchTokens()
+    }, [sortDirection])
 
     return (
         <div className="container-sm tokens-container">
@@ -40,31 +63,34 @@ const Tokens = () => {
             <Table className="tokens-table" hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Token name</th>
-                        <th>Price</th>
-                        <th>Change</th>
-                        <th>TVL</th>
-                        <th>Volume</th>
+                        <th>
+                            <span>#</span>
+                        </th>
+                        <th>
+                            <span>Token name</span>
+                        </th>
+                        <th>
+                            <span className="sort-by-span" onClick={sortTokens}>
+                                Price
+                            </span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                    </tr>
+                    {tokens.map((token: TokensType, id) => (
+                        <tr key={id}>
+                            <td>{id + 1}</td>
+                            <td>
+                                {token.images ? (
+                                    <img src={token.images[1]} className="token-img"></img>
+                                ) : (
+                                    <img src={token.image} className="token-img"></img>
+                                )}
+                                {token.name} <span className="token-symbol">{token.symbol}</span>
+                            </td>
+                            <td className="token-price">${Math.ceil(token.price * 100) / 100}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
         </div>

@@ -2,6 +2,7 @@
 
 .tokens-container {
     margin-top: 100px;
+    margin-bottom: 50px;
 
     .tokens-title {
         font-size: 36px;
@@ -57,13 +58,42 @@
 
         thead {
             border-bottom: 1px solid lightgray;
+
+            span {
+                color: rgb(119, 128, 160);
+                font-weight: initial;
+            }
+
+            .sort-by-span {
+                cursor: pointer;
+                transition: $transition;
+                font-weight: bold;
+
+                &:hover {
+                    color: lightgray;
+                }
+            }
         }
 
         tbody {
             border: none;
 
+            .token-price {
+                font-weight: bold;
+            }
+
             tr {
                 cursor: pointer;
+
+                .token-symbol {
+                    color: lightgray;
+                    font-weight: bold;
+                }
+
+                .token-img {
+                    width: 36px;
+                    margin-right: 10px;
+                }
             }
         }
     }
