@@ -57,6 +57,20 @@
 
         thead {
             border-bottom: 1px solid lightgray;
+
+            span {
+                color: rgb(119, 128, 160);
+                font-weight: initial;
+            }
+
+            .sort-by-span {
+                cursor: pointer;
+                transition: $transition;
+
+                &:hover {
+                    color: lightgray;
+                }
+            }
         }
 
         tbody {

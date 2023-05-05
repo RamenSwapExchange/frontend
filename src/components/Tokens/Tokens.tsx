@@ -40,12 +40,15 @@ const Tokens = () => {
             <Table className="tokens-table" hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Token name</th>
-                        <th>Price</th>
-                        <th>Change</th>
-                        <th>TVL</th>
-                        <th>Volume</th>
+                        <th>
+                            <span>#</span>
+                        </th>
+                        <th>
+                            <span>Token name</span>
+                        </th>
+                        <th>
+                            <span className="sort-by-span">Price</span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,15 +56,9 @@ const Tokens = () => {
                         <td>1</td>
                         <td>Example</td>
                         <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                        <td>Example</td>
                         <td>Example</td>
                         <td>Example</td>
                     </tr>
