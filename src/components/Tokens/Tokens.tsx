@@ -1,11 +1,21 @@
 import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
-import { useAccount, useNetwork } from 'wagmi'
 import useCurrentNet from '../../common/useCurrentNet'
+import { useState } from 'react'
+import { TokensType } from '../../redux/tokensModalSlice'
+import tokensApi from '../../common/tokensApi'
 
 const Tokens = () => {
-    const { net, offlineNets } = useCurrentNet()
+    const { offlineNets } = useCurrentNet()
+
+    const [tokens, setTokens] = useState<TokensType[]>([])
+
+    async function fetchTokens() {
+        const res = await tokensApi.get('/tokens?limit=100&sortBy=price&sortDirection=desc')
+        setTokens(res.data)
+        console.log(tokens)
+    }
 
     return (
         <div className="container-sm tokens-container">
