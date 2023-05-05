@@ -71,7 +71,7 @@ const Tokens = () => {
                             <tr>
                                 <td>{id + 1}</td>
                                 <td>{token.name}</td>
-                                <td>{token.price}</td>
+                                <td className="token-price">{token.price.toFixed(2)}</td>
                             </tr>
                         ))}
                 </tbody>
