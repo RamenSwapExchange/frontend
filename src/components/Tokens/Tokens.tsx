@@ -10,16 +10,25 @@ const Tokens = () => {
     const { offlineNets } = useCurrentNet()
 
     const [tokens, setTokens] = useState<TokensType[]>([])
+    const [sortDirection, setSortDirection] = useState('asc')
 
     async function fetchTokens() {
-        const res = await tokensApi.get('/tokens?limit=100&sortBy=price&sortDirection=desc')
+        const res = await tokensApi.get(`/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}`)
         setTokens(res.data.tokens)
         console.log(res.data.tokens)
     }
 
+    function sortTokens() {
+        if (sortDirection === 'asc') {
+            setSortDirection('desc')
+        } else {
+            setSortDirection('asc')
+        }
+    }
+
     useEffect(() => {
         fetchTokens()
-    }, [])
+    }, [sortDirection])
 
     return (
         <div className="container-sm tokens-container">
@@ -61,17 +70,21 @@ const Tokens = () => {
                             <span>Token name</span>
                         </th>
                         <th>
-                            <span className="sort-by-span">Price</span>
+                            <span className="sort-by-span" onClick={sortTokens}>
+                                Price
+                            </span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     {tokens &&
                         tokens.map((token: TokensType, id) => (
-                            <tr>
+                            <tr key={id}>
                                 <td>{id + 1}</td>
-                                <td>{token.name}</td>
-                                <td className="token-price">{token.price.toFixed(2)}</td>
+                                <td>
+                                    {token.name} <span className="token-symbol">{token.symbol}</span>
+                                </td>
+                                <td className="token-price">${Math.ceil(token.price * 100) / 100}</td>
                             </tr>
                         ))}
                 </tbody>

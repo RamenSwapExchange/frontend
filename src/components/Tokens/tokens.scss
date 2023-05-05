@@ -83,6 +83,11 @@
 
             tr {
                 cursor: pointer;
+
+                .token-symbol {
+                    color: lightgray;
+                    font-weight: bold;
+                }
             }
         }
     }
