@@ -4,10 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import { MdOutlineRamenDining } from 'react-icons/md'
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
-import { FaScroll } from 'react-icons/fa'
-import { FiBarChart } from 'react-icons/fi'
-import { AiOutlineTwitter, AiFillGithub, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 import { Link } from 'react-router-dom'
 import ConnectButton from './components/ConnectButton'

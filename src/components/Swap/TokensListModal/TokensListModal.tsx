@@ -74,9 +74,11 @@ const TokensListModal = () => {
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
-            <Modal.Header closeButton>
+
+            <Modal.Header className="tokens-header" closeButton>
                 <Modal.Title>Select a token</Modal.Title>
             </Modal.Header>
+
             <Modal.Body className="tokens-modal-body">
                 <input
                     type="text"
@@ -88,7 +90,7 @@ const TokensListModal = () => {
                     {resultsNotFound ? (
                         <div className="no-results-found">No results found.</div>
                     ) : (
-                        reduxTokens?.map((token: TokensType) => (
+                        reduxTokens.map((token: TokensType) => (
                             <div key={token.key} className="single-token" onClick={() => handleSelectToken(token)}>
                                 <div className="token-image">
                                     {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}

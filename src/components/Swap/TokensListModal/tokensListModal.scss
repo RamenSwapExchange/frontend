@@ -6,78 +6,93 @@
     left: 0;
     right: 0;
     transform: translate(0%, -60%);
-    .modal-content {
-        height: 677px;
-    }
-
-    .tokens-modal-body {
-        width: 100%;
+    padding: 0px;
+    width: auto;
+    .modal-dialog {
         display: flex;
         justify-content: center;
-        flex-direction: column;
-        height: 452px;
-        padding: 10px 0px;
 
-        .search-token-input {
-            width: 95%;
-            padding: 7px;
-            font-size: 16px;
-            color: black;
-            outline: none;
-            border-radius: 10px;
-            border: 1px solid lightgray;
-            transition: $transition;
-            margin: 0px auto;
-            margin-bottom: 10px;
+        .modal-content {
+            height: 677px;
+            border-radius: 15px;
+            max-width: 400px;
 
-            &:hover {
-                border: 1px solid black;
-            }
-        }
-
-        .tokens-list {
-            overflow-y: scroll;
-            height: 100%;
-
-            .no-results-found {
-                margin-top: 10px;
-                text-align: center;
-                font-weight: bold;
+            .tokens-header {
+                border: none;
+                padding-bottom: 0px;
             }
 
-            .hide-token {
-                display: none;
-            }
-
-            .single-token {
+            .tokens-modal-body {
+                width: 100%;
                 display: flex;
-                align-items: center;
-                height: 56px;
-                cursor: pointer;
+                justify-content: center;
+                flex-direction: column;
+                height: 452px;
+                padding: 10px 0px;
 
-                &:hover {
-                    background-color: #f8fcfc;
-                }
-
-                .token-image {
-                    display: flex;
-                    justify-content: center;
-                    margin-left: 10px;
-                }
-
-                .token-image > img {
-                    width: 36px;
-                    margin-right: 10px;
-                }
-
-                .token-name {
+                .search-token-input {
+                    width: 95%;
+                    padding: 7px;
                     font-size: 16px;
-                    font-weight: 600;
+                    color: black;
+                    outline: none;
+                    border-radius: 10px;
+                    border: 1px solid lightgray;
+                    transition: $transition;
+                    margin: 0px auto;
+                    margin-bottom: 10px;
+
+                    &:hover {
+                        border: 1px solid black;
+                    }
                 }
 
-                .token-symbol {
-                    font-size: 12px;
-                    color: gray;
+                .tokens-list {
+                    overflow-y: scroll;
+                    height: 100%;
+                    border-top: solid rgb(210, 217, 238) 1px;
+
+                    .no-results-found {
+                        margin-top: 10px;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+
+                    .hide-token {
+                        display: none;
+                    }
+
+                    .single-token {
+                        display: flex;
+                        align-items: center;
+                        height: 56px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #f8fcfc;
+                        }
+
+                        .token-image {
+                            display: flex;
+                            justify-content: center;
+                            margin-left: 10px;
+                        }
+
+                        .token-image > img {
+                            width: 36px;
+                            margin-right: 10px;
+                        }
+
+                        .token-name {
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+
+                        .token-symbol {
+                            font-size: 12px;
+                            color: gray;
+                        }
+                    }
                 }
             }
         }
