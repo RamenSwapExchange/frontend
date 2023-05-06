@@ -5,17 +5,35 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import { MdOutlineRamenDining } from 'react-icons/md'
 import { AiOutlineSearch } from 'react-icons/ai'
-
 import { Link } from 'react-router-dom'
+
 import ConnectButton from './components/ConnectButton'
 import ChainsDropdown from './components/ChainsDropdown'
 import MobileNavigation from './components/MobileNavigation/MobileNavigation'
 import InfoDropdown from './components/InfoDropdown/InfoDropdown'
 
+import { useEffect, useState } from 'react'
+
 const Header = () => {
+    const [isScrolled, setIsScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+            const isTop = scrollTop === 0
+
+            setIsScrolled(!isTop)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
     return (
         <div>
-            <Navbar className="header">
+            <Navbar className={`header ${isScrolled ? 'scrolled' : ''}`} fixed="top">
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto header-left">
                         <Link to="/">
