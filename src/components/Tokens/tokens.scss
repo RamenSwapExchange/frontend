@@ -56,6 +56,7 @@
     .tokens-table {
         border-radius: 12px;
         background-color: white;
+        // table-layout: fixed;
 
         thead {
             border-bottom: 1px solid lightgray;
@@ -79,6 +80,11 @@
         tbody {
             border: none;
 
+            .token-info {
+                display: flex;
+                align-items: center;
+            }
+
             .token-price {
                 font-weight: bold;
             }
@@ -100,12 +106,36 @@
     }
 }
 
+// td.token-price {
+//     white-space: normal; /* Allow line breaks within the token-price cell */
+//     overflow: visible; /* Show overflowing content */
+//     text-overflow: clip; /* Clip overflowing content */
+//     word-break: break-word; /* Break words when needed */
+// }
+
 @media only screen and (max-width: 400px) {
     .filter-section {
         width: 100%;
         input {
             width: 100%;
             height: 40px;
+        }
+    }
+
+    table {
+        font-size: 12px;
+
+        .token-name {
+            display: flex;
+            flex-direction: column;
+            font-weight: bold;
+        }
+
+        td.token-price {
+            white-space: normal; /* Allow line breaks within the token-price cell */
+            overflow: visible; /* Show overflowing content */
+            text-overflow: clip; /* Clip overflowing content */
+            word-break: break-word; /* Break words when needed */
         }
     }
 }
