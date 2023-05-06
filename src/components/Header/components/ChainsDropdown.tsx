@@ -27,7 +27,9 @@ const ChainsDropdown = () => {
 
     const { isConnected } = useAccount({
         onDisconnect() {
-            changeOfflineNet(netId)
+            if (netUnsupported) changeOfflineNet(offlineNets[0].id)
+            else changeOfflineNet(netId)
+
             setIsError(false)
         },
     })

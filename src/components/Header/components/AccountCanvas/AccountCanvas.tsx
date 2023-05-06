@@ -22,19 +22,29 @@ const AccountCanvas = () => {
     const dispatch = useAppDispatch()
 
     return (
-        <Offcanvas show={isCanvas} placement={'end'} backdrop={false} className="main-canvas">
-            <div className="main-div-canvas">
-                <div className="left-panel" onClick={handleClose}>
-                    &gt;&gt;
-                </div>
+        <>
+            <Offcanvas show={isCanvas} placement={'end'} backdrop={false} className="main-canvas">
+                <div className="main-div-canvas">
+                    <div className="left-panel" onClick={handleClose}>
+                        &gt;&gt;
+                    </div>
 
+                    <div className="right-panel">
+                        {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
+
+                        <ThemeButton />
+                    </div>
+                </div>
+            </Offcanvas>
+
+            <Offcanvas show={isCanvas} placement={'bottom'} backdrop={true} backdropClassName='backdrop-mobile' onHide={handleClose} className="main-canvas-mobile">
                 <div className="right-panel">
                     {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
 
                     <ThemeButton />
                 </div>
-            </div>
-        </Offcanvas>
+            </Offcanvas>
+        </>
     )
 }
 
