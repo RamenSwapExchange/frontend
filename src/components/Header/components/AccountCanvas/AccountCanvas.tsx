@@ -37,7 +37,8 @@ const AccountCanvas = () => {
                 </div>
             </Offcanvas>
 
-            <Offcanvas show={isCanvas} placement={'bottom'} backdrop={true} backdropClassName='backdrop-mobile' onHide={handleClose} className="main-canvas-mobile">
+            <Offcanvas show={isCanvas} placement={'bottom'} backdrop={false} className="main-canvas-mobile">
+                <div className='backdrop-mobile' onClick={handleClose} />
                 <div className="right-panel">
                     {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
 
