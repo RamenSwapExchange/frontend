@@ -80,13 +80,15 @@ const Tokens = () => {
                     {tokens.map((token: TokensType, id) => (
                         <tr key={id}>
                             <td>{id + 1}</td>
-                            <td>
+                            <td className="token-info">
                                 {token.images ? (
                                     <img src={token.images[1]} className="token-img"></img>
                                 ) : (
                                     <img src={token.image} className="token-img"></img>
                                 )}
-                                {token.name} <span className="token-symbol">{token.symbol}</span>
+                                <div className="token-name">
+                                    {token.name} <span className="token-symbol">{token.symbol}</span>
+                                </div>
                             </td>
                             <td className="token-price">${Math.ceil(token.price * 100) / 100}</td>
                         </tr>
