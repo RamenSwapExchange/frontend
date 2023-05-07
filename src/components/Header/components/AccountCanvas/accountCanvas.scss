@@ -49,21 +49,31 @@
     .main-canvas {
         display: none;
     }
+
     .main-canvas-mobile {
         display: flex;
         height: 90vh !important;
-        border-radius: 10px 10px 0px 0px;
-        background-color: white;
+        background-color: transparent;
+        border: none;
 
         .backdrop-mobile {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+            width: 100vw;
+            background-color: #000;
+            opacity: 0.5;
         }
 
         .right-panel {
-            z-index: 1;
+            z-index: 10;
             height: 100%;
             width: 100%;
             display: flex;
             flex-direction: column;
+            border-radius: 10px 10px 0px 0px;
+            background-color: white;
         }
     }
 }
