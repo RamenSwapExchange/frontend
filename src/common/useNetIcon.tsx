@@ -1,9 +1,7 @@
-import { mainnet, polygon, optimism, arbitrum, celo, polygonMumbai } from 'wagmi/chains'
+import { mainnet, polygon, optimism, polygonMumbai } from 'wagmi/chains'
 import ethereumIcon from '/chains/Ethereum.png'
 import polygonIcon from '/chains/Polygon.svg'
 import optimismIcon from '/chains/Optymism.svg'
-import arbitrumIcon from '/chains/Arbitrum.svg'
-import celoIcon from '/chains/Celo.svg'
 import useNet from './useNet'
 import errorIcon from '/error.png'
 
@@ -17,8 +15,6 @@ const useNetIcon = () => {
         [mainnet.id]: ethereumIcon,
         [polygon.id]: polygonIcon,
         [optimism.id]: optimismIcon,
-        [arbitrum.id]: arbitrumIcon,
-        [celo.id]: celoIcon
     }
 
     const { netId } = useNet();
