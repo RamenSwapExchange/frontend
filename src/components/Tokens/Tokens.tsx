@@ -8,14 +8,15 @@ import tokensApi from '../../common/tokensApi'
 
 const Tokens = () => {
     const { offlineNets } = useCurrentNet()
-    const { net } = useCurrentNet()
 
     const [tokens, setTokens] = useState<TokensType[]>([])
     const [sortDirection, setSortDirection] = useState('asc')
     const [currentNetwork, setCurrentNetwork] = useState('Polygon Mumbai')
 
     async function fetchTokens() {
-        const res = await tokensApi.get(`/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}`)
+        const res = await tokensApi.get(
+            `/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}&networks=${currentNetwork.toLowerCase()}`
+        )
         setTokens(res.data.tokens)
         console.log(res.data.tokens)
     }
@@ -30,7 +31,7 @@ const Tokens = () => {
 
     useEffect(() => {
         fetchTokens()
-    }, [sortDirection])
+    }, [sortDirection, currentNetwork])
 
     return (
         <div className="container-sm tokens-container">
