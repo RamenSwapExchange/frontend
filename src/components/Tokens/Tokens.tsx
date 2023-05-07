@@ -8,9 +8,11 @@ import tokensApi from '../../common/tokensApi'
 
 const Tokens = () => {
     const { offlineNets } = useCurrentNet()
+    const { net } = useCurrentNet()
 
     const [tokens, setTokens] = useState<TokensType[]>([])
     const [sortDirection, setSortDirection] = useState('asc')
+    const [currentNetwork, setCurrentNetwork] = useState('Polygon Mumbai')
 
     async function fetchTokens() {
         const res = await tokensApi.get(`/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}`)
@@ -36,11 +38,15 @@ const Tokens = () => {
             <div className="filter-section">
                 <Dropdown>
                     <Dropdown.Toggle id="dropdown-basic" className="dropdown">
-                        ETHEREUM
+                        {currentNetwork}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {offlineNets.map((net) => {
-                            return <Dropdown.Item key={net.id}>{net.name}</Dropdown.Item>
+                            return (
+                                <Dropdown.Item key={net.id} onClick={() => setCurrentNetwork(net.name)}>
+                                    {net.name}
+                                </Dropdown.Item>
+                            )
                         })}
                     </Dropdown.Menu>
                 </Dropdown>
