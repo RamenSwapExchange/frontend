@@ -11,11 +11,14 @@ const Tokens = () => {
 
     const [tokens, setTokens] = useState<TokensType[]>([])
     const [sortDirection, setSortDirection] = useState('asc')
+    const [currentNetwork, setCurrentNetwork] = useState('Polygon Mumbai')
+    const [tokensFilter, setTokensFilter] = useState('')
 
     async function fetchTokens() {
-        const res = await tokensApi.get(`/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}`)
+        const res = await tokensApi.get(
+            `/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}&networks=${currentNetwork.toLowerCase()}&search=${tokensFilter}`
+        )
         setTokens(res.data.tokens)
-        console.log(res.data.tokens)
     }
 
     function sortTokens() {
@@ -26,39 +29,40 @@ const Tokens = () => {
         }
     }
 
+    function changeNetwork(netName: string) {
+        setCurrentNetwork(netName)
+        setTokensFilter('')
+    }
+
     useEffect(() => {
         fetchTokens()
-    }, [sortDirection])
+    }, [sortDirection, currentNetwork, tokensFilter])
 
     return (
         <div className="container-sm tokens-container">
-            <div className="tokens-title">Top tokens on Ramenswap</div>
+            <div className="tokens-title">Tokens on Ramenswap</div>
             <div className="filter-section">
                 <Dropdown>
                     <Dropdown.Toggle id="dropdown-basic" className="dropdown">
-                        ETHEREUM
+                        {currentNetwork}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {offlineNets.map((net) => {
-                            return <Dropdown.Item key={net.id}>{net.name}</Dropdown.Item>
+                            return (
+                                <Dropdown.Item key={net.id} onClick={() => changeNetwork(net.name)}>
+                                    {net.name}
+                                </Dropdown.Item>
+                            )
                         })}
                     </Dropdown.Menu>
                 </Dropdown>
 
-                <Dropdown>
-                    <Dropdown.Toggle id="dropdown-basic" className="dropdown">
-                        1D
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item>1H</Dropdown.Item>
-                        <Dropdown.Item>1D</Dropdown.Item>
-                        <Dropdown.Item>1W</Dropdown.Item>
-                        <Dropdown.Item>1M</Dropdown.Item>
-                        <Dropdown.Item>1Y</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
-
-                <input type="text" placeholder="Filter Tokens" />
+                <input
+                    type="text"
+                    placeholder="Filter Tokens"
+                    value={tokensFilter}
+                    onChange={(e) => setTokensFilter(e.target.value)}
+                />
             </div>
             <Table className="tokens-table" hover>
                 <thead>
