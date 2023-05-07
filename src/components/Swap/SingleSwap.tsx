@@ -31,7 +31,7 @@ const SingleSwap = ({ disabled = false, token }: ISingleSwap) => {
                     className="swap-input"
                     disabled={disabled}
                     pattern="^[0-9]*[.]?[0-9]*$"
-                    value={inputValue}
+                    value={disabled ? 0 : inputValue}
                     onChange={(e) => setInputValue((v) => (e.target.validity.valid ? e.target.value : v))}
                 />
 
