@@ -8,7 +8,7 @@ type useCurrentNetConfig = {
     onErrorChangeNet?(): void
 }
 
-const useCurrentNet = ({ onErrorChangeNet }: useCurrentNetConfig = {}) => {
+const useNet = ({ onErrorChangeNet }: useCurrentNetConfig = {}) => {
     const { isConnected } = useAccount();
     const { chain } = useNetwork();
     const dispatch = useAppDispatch()
@@ -28,7 +28,7 @@ const useCurrentNet = ({ onErrorChangeNet }: useCurrentNetConfig = {}) => {
     const net = isConnected ? chain : nets.find(net => netId == net.id)
     const unsupported = chain?.unsupported;
 
-    return { net, netId: netId, netUnsupported: unsupported, changeNet, offlineNets: nets, changeOfflineNet };
+    return { net, nets, netId, unsupported, changeNet, changeOfflineNet };
 }
 
-export default useCurrentNet
+export default useNet

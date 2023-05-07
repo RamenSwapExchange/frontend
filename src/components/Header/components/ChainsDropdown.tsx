@@ -8,13 +8,13 @@ import { useAccount } from 'wagmi'
 import { watchNetwork } from '@wagmi/core'
 import { useState } from 'react'
 
-import useCurrentNet from '../../../common/useCurrentNet'
+import useNet from '../../../common/useNet'
 import useNetIcon from '../../../common/useNetIcon'
 
 const ChainsDropdown = () => {
     const resetErrorTime = 15 * 1000; //seconds
 
-    const { netId, offlineNets, netUnsupported, changeOfflineNet, changeNet } = useCurrentNet({
+    const { netId, nets, unsupported, changeOfflineNet, changeNet } = useNet({
         onErrorChangeNet() {
             setIsError(true)
             setTimeout(() => {
@@ -27,7 +27,7 @@ const ChainsDropdown = () => {
 
     const { isConnected } = useAccount({
         onDisconnect() {
-            if (netUnsupported) changeOfflineNet(offlineNets[0].id)
+            if (unsupported) changeOfflineNet(nets[0].id)
             else changeOfflineNet(netId)
 
             setIsError(false)
@@ -68,7 +68,7 @@ const ChainsDropdown = () => {
         </div>
     )
 
-    if (netUnsupported) {
+    if (unsupported) {
         TitleDropdown = (
             <OverlayTrigger
                 placement="left"
@@ -88,7 +88,7 @@ const ChainsDropdown = () => {
                 align="end"
                 onClick={() => setIsArrowUp(!isArrowUp)}
             >
-                {offlineNets.map((net) => {
+                {nets.map((net) => {
                     return (
                         <NavDropdown.Item key={net.id} className="chain-item-div" onClick={() => ChangeChain(net.id)}>
                             <img className="chain-icon" src={getIcon(net.id)} />

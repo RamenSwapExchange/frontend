@@ -8,7 +8,7 @@ import TokensListModal from './TokensListModal/TokensListModal'
 import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
-import useCurrentNet from '../../common/useCurrentNet'
+import useNet from '../../common/useNet'
 
 const Swap = () => {
     const { isConnected } = useAccount()
@@ -20,7 +20,7 @@ const Swap = () => {
     const swapButtons = () => {
         //TODO
     }
-    const { net, netUnsupported } = useCurrentNet();
+    const { net, unsupported } = useNet();
 
     return (
         <>
@@ -32,11 +32,11 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={netUnsupported} token={net} />
-                <SingleSwap disabled={netUnsupported} token={net} />
+                <SingleSwap disabled={unsupported} token={net} />
+                <SingleSwap disabled={unsupported} token={net} />
 
                 <button
-                    className={netUnsupported ? 'swap-button swap-button-disabled' : 'swap-button'}
+                    className={unsupported ? 'swap-button swap-button-disabled' : 'swap-button'}
                     onClick={swapButtons}
                 >
                     <AiOutlineArrowDown />
@@ -44,7 +44,7 @@ const Swap = () => {
 
                 {isConnected ? (
                     <button
-                        className={netUnsupported ? 'connect-button connect-button-disabled' : 'connect-button'}
+                        className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}
                     >
                         Select a token
                     </button>

@@ -5,11 +5,11 @@ import errorIcon from "/error.png"
 import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
-import useCurrentNet from '../../common/useCurrentNet'
+import useNet from '../../common/useNet'
 
 const Pools = () => {
     const { isConnected } = useAccount()
-    const { netUnsupported } = useCurrentNet();
+    const { unsupported } = useNet();
     const showCanvas = useAppSelector(selectAccountCanvas)
     const dispatch = useAppDispatch()
 
@@ -20,7 +20,7 @@ const Pools = () => {
                 <button>+ New Position</button>
             </div>
             <div className="liquidity-container">
-                {netUnsupported ? (
+                {unsupported ? (
                     <>
                         <img src={errorIcon} className="container-icon" />
                         <div> Your connected network is unsupported. </div>

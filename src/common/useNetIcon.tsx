@@ -4,7 +4,7 @@ import polygonIcon from '/chains/Polygon.svg'
 import optimismIcon from '/chains/Optymism.svg'
 import arbitrumIcon from '/chains/Arbitrum.svg'
 import celoIcon from '/chains/Celo.svg'
-import useCurrentNet from './useCurrentNet'
+import useNet from './useNet'
 import errorIcon from '/error.png'
 
 type netIconsConfig = {
@@ -21,7 +21,7 @@ const useNetIcon = () => {
         [celo.id]: celoIcon
     }
 
-    const { netId } = useCurrentNet();
+    const { netId } = useNet();
 
     const getNetIcon = (netId: number): string => {
         if (netIcons.hasOwnProperty(netId)) return netIcons[netId]

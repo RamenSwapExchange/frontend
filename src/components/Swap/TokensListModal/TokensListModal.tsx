@@ -12,7 +12,7 @@ import {
     TokensType,
 } from '../../../redux/tokensModalSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import useCurrentNet from '../../../common/useCurrentNet'
+import useNet from '../../../common/useNet'
 
 const TokensListModal = () => {
     const [tokensFilter, setTokensFilter] = useState('')
@@ -26,7 +26,7 @@ const TokensListModal = () => {
     const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
 
-    const { net } = useCurrentNet()
+    const { net } = useNet()
     const netName = net?.name.toLocaleLowerCase()
 
     function handleScroll() {

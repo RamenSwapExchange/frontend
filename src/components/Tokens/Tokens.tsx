@@ -1,13 +1,13 @@
 import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
-import useCurrentNet from '../../common/useCurrentNet'
+import useNet from '../../common/useNet'
 import { useEffect, useState } from 'react'
 import { TokensType } from '../../redux/tokensModalSlice'
 import tokensApi from '../../common/tokensApi'
 
 const Tokens = () => {
-    const { offlineNets } = useCurrentNet()
+    const { nets } = useNet()
 
     const [tokens, setTokens] = useState<TokensType[]>([])
     const [sortDirection, setSortDirection] = useState('asc')
@@ -47,7 +47,7 @@ const Tokens = () => {
                         {currentNetwork}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        {offlineNets.map((net) => {
+                        {nets.map((net) => {
                             return (
                                 <Dropdown.Item key={net.id} onClick={() => changeNetwork(net.name)}>
                                     {net.name}
