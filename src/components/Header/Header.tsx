@@ -11,6 +11,7 @@ import ConnectButton from './components/ConnectButton'
 import ChainsDropdown from './components/ChainsDropdown'
 import MobileNavigation from './components/MobileNavigation/MobileNavigation'
 import InfoDropdown from './components/InfoDropdown/InfoDropdown'
+import changeBackground from './components/ChangeBackground'
 
 import { useEffect, useState } from 'react'
 
@@ -30,6 +31,8 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
+
+    changeBackground()
 
     return (
         <div>

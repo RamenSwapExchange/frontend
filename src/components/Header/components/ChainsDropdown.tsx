@@ -6,7 +6,7 @@ import errorIcon from '/error.png'
 
 import { useAccount } from 'wagmi'
 import { watchNetwork } from '@wagmi/core'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import useNet from '../../../common/useNet'
 import useNetIcon from '../../../common/useNetIcon'
@@ -76,13 +76,6 @@ const ChainsDropdown = () => {
         )
     }
 
-    useEffect(() => {
-        document.body.style.background = 'linear-gradient(#e0e7ff, #ffffff)'
-        document.body.style.height = '100%'
-        document.body.style.backgroundSize = 'cover'
-        document.body.style.backgroundRepeat = 'no-repeat'
-    }, [])
-
     return (
         <>
             <NavDropdown
@@ -94,7 +87,13 @@ const ChainsDropdown = () => {
             >
                 {nets.map((net) => {
                     return (
-                        <NavDropdown.Item key={net.id} className="chain-item-div" onClick={() => ChangeChain(net.id)}>
+                        <NavDropdown.Item
+                            key={net.id}
+                            className="chain-item-div"
+                            onClick={() => {
+                                ChangeChain(net.id)
+                            }}
+                        >
                             <img className="chain-icon" src={getIcon(net.id)} />
                             <div> {net.name} </div>
                             {net.id == netId && <div> ✔ </div>}
