@@ -27,7 +27,8 @@
     }
 
     .info-item {
-        font-size: 13px;
+        font-size: 14px;
+        color: gray;
     }
 
     .dropdown-socials {
@@ -44,5 +45,20 @@
                 color: gray;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .dropdown-menu.show {
+        position: fixed !important;
+        bottom: 52px !important;
+        inset: none !important;
+        transform: none !important;
+        width: 100vw;
+    }
+
+    .info-dropdown-container .dropdown-li {
+        display: flex;
+        justify-content: left;
     }
 }
