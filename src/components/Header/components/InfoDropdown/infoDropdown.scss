@@ -49,11 +49,13 @@
 }
 
 @media only screen and (max-width: 990px) {
-    .dropdown-menu.show {
-        position: fixed !important;
-        bottom: 52px !important;
-        inset: none !important;
-        transform: none !important;
+    .nav-link {
+        .dropdown-menu.show {
+            position: fixed !important;
+            bottom: 52px !important;
+            inset: none !important;
+            transform: none !important;
+        }
     }
 
     .info-dropdown-container .dropdown-li {
@@ -63,7 +65,9 @@
 }
 
 @media only screen and (max-width: 640px) {
-    .dropdown-menu.show {
-        width: 100vw;
+    .nav-link {
+        .dropdown-menu.show {
+            width: 100vw;
+        }
     }
 }
