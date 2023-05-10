@@ -54,11 +54,16 @@
         bottom: 52px !important;
         inset: none !important;
         transform: none !important;
-        width: 100vw;
     }
 
     .info-dropdown-container .dropdown-li {
         display: flex;
         justify-content: left;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .dropdown-menu.show {
+        width: 100vw;
     }
 }
