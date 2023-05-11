@@ -6,7 +6,9 @@ import { useDisconnect } from 'wagmi'
 import { useState } from 'react'
 
 import Nav from 'react-bootstrap/Nav'
-import AccountSubpage from './AccountSubpage/AccountSubpage'
+import PoolsSubpage from './AccountSubpages/PoolsSubpage/PoolsSubpage'
+import ActivitySubpage from './AccountSubpages/ActivitySubpage/ActivitySubpage'
+import TokensSubpage from './AccountSubpages/TokensSubpage/TokensSubpage'
 
 const Account = () => {
     const { address } = useAccount()
@@ -23,11 +25,11 @@ const Account = () => {
 
     let subpageContent = null
     if (choosenPage === 'tokens') {
-        subpageContent = <AccountSubpage />
+        subpageContent = <TokensSubpage />
     } else if (choosenPage === 'pools') {
-        subpageContent = <AccountSubpage />
+        subpageContent = <PoolsSubpage />
     } else if (choosenPage === 'activity') {
-        subpageContent = <AccountSubpage />
+        subpageContent = <ActivitySubpage />
     }
 
     return (
