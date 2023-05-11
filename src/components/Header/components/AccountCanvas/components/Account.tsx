@@ -6,6 +6,7 @@ import { useDisconnect } from 'wagmi'
 import { useState } from 'react'
 
 import Nav from 'react-bootstrap/Nav'
+import AccountSubpage from './AccountSubpage/AccountSubpage'
 
 const Account = () => {
     const { address } = useAccount()
@@ -17,10 +18,17 @@ const Account = () => {
 
     const addressSliced = address?.replace(address.substring(7, address.length - 5), '...')
 
-    const balanceSliced = 
-        data?.formatted.length! > 3 ? 
-            data?.formatted.replace(data.formatted.substring(7), '...') 
-            : data?.formatted
+    const balanceSliced =
+        data?.formatted.length! > 3 ? data?.formatted.replace(data.formatted.substring(7), '...') : data?.formatted
+
+    let subpageContent = null
+    if (choosenPage === 'tokens') {
+        subpageContent = <AccountSubpage />
+    } else if (choosenPage === 'pools') {
+        subpageContent = <AccountSubpage />
+    } else if (choosenPage === 'activity') {
+        subpageContent = <AccountSubpage />
+    }
 
     return (
         <>
@@ -53,7 +61,7 @@ const Account = () => {
                         <Nav.Link eventKey="activity">Activity</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                <div className="account-menu-content">{choosenPage}</div>
+                <div className="account-menu-content">{subpageContent}</div>
             </div>
         </>
     )
