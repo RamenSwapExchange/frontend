@@ -6,9 +6,8 @@ import { useDisconnect } from 'wagmi'
 import { useState } from 'react'
 
 import Nav from 'react-bootstrap/Nav'
-import PoolsSubpage from './AccountSubpages/PoolsSubpage/PoolsSubpage'
 import ActivitySubpage from './AccountSubpages/ActivitySubpage/ActivitySubpage'
-import TokensSubpage from './AccountSubpages/TokensSubpage/TokensSubpage'
+import AccountSubpage from './AccountSubpages/AccountSubpage/AccountSubpage'
 
 const Account = () => {
     const { address } = useAccount()
@@ -25,9 +24,21 @@ const Account = () => {
 
     let subpageContent = null
     if (choosenPage === 'tokens') {
-        subpageContent = <TokensSubpage />
+        subpageContent = (
+            <AccountSubpage
+                title={'No tokens yet'}
+                description={'Buy or transfer tokens to this wallet to get started.'}
+                buttonText={'Explore tokens'}
+            />
+        )
     } else if (choosenPage === 'pools') {
-        subpageContent = <PoolsSubpage />
+        subpageContent = (
+            <AccountSubpage
+                title={'No pools yet'}
+                description={'Open a new position or create a pool to get started.'}
+                buttonText={'+ New position'}
+            />
+        )
     } else if (choosenPage === 'activity') {
         subpageContent = <ActivitySubpage />
     }
