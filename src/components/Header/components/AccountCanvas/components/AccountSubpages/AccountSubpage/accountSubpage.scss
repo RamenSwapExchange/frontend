@@ -1,0 +1,24 @@
+@import '../../../../../../../common/globals.scss';
+
+.subpage-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    h5 {
+        font-weight: bold;
+    }
+
+    button {
+        padding: 10px 24px;
+        border-radius: 12px;
+        border: none;
+        color: white;
+        font-weight: bold;
+        transition: $transition;
+        background-color: $primary-color;
+    }
+}

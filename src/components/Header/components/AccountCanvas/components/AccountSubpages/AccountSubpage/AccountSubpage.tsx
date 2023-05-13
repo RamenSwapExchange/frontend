@@ -8,7 +8,7 @@ interface AccountSubpageProps {
 
 const AccountSubpage = ({ title, description, buttonText }: AccountSubpageProps) => {
     return (
-        <div>
+        <div className="subpage-container">
             <h5>{title}</h5>
             <p>{description}</p>
             <button>{buttonText}</button>
