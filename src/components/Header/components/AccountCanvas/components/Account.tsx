@@ -1,5 +1,7 @@
 import './account.scss'
 import { AiOutlinePoweroff, AiOutlineCopy } from 'react-icons/ai'
+import poolsImg from '/subpages/pools-subpage.png'
+import tokensImg from '/subpages/tokens-subpage.png'
 
 import { useAccount, useBalance } from 'wagmi'
 import { useDisconnect } from 'wagmi'
@@ -29,6 +31,7 @@ const Account = () => {
                 title={'No tokens yet'}
                 description={'Buy or transfer tokens to this wallet to get started.'}
                 buttonText={'Explore tokens'}
+                img_src={tokensImg}
             />
         )
     } else if (choosenPage === 'pools') {
@@ -37,6 +40,7 @@ const Account = () => {
                 title={'No pools yet'}
                 description={'Open a new position or create a pool to get started.'}
                 buttonText={'+ New position'}
+                img_src={poolsImg}
             />
         )
     } else if (choosenPage === 'activity') {
