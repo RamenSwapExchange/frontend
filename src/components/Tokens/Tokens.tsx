@@ -2,13 +2,14 @@ import './tokens.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Table from 'react-bootstrap/Table'
 import useNet from '../../common/useNet'
+import useNetIcon from '../../common/useNetIcon'
 import { useEffect, useState } from 'react'
 import { TokensType } from '../../redux/tokensModalSlice'
 import tokensApi from '../../common/tokensApi'
 
 const Tokens = () => {
     const { nets } = useNet()
-
+    const { getIcon } = useNetIcon();
     const [tokens, setTokens] = useState<TokensType[]>([])
     const [sortDirection, setSortDirection] = useState('asc')
     const [currentNetwork, setCurrentNetwork] = useState('Polygon Mumbai')
@@ -49,7 +50,8 @@ const Tokens = () => {
                     <Dropdown.Menu>
                         {nets.map((net) => {
                             return (
-                                <Dropdown.Item key={net.id} onClick={() => changeNetwork(net.name)}>
+                                <Dropdown.Item key={net.id} className="dropdown-net-row" onClick={() => changeNetwork(net.name)}>
+                                    <img className="net-icon" src={getIcon(net.id)}/>
                                     {net.name}
                                 </Dropdown.Item>
                             )

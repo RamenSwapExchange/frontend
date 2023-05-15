@@ -8,7 +8,9 @@
     @include flexCenter();
     gap: 15px;
     top: 100px;
+    right: 20px;
     height: 80px;
+    background-color: white;
 
     padding: 10px;
     border-radius: 15px;
@@ -118,5 +120,13 @@
     .chainDropdown-main .chain-item-div {
         display: flex;
         justify-content: left;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .chains-error-container {
+        justify-content: space-around;
+        width: 100vw;
+        right: 0px;
+        height: auto;
     }
 }
