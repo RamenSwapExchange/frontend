@@ -44,7 +44,7 @@ const TokensListModal = () => {
 
     function handleSelectToken(token: TokensType) {
         if (token) {
-            dispatch(selectToken(token))
+            dispatch(selectToken({token: token, id: 0}))
         }
         handleClose()
     }

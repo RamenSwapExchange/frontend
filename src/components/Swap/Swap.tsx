@@ -20,7 +20,7 @@ const Swap = () => {
     const swapButtons = () => {
         //TODO
     }
-    const { net, unsupported } = useNet();
+    const { unsupported } = useNet();
 
     return (
         <>
@@ -32,8 +32,8 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={unsupported} token={net} />
-                <SingleSwap disabled={unsupported} token={net} />
+                <SingleSwap disabled={unsupported} id={0}/>
+                <SingleSwap disabled={unsupported} id={1}/>
 
                 <button
                     className={unsupported ? 'swap-button swap-button-disabled' : 'swap-button'}

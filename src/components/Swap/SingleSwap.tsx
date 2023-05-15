@@ -4,16 +4,14 @@ import { RiArrowDropDownLine } from 'react-icons/ri'
 import { useState } from 'react'
 import { selectSelectedToken, showModal } from '../../redux/tokensModalSlice'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import useNetIcon from '../../common/useNetIcon'
 
 interface ISingleSwap {
     disabled?: boolean
-    token: any
+    id: number
 }
 
-const SingleSwap = ({ disabled = false, token }: ISingleSwap) => {
+const SingleSwap = ({ disabled = false, id }: ISingleSwap) => {
     const dispatch = useAppDispatch()
-    const { icon } = useNetIcon()
     const [inputValue, setInputValue] = useState('')
     const selectedToken = useAppSelector(selectSelectedToken)
     const inputAmount = inputValue ? parseInt(inputValue) : 0
@@ -40,15 +38,15 @@ const SingleSwap = ({ disabled = false, token }: ISingleSwap) => {
                         'Select token'
                     ) : (
                         <>
-                            <img src={icon} />
-                            {token.nativeCurrency?.symbol}
+                            <img src={selectedToken[id]?.images ? selectedToken[id]?.images[1] : selectedToken[id]?.image} />
+                            {selectedToken[id]?.name}
                         </>
                     )}
                     <RiArrowDropDownLine fontSize={25} />
                 </button>
             </div>
             <div className="swap-bottom">
-                ${selectedToken?.price ? Math.ceil(selectedToken?.price * inputAmount * 100) / 100 : '0'}
+                ${selectedToken[id]?.price ? Math.ceil(selectedToken[id]!.price * inputAmount * 100) / 100 : '0'}
             </div>
         </div>
     )
