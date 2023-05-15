@@ -102,3 +102,21 @@
     border-radius: 10px;
     box-shadow: rgba(47, 128, 237, 0.1) 0px 4px 8px 0px;
 }
+
+@media only screen and (max-width: 640px) {
+    .chainDropdown-main {
+        .dropdown-menu.show {
+            top: initial;
+            position: fixed !important;
+            bottom: 52px !important;
+            inset: none !important;
+            transform: none !important;
+            width: 100vw;
+        }
+    }
+
+    .chainDropdown-main .chain-item-div {
+        display: flex;
+        justify-content: left;
+    }
+}
