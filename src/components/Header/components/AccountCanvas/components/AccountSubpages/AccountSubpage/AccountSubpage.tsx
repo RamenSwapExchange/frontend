@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { showAccountCanvas } from '../../../../../../../redux/appSlice'
+import { useAppDispatch } from '../../../../../../../redux/hooks'
 import './accountSubpage.scss'
 
 interface AccountSubpageProps {
@@ -10,12 +12,15 @@ interface AccountSubpageProps {
 }
 
 const AccountSubpage = ({ title, description, buttonText, img_src, href }: AccountSubpageProps) => {
+
+    const dispatch = useAppDispatch()
+
     return (
         <div className="subpage-container">
             <img src={img_src} alt={img_src} />
             <h5>{title}</h5>
             <p>{description}</p>
-            <Link to={`/${href}`}><button>{buttonText}</button></Link>
+            <Link to={`/${href}`}><button onClick={() => dispatch(showAccountCanvas(false))}>{buttonText}</button></Link>
         </div>
     )
 }
