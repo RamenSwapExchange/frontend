@@ -32,6 +32,7 @@ const Account = () => {
                 description={'Buy or transfer tokens to this wallet to get started.'}
                 buttonText={'Explore tokens'}
                 img_src={tokensImg}
+                href="tokens"
             />
         )
     } else if (choosenPage === 'pools') {
@@ -41,6 +42,7 @@ const Account = () => {
                 description={'Open a new position or create a pool to get started.'}
                 buttonText={'+ New position'}
                 img_src={poolsImg}
+                href="pools"
             />
         )
     } else if (choosenPage === 'activity') {

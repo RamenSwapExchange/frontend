@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './accountSubpage.scss'
 
 interface AccountSubpageProps {
@@ -5,15 +6,16 @@ interface AccountSubpageProps {
     description: string
     buttonText: string
     img_src: string
+    href: string;
 }
 
-const AccountSubpage = ({ title, description, buttonText, img_src }: AccountSubpageProps) => {
+const AccountSubpage = ({ title, description, buttonText, img_src, href }: AccountSubpageProps) => {
     return (
         <div className="subpage-container">
             <img src={img_src} alt={img_src} />
             <h5>{title}</h5>
             <p>{description}</p>
-            <button>{buttonText}</button>
+            <Link to={`/${href}`}><button>{buttonText}</button></Link>
         </div>
     )
 }
