@@ -19,12 +19,12 @@ const useNetIcon = () => {
 
     const { netId } = useNet();
 
-    const getNetIcon = (netId: number): string => {
+    const getIcon = (netId: number): string => {
         if (netIcons.hasOwnProperty(netId)) return netIcons[netId]
         else return errorIcon
     }
 
-    return { icon: getNetIcon(netId), getIcon: getNetIcon }
+    return { icon: getIcon(netId), getIcon }
 }
 
 export default useNetIcon

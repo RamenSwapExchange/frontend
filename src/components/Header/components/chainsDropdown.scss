@@ -8,7 +8,9 @@
     @include flexCenter();
     gap: 15px;
     top: 100px;
+    right: 20px;
     height: 80px;
+    background-color: white;
 
     padding: 10px;
     border-radius: 15px;
@@ -101,4 +103,13 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     box-shadow: rgba(47, 128, 237, 0.1) 0px 4px 8px 0px;
+}
+
+@media only screen and (max-width: 500px) {
+    .chains-error-container {
+        justify-content: space-around;
+        width: 100vw;
+        right: 0px;
+        height: auto;
+    }
 }
