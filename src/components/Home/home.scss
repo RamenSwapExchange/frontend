@@ -24,18 +24,17 @@
         cursor: pointer;
 
         .swap-box {
-            transition: 0.5s;
+            transition: 0.2s;
         }
 
         &:hover {
             .swap-box {
                 border: 1px solid $primary-color;
-                transform: translateY(-15px);
+                transform: translateY(-5px);
             }
 
             .home-overlay {
-                transition: 0.5s;
-                transform: translateY(-15px);
+                transform: translateY(-5px);
             }
         }
     }
@@ -47,7 +46,7 @@
         border-radius: 16px;
         background: linear-gradient(0deg, rgba(245, 247, 255, 255) 22%, rgba(255, 255, 255, 0) 100%);
         box-shadow: 0px -73px 100px 0px rgba(129, 71, 229, 0.445);
-        transition: 0.5s;
+        transition: 0.2s;
     }
     .home-button {
         background: linear-gradient(to right, $primary-color, #9f75e7);
