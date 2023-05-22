@@ -1,13 +1,14 @@
 import './tokensListModal.scss'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import Spinner from 'react-bootstrap/Spinner'
 import {
     clearTokens,
     fetchAsyncTokens,
     selectModal,
-    selectNotFound,
     selectToken,
     selectTokens,
+    selectTokensLoading,
     showModal,
     TokensType,
 } from '../../../redux/tokensModalSlice'
@@ -20,7 +21,7 @@ const TokensListModal = () => {
     const dispatch = useAppDispatch()
     const show = useAppSelector(selectModal)
     const reduxTokens = useAppSelector(selectTokens)
-    const resultsNotFound = useAppSelector(selectNotFound)
+    const tokensLoading = useAppSelector(selectTokensLoading)
 
     const handleClose = () => dispatch(showModal(false))
     const [page, setPage] = useState(0)
@@ -44,7 +45,7 @@ const TokensListModal = () => {
 
     function handleSelectToken(token: TokensType) {
         if (token) {
-            dispatch(selectToken({token: token, id: 0}))
+            dispatch(selectToken({ token: token, id: 0 }))
         }
         handleClose()
     }
@@ -74,7 +75,6 @@ const TokensListModal = () => {
 
     return (
         <Modal show={show} onHide={handleClose} className="tokens-modal">
-
             <Modal.Header className="tokens-header" closeButton>
                 <Modal.Title>Select a token</Modal.Title>
             </Modal.Header>
@@ -87,9 +87,7 @@ const TokensListModal = () => {
                     onChange={(e) => setTokensFilter(e.target.value)}
                 />
                 <div className="tokens-list" onScroll={disableScroll} ref={boxRef}>
-                    {resultsNotFound ? (
-                        <div className="no-results-found">No results found.</div>
-                    ) : (
+                    {reduxTokens.length > 0 ? (
                         reduxTokens.map((token: TokensType) => (
                             <div key={token.key} className="single-token" onClick={() => handleSelectToken(token)}>
                                 <div className="token-image">
@@ -101,6 +99,8 @@ const TokensListModal = () => {
                                 </div>
                             </div>
                         ))
+                    ) : (
+                        <div className="error">Results not found.</div>
                     )}
                 </div>
             </Modal.Body>
