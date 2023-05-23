@@ -1,14 +1,12 @@
 import './tokensListModal.scss'
 import { useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Spinner from 'react-bootstrap/Spinner'
 import {
     clearTokens,
     fetchAsyncTokens,
     selectModal,
     selectToken,
     selectTokens,
-    selectTokensLoading,
     showModal,
     TokensType,
 } from '../../../redux/tokensModalSlice'
@@ -21,7 +19,6 @@ const TokensListModal = () => {
     const dispatch = useAppDispatch()
     const show = useAppSelector(selectModal)
     const reduxTokens = useAppSelector(selectTokens)
-    const tokensLoading = useAppSelector(selectTokensLoading)
 
     const handleClose = () => dispatch(showModal(false))
     const [page, setPage] = useState(0)

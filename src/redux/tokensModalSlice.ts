@@ -28,7 +28,6 @@ interface AppState {
     modal: boolean
     tokensFilter: string
     selectedToken: [TokensType, TokensType] | [TokensType, null] | [null, null]
-    tokensLoading: boolean
 }
 
 const initialState: AppState = {
@@ -36,7 +35,6 @@ const initialState: AppState = {
     modal: false,
     tokensFilter: '',
     selectedToken: [null, null],
-    tokensLoading: false,
 }
 
 export const tokensModalSlice = createSlice({
@@ -57,12 +55,9 @@ export const tokensModalSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchAsyncTokens.pending, (state) => {
-            state.tokensLoading = true
-        })
+        builder.addCase(fetchAsyncTokens.pending, (state) => {})
         builder.addCase(fetchAsyncTokens.rejected, () => {})
         builder.addCase(fetchAsyncTokens.fulfilled, (state, { payload }) => {
-            state.tokensLoading = false
             const prevTokens = state.tokens
             const uniqueTokens = payload.filter(
                 (token: TokensType) => !prevTokens.some((prevToken) => prevToken.key === token.key)
@@ -78,6 +73,5 @@ export const selectTokens = (state: RootState) => state.tokensModal.tokens
 export const selectModal = (state: RootState) => state.tokensModal.modal
 export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter
 export const selectSelectedToken = (state: RootState) => state.tokensModal.selectedToken
-export const selectTokensLoading = (state: RootState) => state.tokensModal.tokensLoading
 
 export default tokensModalSlice.reducer
