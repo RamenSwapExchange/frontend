@@ -41,5 +41,6 @@ export const { showPopUp, showAccountCanvas, changeOfflineNetId, changeDarkMode 
 export const selectPopUp = (state: RootState) => state.app.popUp
 export const selectAccountCanvas = (state: RootState) => state.app.isAccountCanvas
 export const selectOfflineNetId = (state: RootState) => state.app.offlineNetId
+export const selectDarkMode = (state: RootState) => state.app.darkMode
 
 export default appSlice.reducer
