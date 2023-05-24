@@ -23,7 +23,6 @@ const changeBackground = () => {
         }
 
         applyBackground()
-        document.body.style.height = '100vh'
         document.body.style.backgroundSize = 'cover'
         document.body.style.backgroundRepeat = 'no-repeat'
     }, [netName, triggerDarkMode])

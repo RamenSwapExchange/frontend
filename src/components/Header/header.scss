@@ -7,10 +7,14 @@
 
 :root {
     --logo-color: black;
+    --links-color: rgba(0, 0, 0, 0.55);
+    --links-hover: black;
 }
 
 [data-theme='dark'] {
     --logo-color: white;
+    --links-color: #98a1c0;
+    --links-hover: white;
 }
 
 .scrolled {
@@ -73,6 +77,7 @@
 
     .nav-link {
         font-weight: 600;
+        color: var(--links-color);
     }
 }
 
