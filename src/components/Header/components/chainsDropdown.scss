@@ -3,6 +3,14 @@
     align-items: center;
 }
 
+:root {
+    --arrow-color: rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='dark'] {
+    --arrow-color: #98a1c0;
+}
+
 .chains-error-container {
     position: fixed;
     @include flexCenter();
@@ -42,6 +50,10 @@
         border-radius: 15px;
         margin: 8px;
         padding: 8px;
+
+        .arrow-icon {
+            color: var(--arrow-color);
+        }
 
         .loader {
             display: inline-block;
