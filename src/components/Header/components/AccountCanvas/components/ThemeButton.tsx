@@ -3,16 +3,23 @@ import { useState } from 'react'
 import { BsSun } from 'react-icons/bs'
 import { BsMoon } from 'react-icons/bs'
 import { useAppDispatch } from '../../../../../redux/hooks'
-import { changeDarkMode } from '../../../../../redux/appSlice'
+import { triggerDarkMode } from '../../../../../redux/appSlice'
 
 const ThemeButton = () => {
-    const dispatch = useAppDispatch()
-
     enum ETheme {
         light,
         dark,
     }
     const [theme, setTheme] = useState<ETheme>(ETheme.light)
+    const dispatch = useAppDispatch()
+
+    function setDarkMode() {
+        document.querySelector('body')?.setAttribute('data-theme', 'dark')
+    }
+
+    function setLightMode() {
+        document.querySelector('body')?.setAttribute('data-theme', 'light')
+    }
 
     return (
         <div className="theme-div">
@@ -21,7 +28,8 @@ const ThemeButton = () => {
                     className={theme == ETheme.light ? 'active-theme' : ''}
                     onClick={() => {
                         setTheme(ETheme.light)
-                        dispatch(changeDarkMode(false))
+                        setLightMode()
+                        dispatch(triggerDarkMode(false))
                     }}
                 >
                     <BsSun />
@@ -30,7 +38,8 @@ const ThemeButton = () => {
                     className={theme == ETheme.dark ? 'active-theme' : ''}
                     onClick={() => {
                         setTheme(ETheme.dark)
-                        dispatch(changeDarkMode(true))
+                        setDarkMode()
+                        dispatch(triggerDarkMode(true))
                     }}
                 >
                     <BsMoon />

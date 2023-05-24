@@ -30,13 +30,13 @@ export const appSlice = createSlice({
         changeOfflineNetId: (state, action: PayloadAction<number>) => {
             state.offlineNetId = action.payload
         },
-        changeDarkMode: (state, action: PayloadAction<boolean>) => {
+        triggerDarkMode: (state, action: PayloadAction<boolean>) => {
             state.darkMode = action.payload
         },
     },
 })
 
-export const { showPopUp, showAccountCanvas, changeOfflineNetId, changeDarkMode } = appSlice.actions
+export const { showPopUp, showAccountCanvas, changeOfflineNetId, triggerDarkMode } = appSlice.actions
 
 export const selectPopUp = (state: RootState) => state.app.popUp
 export const selectAccountCanvas = (state: RootState) => state.app.isAccountCanvas

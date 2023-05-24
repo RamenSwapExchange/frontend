@@ -6,11 +6,12 @@ import { selectDarkMode } from '../../../redux/appSlice'
 const changeBackground = () => {
     const { net } = useNet()
     const netName = net?.name?.toLocaleLowerCase()
-    const darkMode = useAppSelector(selectDarkMode)
+    const triggerDarkMode = useAppSelector(selectDarkMode)
 
     useEffect(() => {
         function applyBackground() {
-            if (darkMode) {
+            const body = document.querySelector('body')
+            if (body && body.getAttribute('data-theme') === 'dark') {
                 document.body.style.background = 'linear-gradient(#131726, #131726)'
             } else if (netName === 'polygon' || netName === 'polygon mumbai') {
                 document.body.style.background = 'linear-gradient(#e0e7ff, #ffffff)'
@@ -25,7 +26,7 @@ const changeBackground = () => {
         document.body.style.height = '100vh'
         document.body.style.backgroundSize = 'cover'
         document.body.style.backgroundRepeat = 'no-repeat'
-    }, [netName, darkMode])
+    }, [netName, triggerDarkMode])
 }
 
 export default changeBackground

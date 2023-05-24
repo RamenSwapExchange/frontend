@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+[data-theme='dark'] {
+    --logo-color: light;
+}
+
 .scrolled {
     background-color: white;
     border-bottom: 1px solid lightgray;
