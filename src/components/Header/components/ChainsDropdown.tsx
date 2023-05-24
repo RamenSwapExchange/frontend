@@ -61,7 +61,11 @@ const ChainsDropdown = () => {
             {isLoading && <div className="loader" />}
 
             <img className="chain-icon" src={getIcon(isLoading ? pendingChainId! : netId)} />
-            {isArrowUp ? <RiArrowDropUpLine fontSize={20} /> : <RiArrowDropDownLine fontSize={20} />}
+            {isArrowUp ? (
+                <RiArrowDropUpLine fontSize={20} className="arrow-icon" />
+            ) : (
+                <RiArrowDropDownLine fontSize={20} className="arrow-icon" />
+            )}
         </div>
     )
 
