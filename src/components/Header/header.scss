@@ -5,8 +5,12 @@
     align-items: center;
 }
 
+:root {
+    --logo-color: black;
+}
+
 [data-theme='dark'] {
-    --logo-color: light;
+    --logo-color: white;
 }
 
 .scrolled {
@@ -25,6 +29,7 @@
 
         .logo {
             margin-right: 15px;
+            color: var(--logo-color);
         }
 
         .mobile-search {
