@@ -7,12 +7,14 @@ interface AppState {
     popUp: boolean
     isAccountCanvas: boolean
     offlineNetId: number
+    darkMode: boolean
 }
 
 const initialState: AppState = {
     popUp: false,
     isAccountCanvas: false,
     offlineNetId: polygonMumbai.id,
+    darkMode: false,
 }
 
 export const appSlice = createSlice({
@@ -28,13 +30,17 @@ export const appSlice = createSlice({
         changeOfflineNetId: (state, action: PayloadAction<number>) => {
             state.offlineNetId = action.payload
         },
+        triggerDarkMode: (state, action: PayloadAction<boolean>) => {
+            state.darkMode = action.payload
+        },
     },
 })
 
-export const { showPopUp, showAccountCanvas, changeOfflineNetId } = appSlice.actions
+export const { showPopUp, showAccountCanvas, changeOfflineNetId, triggerDarkMode } = appSlice.actions
 
 export const selectPopUp = (state: RootState) => state.app.popUp
 export const selectAccountCanvas = (state: RootState) => state.app.isAccountCanvas
 export const selectOfflineNetId = (state: RootState) => state.app.offlineNetId
+export const selectDarkMode = (state: RootState) => state.app.darkMode
 
 export default appSlice.reducer
