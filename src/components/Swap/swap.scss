@@ -2,15 +2,27 @@
 
 $gray-hover: #929396;
 
+:root {
+    --swap-box-color: white;
+    --swap-border-color: rgb(210, 217, 238);
+    --swap-button-border-color: white;
+}
+
+[data-theme='dark'] {
+    --swap-box-color: rgb(13, 17, 28);
+    --swap-border-color: rgba(152, 161, 192, 0.24);
+    --swap-button-border-color: rgb(13, 17, 28);
+}
+
 .swap-box {
     position: relative;
     align-self: center;
     width: 450px;
     margin-top: 100px;
     padding: 8px;
-    background-color: white;
+    background-color: var(--swap-box-color);
     border-radius: 16px;
-    border: 1px solid rgb(210, 217, 238);
+    border: 1px solid var(--swap-border-color);
 
     .swap-top {
         padding: 8px 12px;
@@ -65,7 +77,7 @@ $gray-hover: #929396;
         cursor: pointer;
         background-color: #f8f4fc;
         border-radius: 12px;
-        border: 4px solid rgb(255, 255, 255);
+        border: 4px solid var(--swap-button-border-color);
         transition: $transition;
         color: black;
         font-size: 16px;
