@@ -38,7 +38,11 @@ const SingleSwap = ({ disabled = false, id }: ISingleSwap) => {
                         'Select token'
                     ) : (
                         <>
-                            <img src={selectedToken[id]?.images ? selectedToken[id]?.images[1] : selectedToken[id]?.image} />
+                            <img
+                                src={
+                                    selectedToken[id]?.images ? selectedToken[id]?.images[1] : selectedToken[id]?.image
+                                }
+                            />
                             {selectedToken[id]?.name}
                         </>
                     )}

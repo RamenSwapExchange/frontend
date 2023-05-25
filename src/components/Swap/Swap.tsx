@@ -39,7 +39,7 @@ const Swap = () => {
                     className={unsupported ? 'swap-button swap-button-disabled' : 'swap-button'}
                     onClick={swapButtons}
                 >
-                    <AiOutlineArrowDown />
+                    <AiOutlineArrowDown className="arrow-down" />
                 </button>
 
                 {isConnected ? (
