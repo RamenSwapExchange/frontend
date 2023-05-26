@@ -3,7 +3,6 @@ import { FiSettings } from 'react-icons/fi'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 
 import SingleSwap from './SingleSwap'
-import TokensListModal from './TokensListModal/TokensListModal'
 
 import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -32,8 +31,8 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={unsupported} id={0} />
-                <SingleSwap disabled={unsupported} id={1} />
+                <SingleSwap disabled={unsupported} />
+                <SingleSwap disabled={unsupported} />
 
                 <button
                     className={unsupported ? 'swap-button swap-button-disabled' : 'swap-button'}
@@ -52,8 +51,6 @@ const Swap = () => {
                     </button>
                 )}
             </div>
-
-            <TokensListModal />
         </>
     )
 }

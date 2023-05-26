@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import tokensApi from '../common/tokensApi'
 
-export const fetchAsyncTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
+export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
     const response = await tokensApi.get(`${request}`)
     return response.data.tokens
 })
@@ -24,17 +24,15 @@ interface selectedTokenConfig {
 }
 
 interface AppState {
-    tokens: TokensType[]
-    modal: boolean
+    apiTokens: TokensType[]
     tokensFilter: string
-    selectedToken: [TokensType, TokensType] | [TokensType, null] | [null, null]
+    choosenTokens: [TokensType, TokensType] | [TokensType, null] | [null, null]
 }
 
 const initialState: AppState = {
-    tokens: [],
-    modal: false,
+    apiTokens: [],
     tokensFilter: '',
-    selectedToken: [null, null],
+    choosenTokens: [null, null],
 }
 
 export const tokensModalSlice = createSlice({
@@ -42,36 +40,32 @@ export const tokensModalSlice = createSlice({
     initialState,
     reducers: {
         clearTokens: (state) => {
-            state.tokens = []
-        },
-        showModal: (state, action: PayloadAction<boolean>) => {
-            state.modal = action.payload
+            state.apiTokens = []
         },
         filterTokens: (state, action: PayloadAction<string>) => {
             state.tokensFilter = action.payload
         },
-        selectToken: (state, action: PayloadAction<selectedTokenConfig>) => {
-            state.selectedToken[action.payload.id] = action.payload.token
+        chooseToken: (state, action: PayloadAction<selectedTokenConfig>) => {
+            state.choosenTokens[action.payload.id] = action.payload.token
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchAsyncTokens.pending, (state) => {})
-        builder.addCase(fetchAsyncTokens.rejected, () => {})
-        builder.addCase(fetchAsyncTokens.fulfilled, (state, { payload }) => {
-            const prevTokens = state.tokens
+        builder.addCase(fetchTokens.pending, () => {})
+        builder.addCase(fetchTokens.rejected, () => {})
+        builder.addCase(fetchTokens.fulfilled, (state, { payload }) => {
+            const prevTokens = state.apiTokens
             const uniqueTokens = payload.filter(
                 (token: TokensType) => !prevTokens.some((prevToken) => prevToken.key === token.key)
             )
-            state.tokens = [...prevTokens, ...uniqueTokens]
+            state.apiTokens = [...prevTokens, ...uniqueTokens]
         })
     },
 })
 
-export const { clearTokens, showModal, filterTokens, selectToken } = tokensModalSlice.actions
+export const { clearTokens, filterTokens, chooseToken } = tokensModalSlice.actions
 
-export const selectTokens = (state: RootState) => state.tokensModal.tokens
-export const selectModal = (state: RootState) => state.tokensModal.modal
+export const selectTokens = (state: RootState) => state.tokensModal.apiTokens
 export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter
-export const selectSelectedToken = (state: RootState) => state.tokensModal.selectedToken
+export const selectChoosenTokens = (state: RootState) => state.tokensModal.choosenTokens
 
 export default tokensModalSlice.reducer
