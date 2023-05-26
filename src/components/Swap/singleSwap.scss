@@ -4,12 +4,14 @@
     --swap-input-color: #f8f4fc;
     --swap-focus: #d6d3d8;
     --token-btn-background: white;
+    --input-text-color: black;
 }
 
 [data-theme='dark'] {
     --swap-input-color: rgb(19, 26, 42);
     --swap-focus: rgba(152, 161, 192, 0.24);
     --token-btn-background: rgb(41, 50, 73);
+    --input-text-color: white;
 }
 
 .single-swap {
@@ -43,7 +45,7 @@
         outline: none;
         border: none;
         background-color: var(--swap-input-color);
-        color: black;
+        color: var(--input-text-color);
         position: relative;
     }
 

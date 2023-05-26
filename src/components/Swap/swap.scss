@@ -9,6 +9,7 @@ $gray-hover: #929396;
     --swap-button-background-color: #f8f4fc;
     --swap-arrow-color: black;
     --font-color: black;
+    --settings-hover-color: gray;
 }
 
 [data-theme='dark'] {
@@ -18,6 +19,7 @@ $gray-hover: #929396;
     --swap-button-background-color: rgb(41, 50, 73);
     --swap-arrow-color: rgb(93, 103, 133);
     --font-color: rgb(152, 161, 192);
+    --settings-hover-color: white;
 }
 
 .swap-box {
@@ -44,7 +46,7 @@ $gray-hover: #929396;
 
             &:hover {
                 cursor: pointer;
-                color: gray;
+                color: var(--settings-hover-color);
             }
         }
     }
