@@ -6,6 +6,9 @@
     --input-border: lightgray;
     --input-hover: white;
     --table-background: white;
+    --token-name-color: black;
+    --token-symbol-color: lightgray;
+    --token-price-color: black;
 }
 
 [data-theme='dark'] {
@@ -14,6 +17,9 @@
     --tokens-input-border: #393c4a;
     --input-hover: rgba(153, 161, 189, 0.08);
     --table-background: #393c4a;
+    --token-name-color: white;
+    --token-symbol-color: rgb(93, 103, 133);
+    --token-price-color: white;
 }
 
 .tokens-container {
@@ -112,17 +118,23 @@
             .token-info {
                 display: flex;
                 align-items: center;
+
+                .token-name {
+                    color: var(--token-name-color);
+                    font-weight: bold;
+                }
             }
 
             .token-price {
                 font-weight: bold;
+                color: var(--token-price-color);
             }
 
             tr {
                 cursor: pointer;
 
                 .token-symbol {
-                    color: lightgray;
+                    color: var(--token-symbol-color);
                     font-weight: bold;
                 }
 
