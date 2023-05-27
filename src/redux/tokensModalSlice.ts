@@ -3,11 +3,6 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import tokensApi from '../common/tokensApi'
 
-export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
-    const response = await tokensApi.get(`${request}`)
-    return response.data.tokens
-})
-
 export interface TokensType {
     name: string
     symbol: string
@@ -45,6 +40,15 @@ export const tokensModalSlice = createSlice({
         filterTokens: (state, action: PayloadAction<string>) => {
             state.tokensFilter = action.payload
         },
+        swapTokens: (state) => {
+            const temp = state.choosenTokens[0]
+            state.choosenTokens[0] = state.choosenTokens[1]
+            state.choosenTokens[1] = temp
+        },
+        resetChoosenTokens: (state) => {
+            state.choosenTokens[0] = null
+            state.choosenTokens[1] = null
+        },
         chooseToken: (state, action: PayloadAction<selectedTokenConfig>) => {
             state.choosenTokens[action.payload.id] = action.payload.token
         },
@@ -62,7 +66,11 @@ export const tokensModalSlice = createSlice({
     },
 })
 
-export const { clearTokens, filterTokens, chooseToken } = tokensModalSlice.actions
+export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens } = tokensModalSlice.actions
+export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
+    const response = await tokensApi.get(`${request}`)
+    return response.data.tokens
+})
 
 export const selectTokens = (state: RootState) => state.tokensModal.apiTokens
 export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter

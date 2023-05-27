@@ -2,15 +2,21 @@ import './singleSwap.scss'
 import { useState } from 'react'
 import useTokenModal from './useTokenModal/useTokenModal'
 import { RiArrowDropDownLine } from 'react-icons/ri'
+import { useAppSelector } from '../../redux/hooks'
+import { selectChoosenTokens } from '../../redux/tokensModalSlice'
 
 type singleSwapConfig = {
     disabled?: boolean
+    id: number
 }
 
-const SingleSwap = ({ disabled = false }: singleSwapConfig) => {
-    const { modal, token, setShow } = useTokenModal();
+const SingleSwap = ({ disabled = false, id }: singleSwapConfig) => {
+    const { modal, setShow } = useTokenModal({ id });
     const [inputValue, setInputValue] = useState('')
     const inputAmount = inputValue ? parseInt(inputValue) : 0
+
+    const choosenToknes = useAppSelector(selectChoosenTokens);
+    const token = choosenToknes[id];
 
     function handleShow() {
         setShow(true)
@@ -31,7 +37,7 @@ const SingleSwap = ({ disabled = false }: singleSwapConfig) => {
                     />
 
                     <button className="token-btn" onClick={handleShow} disabled={disabled}>
-                        {disabled ? (
+                        {disabled || token == null ? (
                             'Select token'
                         ) : (
                             <>

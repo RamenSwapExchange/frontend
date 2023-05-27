@@ -8,16 +8,17 @@ import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 import useNet from '../../common/useNet'
+import { selectChoosenTokens, swapTokens } from '../../redux/tokensModalSlice'
 
 const Swap = () => {
     const { isConnected } = useAccount()
-
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
+    const choosenToknes = useAppSelector(selectChoosenTokens);
 
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
     const swapButtons = () => {
-        //TODO
+        dispatch(swapTokens())
     }
     const { unsupported } = useNet()
 
@@ -31,8 +32,8 @@ const Swap = () => {
                     </div>
                 </div>
 
-                <SingleSwap disabled={unsupported} />
-                <SingleSwap disabled={unsupported} />
+                <SingleSwap disabled={unsupported} id={0} />
+                <SingleSwap disabled={unsupported} id={1} />
 
                 <button
                     className={unsupported ? 'swap-button swap-button-disabled' : 'swap-button'}
@@ -41,16 +42,21 @@ const Swap = () => {
                     <AiOutlineArrowDown className="arrow-down" />
                 </button>
 
-                {isConnected ? (
-                    <button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
-                        Select a token
-                    </button>
-                ) : (
-                    <button className="connect-button" onClick={handleShowAccount}>
-                        Connect Wallet
-                    </button>
-                )}
-            </div>
+                {isConnected ?
+                    choosenToknes.includes(null) ?
+                        < button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
+                            Select a token
+                        </button>
+                        : (
+                            < button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
+                                Swap
+                            </button>
+                        ) : (
+                        <button className="connect-button" onClick={handleShowAccount}>
+                            Connect Wallet
+                        </button>
+                    )}
+            </div >
         </>
     )
 }

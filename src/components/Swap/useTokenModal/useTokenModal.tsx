@@ -5,21 +5,19 @@ import {
     chooseToken,
     clearTokens,
     fetchTokens,
-    selectChoosenTokens,
+    resetChoosenTokens,
     selectTokens,
     TokensType,
 } from '../../../redux/tokensModalSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import useNet from '../../../common/useNet'
 
-const useTokenModal = () => {
+const useTokenModal = ({ id }: { id: number }) => {
     const dispatch = useAppDispatch()
     const reduxTokens = useAppSelector(selectTokens)
-    const choosenToknes = useAppSelector(selectChoosenTokens);
     const [tokensFilter, setTokensFilter] = useState('')
 
     const [show, setShow] = useState(false);
-    const [tokenState, setTokenState] = useState<TokensType | null>(null)
 
     const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
@@ -45,10 +43,7 @@ const useTokenModal = () => {
 
     function handleSelectToken(token: TokensType) {
         if (token) {
-            //todo redux
-            dispatch(chooseToken({ token: token, id: 0 }))
-            console.log(choosenToknes)
-            setTokenState(token);
+            dispatch(chooseToken({ token: token, id }))
         }
         handleClose()
     }
@@ -63,6 +58,7 @@ const useTokenModal = () => {
     }
 
     useEffect(() => {
+        dispatch(resetChoosenTokens())
         dispatch(clearTokens())
         dispatch(fetchTokens(`tokens?page=${page}&networks=${netName}`))
     }, [net])
@@ -109,7 +105,6 @@ const useTokenModal = () => {
                     </div>
                 </Modal.Body>
             </Modal >,
-        token: tokenState,
         setShow
     }
 }
