@@ -14,7 +14,7 @@ const Swap = () => {
     const { isConnected } = useAccount()
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
-    const choosenToknes = useAppSelector(selectChoosenTokens);
+    const choosenToknes = useAppSelector(selectChoosenTokens)
 
     const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
     const swapButtons = () => {
@@ -42,21 +42,22 @@ const Swap = () => {
                     <AiOutlineArrowDown className="arrow-down" />
                 </button>
 
-                {isConnected ?
-                    choosenToknes.includes(null) ?
-                        < button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
+                {isConnected ? (
+                    choosenToknes.includes(null!) ? (
+                        <button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
                             Select a token
                         </button>
-                        : (
-                            < button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
-                                Swap
-                            </button>
-                        ) : (
-                        <button className="connect-button" onClick={handleShowAccount}>
-                            Connect Wallet
+                    ) : (
+                        <button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>
+                            Swap
                         </button>
-                    )}
-            </div >
+                    )
+                ) : (
+                    <button className="connect-button" onClick={handleShowAccount}>
+                        Connect Wallet
+                    </button>
+                )}
+            </div>
         </>
     )
 }
