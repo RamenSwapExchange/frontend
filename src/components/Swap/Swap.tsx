@@ -4,6 +4,7 @@ import { AiOutlineArrowDown } from 'react-icons/ai'
 
 import SingleSwap from './SingleSwap'
 
+import { useLocation } from "react-router-dom";
 import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
@@ -22,9 +23,12 @@ const Swap = () => {
     }
     const { unsupported } = useNet()
 
+    const location = useLocation();
+    console.log(location.pathname)
+
     return (
         <>
-            <div className="swap-box">
+            <div className={location.pathname === "/swap" ? "swap-box swap-margin" : "swap-box"}>
                 <div className="swap-top">
                     <div>Swap</div>
                     <div>
