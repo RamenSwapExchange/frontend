@@ -14,23 +14,23 @@ export interface TokensType {
 }
 
 interface selectedTokenConfig {
-    token: TokensType
     id: number
+    token: TokensType
 }
 
-interface AppState {
+interface TokensState {
     apiTokens: TokensType[]
     tokensFilter: string
     choosenTokens: [TokensType, TokensType] | [TokensType, null] | [null, null]
 }
 
-const initialState: AppState = {
+const initialState: TokensState = {
     apiTokens: [],
     tokensFilter: '',
     choosenTokens: [null, null],
 }
 
-export const tokensModalSlice = createSlice({
+export const tokensSlice = createSlice({
     name: 'tokensModal',
     initialState,
     reducers: {
@@ -66,14 +66,14 @@ export const tokensModalSlice = createSlice({
     },
 })
 
-export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens } = tokensModalSlice.actions
+export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens } = tokensSlice.actions
 export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
     const response = await tokensApi.get(`${request}`)
     return response.data.tokens
 })
 
-export const selectTokens = (state: RootState) => state.tokensModal.apiTokens
-export const selectTokensFilter = (state: RootState) => state.tokensModal.tokensFilter
-export const selectChoosenTokens = (state: RootState) => state.tokensModal.choosenTokens
+export const selectTokens = (state: RootState) => state.tokens.apiTokens
+export const selectTokensFilter = (state: RootState) => state.tokens.tokensFilter
+export const selectChoosenTokens = (state: RootState) => state.tokens.choosenTokens
 
-export default tokensModalSlice.reducer
+export default tokensSlice.reducer

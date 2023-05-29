@@ -8,10 +8,11 @@ import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 import useNet from '../../common/useNet'
-import { selectChoosenTokens, swapTokens } from '../../redux/tokensModalSlice'
+import { selectChoosenTokens, swapTokens } from '../../redux/tokensSlice'
 
 const Swap = () => {
     const { isConnected } = useAccount()
+    const { unsupported } = useNet()
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
     const choosenToknes = useAppSelector(selectChoosenTokens)
@@ -20,7 +21,6 @@ const Swap = () => {
     const swapButtons = () => {
         dispatch(swapTokens())
     }
-    const { unsupported } = useNet()
 
     return (
         <>
@@ -41,7 +41,6 @@ const Swap = () => {
                 >
                     <AiOutlineArrowDown className="arrow-down" />
                 </button>
-
                 {isConnected ? (
                     choosenToknes.includes(null!) ? (
                         <button className={unsupported ? 'connect-button connect-button-disabled' : 'connect-button'}>

@@ -4,23 +4,23 @@ import Table from 'react-bootstrap/Table'
 import useNet from '../../common/useNet'
 import useNetIcon from '../../common/useNetIcon'
 import { useEffect, useState } from 'react'
-import { TokensType } from '../../redux/tokensModalSlice'
+import { TokensType } from '../../redux/tokensSlice'
 import tokensApi from '../../common/tokensApi'
 import TableLoading from './TableLoading/TableLoading'
 
 const Tokens = () => {
-    const { nets } = useNet()
+    const { net, nets } = useNet()
     const { getIcon } = useNetIcon()
     const [tokens, setTokens] = useState<TokensType[]>([])
     const [sortDirection, setSortDirection] = useState('asc')
-    const [currentNetwork, setCurrentNetwork] = useState('Polygon Mumbai')
+    const [currentNetwork, setCurrentNetwork] = useState(net?.name)
     const [tokensFilter, setTokensFilter] = useState('')
     const [tokensLoading, setTokensLoading] = useState(false)
 
     async function fetchTokens() {
         setTokensLoading(true)
         const res = await tokensApi.get(
-            `/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}&networks=${currentNetwork.toLowerCase()}&search=${tokensFilter}`
+            `/tokens?limit=100&sortBy=price&sortDirection=${sortDirection}&networks=${currentNetwork?.toLowerCase()}&search=${tokensFilter}`
         )
         setTokens(res.data.tokens)
         setTokensLoading(false)
