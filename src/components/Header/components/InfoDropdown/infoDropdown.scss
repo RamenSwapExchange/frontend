@@ -40,6 +40,7 @@
             transition: $transition;
             cursor: pointer;
             font-size: 18px;
+            color: var(--black-to-white);
 
             &:hover {
                 color: gray;

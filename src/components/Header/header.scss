@@ -22,8 +22,8 @@
 }
 
 .scrolled {
-    background-color: white;
-    border-bottom: 1px solid lightgray;
+    background-color: var(--table-background);
+    border-bottom: 1px solid var(--swap-border-color);
 }
 
 .header {

@@ -1,5 +1,15 @@
 @import '../../../common/globals.scss';
 
+:root {
+    --single-token-hover: #f8fcfc;
+    --scrollbar-background: lightgray;
+}
+
+[data-theme='dark'] {
+    --single-token-hover: #181d28;
+    --scrollbar-background: #293348;
+}
+
 .tokens-modal {
     position: relative;
     top: 50%;
@@ -9,6 +19,19 @@
     padding: 0px;
     width: auto;
 
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--swap-box-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-background);
+        border-radius: 5px;
+    }
+
     .modal-dialog {
         display: flex;
         justify-content: center;
@@ -17,10 +40,12 @@
             height: 677px;
             border-radius: 15px;
             max-width: 400px;
+            background-color: var(--swap-box-color);
 
             .tokens-header {
                 border: none;
                 padding-bottom: 0px;
+                color: var(--black-to-white);
             }
 
             .tokens-modal-body {
@@ -35,28 +60,29 @@
                     width: 95%;
                     padding: 7px;
                     font-size: 16px;
-                    color: black;
+                    color: var(--black-to-white);
                     outline: none;
                     border-radius: 10px;
-                    border: 1px solid lightgray;
+                    border: 1px solid var(--swap-border-color);
                     transition: $transition;
                     margin: 0px auto;
                     margin-bottom: 10px;
+                    background: var(--input-background);
 
                     &:hover {
-                        border: 1px solid black;
+                        border: 1px solid $primary-color;
                     }
                 }
 
                 .tokens-list {
                     overflow-y: scroll;
                     height: 100%;
-                    border-top: solid rgb(210, 217, 238) 1px;
 
                     .error {
                         margin-top: 10px;
                         text-align: center;
                         font-weight: bold;
+                        color: var(--black-to-white);
                     }
 
                     .hide-token {
@@ -70,7 +96,7 @@
                         cursor: pointer;
 
                         &:hover {
-                            background-color: #f8fcfc;
+                            background-color: var(--single-token-hover);
                         }
 
                         .token-image {
@@ -87,6 +113,7 @@
                         .token-name {
                             font-size: 16px;
                             font-weight: 600;
+                            color: var(--black-to-white);
                         }
 
                         .token-symbol {

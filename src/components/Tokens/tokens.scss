@@ -3,12 +3,13 @@
 :root {
     --title-text: black;
     --input-background: #f8f4fc;
-    --input-border: lightgray;
+    --tokens-input-border: lightgray;
     --input-hover: white;
     --table-background: white;
     --token-name-color: black;
     --token-symbol-color: lightgray;
     --token-price-color: black;
+    --dropdown-item-hover: #e9ecef;
 }
 
 [data-theme='dark'] {
@@ -20,6 +21,20 @@
     --token-name-color: white;
     --token-symbol-color: rgb(93, 103, 133);
     --token-price-color: white;
+    --dropdown-item-hover: rgba(153, 161, 189, 0.08);
+}
+
+.dropdown-menu {
+    background-color: var(--swap-box-color);
+}
+
+.dropdown-item {
+    color: var(--black-to-white);
+
+    &:hover {
+        background-color: var(--dropdown-item-hover);
+        color: var(--black-to-white);
+    }
 }
 
 .tokens-container {
@@ -114,6 +129,10 @@
 
         tbody {
             border: none;
+
+            .token-id {
+                color: var(--black-to-white);
+            }
 
             .token-info {
                 display: flex;

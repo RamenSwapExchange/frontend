@@ -1,26 +1,37 @@
 @import '../../../../../common/globals.scss';
 
+:root {
+    --connector-div-background: #f8f4fc;
+    --connector-div-background-hover: #f0ecfc;
+}
+
+[data-theme='dark'] {
+    --connector-div-background: rgb(19, 26, 42);
+    --connector-div-background-hover: #383c54;
+}
+
 .connector-header {
     margin: 20px 15px 20px 15px;
     justify-content: space-between;
+    color: var(--black-to-white);
 }
 
 .connectors {
     flex-grow: 1;
     margin: 10px;
-    cursor: pointer;
 
     .connector-div {
         display: flex;
         align-items: center;
         border-radius: 5px;
-        background-color: #f8f4fc;
+        background-color: var(--connector-div-background);
         height: 80px;
         gap: 20px;
         transition: $transition;
+        cursor: pointer;
 
         &:hover {
-            background-color: #f0ecfc;
+            background-color: var(--connector-div-background-hover);
         }
 
         .connector-logo {
@@ -30,6 +41,7 @@
         }
         .connector-name {
             font-weight: bold;
+            color: var(--black-to-white);
         }
         .connector-spinner {
             height: 20px;
