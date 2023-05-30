@@ -22,8 +22,8 @@
 }
 
 .scrolled {
-    background-color: white;
-    border-bottom: 1px solid lightgray;
+    background-color: var(--table-background);
+    border-bottom: 1px solid var(--swap-border-color);
 }
 
 .header {
@@ -52,6 +52,10 @@
         .mobile-search {
             font-size: 30px;
             display: none;
+
+            .search-icon {
+                color: var(--black-to-white);
+            }
         }
     }
 
