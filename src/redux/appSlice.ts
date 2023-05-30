@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
-import { polygonMumbai } from 'wagmi/chains'
+import { mainnet } from 'wagmi/chains'
 
 interface AppState {
     popUp: boolean
@@ -13,7 +13,7 @@ interface AppState {
 const initialState: AppState = {
     popUp: false,
     isAccountCanvas: false,
-    offlineNetId: polygonMumbai.id,
+    offlineNetId: mainnet.id,
     darkMode: false,
 }
 

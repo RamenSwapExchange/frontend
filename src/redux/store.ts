@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appReducer from './appSlice'
-import tokensModalReducer from './tokensModalSlice'
+import tokensReducer from './tokensSlice'
 
 export const store = configureStore({
     reducer: {
         app: appReducer,
-        tokensModal: tokensModalReducer,
+        tokens: tokensReducer,
     },
 })
 

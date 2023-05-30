@@ -42,9 +42,6 @@ const Header = () => {
                         <Link to="/">
                             <MdOutlineRamenDining className="logo" />
                         </Link>
-                        <div className="mobile-search">
-                            <AiOutlineSearch className="search-icon" />
-                        </div>
                         <Link to="/swap" className="nav-link">
                             Swap
                         </Link>
@@ -58,13 +55,6 @@ const Header = () => {
                             <InfoDropdown />
                         </div>
                     </Nav>
-
-                    <Nav className="me-auto header-middle">
-                        <NavDropdown.Item>
-                            <input type="text" placeholder="Search Tokens" />
-                        </NavDropdown.Item>
-                    </Nav>
-
                     <Nav className="me-auto header-right">
                         <ChainsDropdown />
                         <ConnectButton />

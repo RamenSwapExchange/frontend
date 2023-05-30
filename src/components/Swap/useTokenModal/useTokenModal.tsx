@@ -8,7 +8,7 @@ import {
     resetChoosenTokens,
     selectTokens,
     TokensType,
-} from '../../../redux/tokensModalSlice'
+} from '../../../redux/tokensSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import useNet from '../../../common/useNet'
 
