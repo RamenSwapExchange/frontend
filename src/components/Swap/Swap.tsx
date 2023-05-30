@@ -6,25 +6,25 @@ import SingleSwap from './SingleSwap'
 
 import { useLocation } from "react-router-dom";
 import { useAccount } from 'wagmi'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 import useNet from '../../common/useNet'
 import { selectChoosenTokens, swapTokens } from '../../redux/tokensSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 
 const Swap = () => {
+    const location = useLocation();
     const { isConnected } = useAccount()
     const { unsupported } = useNet()
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
     const choosenToknes = useAppSelector(selectChoosenTokens)
 
-    const handleShowAccount = () => dispatch(showAccountCanvas(!isCanvas))
-    const swapButtons = () => {
+    function handleShowAccount() {
+        dispatch(showAccountCanvas(!isCanvas))
+    }
+    function swapButtons() {
         dispatch(swapTokens())
     }
-
-    const location = useLocation();
-    console.log(location.pathname)
 
     return (
         <>
