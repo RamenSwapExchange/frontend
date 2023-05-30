@@ -9,15 +9,15 @@ const ThemeButton = () => {
     const darkMode = useAppSelector(selectDarkMode);
     const [isDarkMode, setIsDarkMode] = useState<boolean>(darkMode)
     const dispatch = useAppDispatch()
-
+    const body = document.body;
     function setDarkMode() {
-        document.querySelector('body')?.setAttribute('data-theme', 'dark')
+        body.setAttribute('data-theme', 'dark')
         setIsDarkMode(true)
         dispatch(triggerDarkMode(true))
     }
 
     function setLightMode() {
-        document.querySelector('body')?.setAttribute('data-theme', 'light')
+        body.setAttribute('data-theme', 'light')
         setIsDarkMode(false)
         dispatch(triggerDarkMode(false))
     }
