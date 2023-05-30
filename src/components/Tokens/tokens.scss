@@ -130,6 +130,10 @@
         tbody {
             border: none;
 
+            .token-id {
+                color: var(--black-to-white);
+            }
+
             .token-info {
                 display: flex;
                 align-items: center;
