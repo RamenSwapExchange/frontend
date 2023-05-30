@@ -42,11 +42,12 @@ const ChainsDropdown = () => {
         setIsError(false)
     })
 
-    const ChangeChain = (id: number) => {
+    function ChangeChain(id: number) {
         switch (isConnected) {
             case true:
                 setIsError(false)
-                if (netId == id) return
+                if (netId == id)
+                    return
                 switchNetwork!(id)
                 break
             case false:

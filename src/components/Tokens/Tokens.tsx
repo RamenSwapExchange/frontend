@@ -96,7 +96,7 @@ const Tokens = () => {
                     ) : (
                         tokens.map((token: TokensType, id) => (
                             <tr key={id}>
-                                <td className='token-id'>{id + 1}</td>
+                                <td className="token-id">{id + 1}</td>
                                 <td className="token-info">
                                     {token.images ? (
                                         <img src={token.images[1]} className="token-img"></img>

@@ -1,6 +1,6 @@
 import './pools.scss'
 import { AiOutlineContainer } from 'react-icons/ai'
-import errorIcon from "/error.png"
+import errorIcon from '/error.png'
 
 import { useAccount } from 'wagmi'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -9,9 +9,9 @@ import useNet from '../../common/useNet'
 
 const Pools = () => {
     const { isConnected } = useAccount()
-    const { unsupported } = useNet();
-    const showCanvas = useAppSelector(selectAccountCanvas)
+    const { unsupported } = useNet()
     const dispatch = useAppDispatch()
+    const showCanvas = useAppSelector(selectAccountCanvas)
 
     return (
         <div className="container-sm pools-container">

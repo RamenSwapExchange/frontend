@@ -6,10 +6,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 export const nets = [mainnet, polygon, optimism]
 
 //TODO: alchemy or infura provider
-const { chains, provider, webSocketProvider } = configureChains(
-    nets,
-    [publicProvider()]
-)
+const { chains, provider, webSocketProvider } = configureChains(nets, [publicProvider()])
 
 const client = createClient({
     autoConnect: true,

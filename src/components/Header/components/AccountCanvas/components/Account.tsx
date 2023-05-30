@@ -20,7 +20,6 @@ const Account = () => {
     const [choosenPage, setChoosenPage] = useState<string | null>('tokens')
 
     const addressSliced = address?.replace(address.substring(7, address.length - 5), '...')
-
     const balanceSliced =
         data?.formatted.length! > 3 ? data?.formatted.replace(data.formatted.substring(7), '...') : data?.formatted
 

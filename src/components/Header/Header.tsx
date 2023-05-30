@@ -1,10 +1,8 @@
 import './header.scss'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import { MdOutlineRamenDining } from 'react-icons/md'
-import { AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
 import ConnectButton from './components/ConnectButton'
@@ -17,9 +15,10 @@ import { useEffect, useState } from 'react'
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
+    changeBackground()
 
     useEffect(() => {
-        const handleScroll = () => {
+        function handleScroll() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop
             const isTop = scrollTop === 0
 
@@ -31,8 +30,6 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
-
-    changeBackground()
 
     return (
         <div>

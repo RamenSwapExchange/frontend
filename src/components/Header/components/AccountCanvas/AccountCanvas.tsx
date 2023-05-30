@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../../../redux/appSlice'
 
 const AccountCanvas = () => {
+    const dispatch = useAppDispatch()
+    const isCanvas = useAppSelector(selectAccountCanvas)
     const { isConnected } = useAccount({
         onDisconnect() {
             handleClose()
@@ -17,9 +19,6 @@ const AccountCanvas = () => {
     })
 
     const handleClose = () => dispatch(showAccountCanvas(false))
-
-    const isCanvas = useAppSelector(selectAccountCanvas)
-    const dispatch = useAppDispatch()
 
     return (
         <>
@@ -38,7 +37,7 @@ const AccountCanvas = () => {
             </Offcanvas>
 
             <Offcanvas show={isCanvas} placement={'bottom'} backdrop={false} className="main-canvas-mobile">
-                <div className='backdrop-mobile' onClick={handleClose} />
+                <div className="backdrop-mobile" onClick={handleClose} />
                 <div className="right-panel">
                     {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
 

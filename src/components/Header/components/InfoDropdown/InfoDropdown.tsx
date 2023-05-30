@@ -7,8 +7,12 @@ import { AiFillGithub, AiOutlineTwitter } from 'react-icons/ai'
 
 const InfoDropdown = () => {
     return (
-        <NavDropdown title={<BiDotsHorizontalRounded className="dots-icon" />} id="basic-nav-dropdown" className='info-dropdown-container'>
-            <div className='mobile-container'>
+        <NavDropdown
+            title={<BiDotsHorizontalRounded className="dots-icon" />}
+            id="basic-nav-dropdown"
+            className="info-dropdown-container"
+        >
+            <div className="mobile-container">
                 <NavDropdown.Item className="dropdown-li">
                     <FaScroll className="dropdown-icon" />
                     Vote in governance

@@ -8,11 +8,10 @@ interface AccountSubpageProps {
     description: string
     buttonText: string
     img_src: string
-    href: string;
+    href: string
 }
 
 const AccountSubpage = ({ title, description, buttonText, img_src, href }: AccountSubpageProps) => {
-
     const dispatch = useAppDispatch()
 
     return (
@@ -20,7 +19,9 @@ const AccountSubpage = ({ title, description, buttonText, img_src, href }: Accou
             <img src={img_src} alt={img_src} />
             <h5>{title}</h5>
             <p>{description}</p>
-            <Link to={`/${href}`}><button onClick={() => dispatch(showAccountCanvas(false))}>{buttonText}</button></Link>
+            <Link to={`/${href}`}>
+                <button onClick={() => dispatch(showAccountCanvas(false))}>{buttonText}</button>
+            </Link>
         </div>
     )
 }

@@ -10,19 +10,17 @@ import Home from './components/Home/Home'
 
 const App = () => {
     return (
-        <>
-            <Router>
-                <Header />
-                <div className="center-main-container">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/swap" element={<Swap />}></Route>
-                        <Route path="/tokens" element={<Tokens />}></Route>
-                        <Route path="/pools" element={<Pools />}></Route>
-                    </Routes>
-                </div>
-            </Router>
-        </>
+        <Router>
+            <Header />
+            <div className="center-main-container">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/swap" element={<Swap />}></Route>
+                    <Route path="/tokens" element={<Tokens />}></Route>
+                    <Route path="/pools" element={<Pools />}></Route>
+                </Routes>
+            </div>
+        </Router>
     )
 }
 

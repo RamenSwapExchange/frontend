@@ -17,9 +17,9 @@ const useNetIcon = () => {
         [optimism.id]: optimismIcon,
     }
 
-    const { netId } = useNet();
+    const { netId } = useNet()
 
-    const getIcon = (netId: number): string => {
+    function getIcon(netId: number): string {
         if (netIcons.hasOwnProperty(netId)) return netIcons[netId]
         else return errorIcon
     }

@@ -7,12 +7,12 @@ import { selectDarkMode, triggerDarkMode } from '../../../../../redux/appSlice'
 
 const ThemeButton = () => {
     const dispatch = useAppDispatch()
-    const darkMode = useAppSelector(selectDarkMode);
+    const darkMode = useAppSelector(selectDarkMode)
     const [isDarkMode, setIsDarkMode] = useState<boolean>(darkMode)
-    const body = document.body;
+    const body = document.body
 
     function changeMode(setDark: boolean) {
-        body.setAttribute("data-theme", setDark ? "dark" : "light")
+        body.setAttribute('data-theme', setDark ? 'dark' : 'light')
         setIsDarkMode(setDark)
         dispatch(triggerDarkMode(setDark))
     }
@@ -22,16 +22,10 @@ const ThemeButton = () => {
     return (
         <div className="theme-div">
             <div className="theme-buttons">
-                <div
-                    className={!isDarkMode ? 'active-theme' : ''}
-                    onClick={() => changeMode(false)}
-                >
+                <div className={!isDarkMode ? 'active-theme' : ''} onClick={() => changeMode(false)}>
                     <BsSun />
                 </div>
-                <div
-                    className={isDarkMode ? 'active-theme' : ''}
-                    onClick={() => changeMode(true)}
-                >
+                <div className={isDarkMode ? 'active-theme' : ''} onClick={() => changeMode(true)}>
                     <BsMoon />
                 </div>
             </div>

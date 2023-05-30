@@ -17,7 +17,7 @@ const useTokenModal = ({ id }: { id: number }) => {
     const reduxTokens = useAppSelector(selectTokens)
     const [tokensFilter, setTokensFilter] = useState('')
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false)
 
     const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
@@ -37,7 +37,7 @@ const useTokenModal = ({ id }: { id: number }) => {
     }
 
     function disableScroll() {
-        if (tokensFilter.length !== 0) return;
+        if (tokensFilter.length !== 0) return
         handleScroll()
     }
 
@@ -73,8 +73,8 @@ const useTokenModal = ({ id }: { id: number }) => {
     }, [dispatch, page, net, tokensFilter])
 
     return {
-        modal:
-            < Modal show={show} onHide={handleClose} className="tokens-modal" >
+        modal: (
+            <Modal show={show} onHide={handleClose} className="tokens-modal">
                 <Modal.Header className="tokens-header" closeButton>
                     <Modal.Title>Select a token</Modal.Title>
                 </Modal.Header>
@@ -91,7 +91,11 @@ const useTokenModal = ({ id }: { id: number }) => {
                             reduxTokens.map((token: TokensType) => (
                                 <div key={token.key} className="single-token" onClick={() => handleSelectToken(token)}>
                                     <div className="token-image">
-                                        {token.images ? <img src={token.images[1]}></img> : <img src={token.image}></img>}
+                                        {token.images ? (
+                                            <img src={token.images[1]}></img>
+                                        ) : (
+                                            <img src={token.image}></img>
+                                        )}
                                     </div>
                                     <div>
                                         <div className="token-name">{token.name}</div>
@@ -104,8 +108,9 @@ const useTokenModal = ({ id }: { id: number }) => {
                         )}
                     </div>
                 </Modal.Body>
-            </Modal >,
-        setShow
+            </Modal>
+        ),
+        setShow,
     }
 }
 
