@@ -1,46 +1,41 @@
 import './themeButton.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BsSun } from 'react-icons/bs'
 import { BsMoon } from 'react-icons/bs'
-import { useAppDispatch } from '../../../../../redux/hooks'
-import { triggerDarkMode } from '../../../../../redux/appSlice'
+import { useAppDispatch, useAppSelector } from '../../../../../redux/hooks'
+import { selectDarkMode, triggerDarkMode } from '../../../../../redux/appSlice'
 
 const ThemeButton = () => {
-    enum ETheme {
-        light,
-        dark,
-    }
-    const [theme, setTheme] = useState<ETheme>(ETheme.light)
+    const darkMode = useAppSelector(selectDarkMode);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(darkMode)
     const dispatch = useAppDispatch()
 
     function setDarkMode() {
         document.querySelector('body')?.setAttribute('data-theme', 'dark')
+        setIsDarkMode(true)
+        dispatch(triggerDarkMode(true))
     }
 
     function setLightMode() {
         document.querySelector('body')?.setAttribute('data-theme', 'light')
+        setIsDarkMode(false)
+        dispatch(triggerDarkMode(false))
     }
+
+    useEffect(() => setIsDarkMode(darkMode), [darkMode])
 
     return (
         <div className="theme-div">
             <div className="theme-buttons">
                 <div
-                    className={theme == ETheme.light ? 'active-theme' : ''}
-                    onClick={() => {
-                        setTheme(ETheme.light)
-                        setLightMode()
-                        dispatch(triggerDarkMode(false))
-                    }}
+                    className={!isDarkMode ? 'active-theme' : ''}
+                    onClick={() => setLightMode()}
                 >
                     <BsSun />
                 </div>
                 <div
-                    className={theme == ETheme.dark ? 'active-theme' : ''}
-                    onClick={() => {
-                        setTheme(ETheme.dark)
-                        setDarkMode()
-                        dispatch(triggerDarkMode(true))
-                    }}
+                    className={isDarkMode ? 'active-theme' : ''}
+                    onClick={() => setDarkMode()}
                 >
                     <BsMoon />
                 </div>
