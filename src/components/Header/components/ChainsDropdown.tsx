@@ -46,8 +46,7 @@ const ChainsDropdown = () => {
         switch (isConnected) {
             case true:
                 setIsError(false)
-                if (netId == id)
-                    return
+                if (netId == id) return
                 switchNetwork!(id)
                 break
             case false:
