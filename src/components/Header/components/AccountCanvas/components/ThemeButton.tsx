@@ -23,7 +23,7 @@ const ThemeButton = () => {
         <div className="theme-div">
             <div className="theme-buttons">
                 <div className={!isDarkMode ? 'active-theme' : ''} onClick={() => changeMode(false)}>
-                    <BsSun />
+                    <BsSun className='sun-icon' />
                 </div>
                 <div className={isDarkMode ? 'active-theme' : ''} onClick={() => changeMode(true)}>
                     <BsMoon />

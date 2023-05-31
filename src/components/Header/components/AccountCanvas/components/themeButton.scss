@@ -13,8 +13,12 @@
     margin: 5px;
     .theme-buttons {
         @include flexCenter();
-        border: 1px solid lightgray;
+        border: 1px solid var(--swap-border-color);
         border-radius: 15px;
+
+        .sun-icon {
+            color: white;
+        }
 
         div {
             @include flexCenter();
@@ -29,7 +33,7 @@
             }
         }
         .active-theme {
-            background-color: #f0ecfc;
+            background-color: #8247e5;
         }
     }
 }
