@@ -4,7 +4,7 @@ import type { RootState } from './store'
 import tokensApi from '../common/tokensApi'
 
 export const fetchAsyncTokenDetails = createAsyncThunk('tokensModal/fetchAsyncTokenDetails', async (id: string) => {
-    const response = await tokensApi.get(`/${id}`)
+    const response = await tokensApi.get(`tokens?addresses=${id}`)
     return response.data
 })
 
@@ -16,6 +16,7 @@ export interface TokensType {
     images: string[]
     network: string
     price: number
+    address: string
 }
 
 interface selectedTokenConfig {
@@ -27,12 +28,14 @@ interface TokensState {
     apiTokens: TokensType[]
     tokensFilter: string
     choosenTokens: [TokensType, TokensType] | [TokensType, null] | [null, null]
+    selectedTokenDetail: null | TokensType
 }
 
 const initialState: TokensState = {
     apiTokens: [],
     tokensFilter: '',
     choosenTokens: [null, null],
+    selectedTokenDetail: null,
 }
 
 export const tokensSlice = createSlice({
@@ -57,6 +60,9 @@ export const tokensSlice = createSlice({
         chooseToken: (state, action: PayloadAction<selectedTokenConfig>) => {
             state.choosenTokens[action.payload.id] = action.payload.token
         },
+        removeSelectedToken: (state) => {
+            state.selectedTokenDetail = null
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTokens.pending, () => {})
@@ -68,10 +74,14 @@ export const tokensSlice = createSlice({
             )
             state.apiTokens = [...prevTokens, ...uniqueTokens]
         })
+        builder.addCase(fetchAsyncTokenDetails.fulfilled, (state, { payload }) => {
+            state.selectedTokenDetail = payload
+        })
     },
 })
 
-export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens } = tokensSlice.actions
+export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens, removeSelectedToken } =
+    tokensSlice.actions
 export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
     const response = await tokensApi.get(`${request}`)
     return response.data.tokens
@@ -80,5 +90,6 @@ export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async
 export const selectTokens = (state: RootState) => state.tokens.apiTokens
 export const selectTokensFilter = (state: RootState) => state.tokens.tokensFilter
 export const selectChoosenTokens = (state: RootState) => state.tokens.choosenTokens
+export const selectProductDetail = (state: RootState) => state.tokens.selectedTokenDetail
 
 export default tokensSlice.reducer
