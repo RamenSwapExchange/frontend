@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './app.scss'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Tokens from './components/Tokens/Tokens'
@@ -12,14 +11,12 @@ const App = () => {
     return (
         <Router>
             <Header />
-            <div className="center-main-container">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/swap" element={<Swap />}></Route>
-                    <Route path="/tokens" element={<Tokens />}></Route>
-                    <Route path="/pools" element={<Pools />}></Route>
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/swap" element={<Swap />}></Route>
+                <Route path="/tokens" element={<Tokens />}></Route>
+                <Route path="/pools" element={<Pools />}></Route>
+            </Routes>
         </Router>
     )
 }
