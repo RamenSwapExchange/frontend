@@ -1,3 +1,13 @@
+:root {
+    --disconnect-background: #f8f4fc;
+    --href-color: gray;
+}
+
+[data-theme='dark'] {
+    --disconnect-background: rgb(41, 50, 73);
+    --href-color: rgb(93, 103, 133);
+}
+
 .account-header {
     display: flex;
     justify-content: space-between;
@@ -9,6 +19,8 @@
         height: 100%;
         padding-top: 10px;
         cursor: pointer;
+        color: var(--black-to-white);
+        transition: 0.3s;
 
         .copy-icon {
             visibility: hidden;
@@ -28,8 +40,8 @@
         align-items: center;
         height: 30px;
         width: 30px;
-
-        background-color: #f8f4fc;
+        color: var(--black-to-white);
+        background-color: var(--disconnect-background);
         border-radius: 10px;
         cursor: pointer;
     }
@@ -40,6 +52,7 @@
     padding-left: 20px;
     font-size: 30px;
     font-weight: bold;
+    color: var(--black-to-white);
 }
 
 .account-menu {
@@ -58,10 +71,10 @@
         font-weight: 900;
         margin: 0px 10px 0px 10px;
         a {
-            color: gray;
+            color: var(--href-color);
         }
         .nav-link.active {
-            color: black;
+            color: var(--black-to-white);
             background-color: transparent;
         }
     }

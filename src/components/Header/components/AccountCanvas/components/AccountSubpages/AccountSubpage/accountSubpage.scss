@@ -1,5 +1,15 @@
 @import '../../../../../../../common/globals.scss';
 
+:root {
+    --img-display: block;
+    --p-color: black;
+}
+
+[data-theme='dark'] {
+    --img-display: none;
+    --p-color: rgb(152, 161, 192);
+}
+
 .subpage-container {
     height: 100%;
     display: flex;
@@ -9,8 +19,17 @@
     text-align: center;
     gap: 5px;
 
+    img {
+        display: var(--img-display);
+    }
+
     h5 {
         font-weight: bold;
+        color: var(--black-to-white);
+    }
+
+    p {
+        color: var(--p-color);
     }
 
     button {
