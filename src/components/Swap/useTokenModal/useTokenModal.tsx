@@ -17,6 +17,8 @@ const useTokenModal = ({ id }: { id: number }) => {
     const reduxTokens = useAppSelector(selectTokens)
     const [tokensFilter, setTokensFilter] = useState('')
 
+    console.log(reduxTokens)
+
     const [show, setShow] = useState(false)
 
     const [page, setPage] = useState(0)

@@ -3,6 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import tokensApi from '../common/tokensApi'
 
+export const fetchAsyncTokenDetails = createAsyncThunk('tokensModal/fetchAsyncTokenDetails', async (id: string) => {
+    const response = await tokensApi.get(`/${id}`)
+    return response.data
+})
+
 export interface TokensType {
     name: string
     symbol: string

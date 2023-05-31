@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react'
 import { TokensType } from '../../redux/tokensSlice'
 import tokensApi from '../../common/tokensApi'
 import TableLoading from './TableLoading/TableLoading'
+import { useAppDispatch } from '../../redux/hooks'
+import { useNavigate } from 'react-router-dom'
 
 const Tokens = () => {
     const { net, nets } = useNet()
@@ -16,6 +18,7 @@ const Tokens = () => {
     const [currentNetwork, setCurrentNetwork] = useState(net?.name)
     const [tokensFilter, setTokensFilter] = useState('')
     const [tokensLoading, setTokensLoading] = useState(false)
+    const navigate = useNavigate()
 
     async function fetchTokens() {
         setTokensLoading(true)
@@ -95,7 +98,7 @@ const Tokens = () => {
                         <TableLoading />
                     ) : (
                         tokens.map((token: TokensType, id) => (
-                            <tr key={id}>
+                            <tr key={id} onClick={() => navigate("polygon:0xf5164054dc7a1997ecc42b996b8bf12a2046048c")}>
                                 <td className="token-id">{id + 1}</td>
                                 <td className="token-info">
                                     {token.images ? (
