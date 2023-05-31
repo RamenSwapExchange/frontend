@@ -67,6 +67,9 @@ $gray-hover: #929396;
         border-radius: 20px;
         font-weight: 600;
         font-size: 20px;
+        -webkit-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
 
         &:hover {
             background-color: #9f75e7;

@@ -4,10 +4,11 @@ import { AiOutlineArrowDown } from 'react-icons/ai'
 
 import SingleSwap from './SingleSwap'
 
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import useNet from '../../common/useNet'
-import { selectChoosenTokens, swapTokens } from '../../redux/tokensSlice'
+import { selectChoosenTokens, selectInputValue, swapTokens } from '../../redux/tokensSlice'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
 
@@ -18,6 +19,7 @@ const Swap = () => {
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
     const choosenToknes = useAppSelector(selectChoosenTokens)
+    const inputValue = useAppSelector(selectInputValue)
 
     function handleShowAccount() {
         dispatch(showAccountCanvas(!isCanvas))
@@ -25,6 +27,10 @@ const Swap = () => {
     function swapButtons() {
         dispatch(swapTokens())
     }
+
+    useEffect(() => {
+        console.log(inputValue)
+    }, [inputValue])
 
     return (
         <>
