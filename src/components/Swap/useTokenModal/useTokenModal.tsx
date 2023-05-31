@@ -92,9 +92,9 @@ const useTokenModal = ({ id }: { id: number }) => {
                                 <div key={token.key} className="single-token" onClick={() => handleSelectToken(token)}>
                                     <div className="token-image">
                                         {token.images ? (
-                                            <img src={token.images[1]}></img>
+                                            <img src={token.images[1]} loading="lazy"></img>
                                         ) : (
-                                            <img src={token.image}></img>
+                                            <img src={token.image} loading="lazy"></img>
                                         )}
                                     </div>
                                     <div>

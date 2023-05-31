@@ -59,7 +59,7 @@ const Tokens = () => {
                                     className="dropdown-net-row"
                                     onClick={() => changeNetwork(net.name)}
                                 >
-                                    <img className="net-icon" src={getIcon(net.id)} />
+                                    <img className="net-icon" src={getIcon(net.id)} loading="lazy" />
                                     {net.name}
                                 </Dropdown.Item>
                             )
@@ -99,9 +99,9 @@ const Tokens = () => {
                                 <td className="token-id">{id + 1}</td>
                                 <td className="token-info">
                                     {token.images ? (
-                                        <img src={token.images[1]} className="token-img"></img>
+                                        <img src={token.images[1]} className="token-img" loading="lazy"></img>
                                     ) : (
-                                        <img src={token.image} className="token-img"></img>
+                                        <img src={token.image} className="token-img" loading="lazy"></img>
                                     )}
                                     <div className="token-name">
                                         {token.name} <span className="token-symbol">{token.symbol}</span>
