@@ -42,7 +42,7 @@ const SingleSwap = ({ disabled = false, id }: singleSwapConfig) => {
                         ) : (
                             <>
                                 <img src={token?.images ? token?.images[1] : token?.image} />
-                                {token?.symbol.slice(0, 7) + "..."}
+                                {token?.symbol.length > 10 ? token?.symbol.slice(0, 10) + "..." : token?.symbol}
                             </>
                         )}
                         <RiArrowDropDownLine fontSize={25} />
