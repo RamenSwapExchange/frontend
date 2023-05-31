@@ -6,11 +6,12 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectChoosenTokens, setInputValueRedux } from '../../redux/tokensSlice'
 
 type singleSwapConfig = {
-    disabled?: boolean
     id: number
+    value: string
+    disabled?: boolean
 }
 
-const SingleSwap = ({ disabled = false, id }: singleSwapConfig) => {
+const SingleSwap = ({ id, value, disabled = false }: singleSwapConfig) => {
     const { modal, setShow } = useTokenModal({ id })
     const [inputValue, setInputValue] = useState('')
     const inputAmount = inputValue ? parseInt(inputValue) : 0
@@ -25,9 +26,13 @@ const SingleSwap = ({ disabled = false, id }: singleSwapConfig) => {
     }
 
     useEffect(() => {
-        dispatch(setInputValueRedux({id, value: inputValue}))
+        dispatch(setInputValueRedux({ id, value: inputValue }))
     }, [inputValue])
-    
+
+    useEffect(() => {
+        setInputValue(value);
+    }, [value])
+
     return (
         <>
             <div className="single-swap">
