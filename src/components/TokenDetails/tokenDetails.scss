@@ -1,0 +1,33 @@
+.token-detail-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+
+    .token-detail {
+        width: 780px;
+
+        .tokens-link {
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .token-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 16px;
+
+            .token-name {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 20px;
+
+                img {
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+}

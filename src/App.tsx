@@ -7,7 +7,7 @@ import Swap from './components/Swap/Swap'
 import Pools from './components/Pools/Pools'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
-import TokenDetails from './components/TokenCard/TokenDetails'
+import TokenDetails from './components/TokenDetails/TokenDetails'
 
 const App = () => {
     return (

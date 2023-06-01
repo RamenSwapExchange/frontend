@@ -32,7 +32,7 @@ const Header = () => {
     }, [])
 
     return (
-        <div>
+        <>
             <Navbar className={`header ${isScrolled ? 'scrolled' : ''}`} fixed="top">
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto header-left">
@@ -59,7 +59,7 @@ const Header = () => {
                 </Navbar.Collapse>
             </Navbar>
             <MobileNavigation />
-        </div>
+        </>
     )
 }
 

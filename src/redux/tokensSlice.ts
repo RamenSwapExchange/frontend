@@ -5,7 +5,7 @@ import tokensApi from '../common/tokensApi'
 
 export const fetchAsyncTokenDetails = createAsyncThunk('tokensModal/fetchAsyncTokenDetails', async (id: string) => {
     const response = await tokensApi.get(`tokens?addresses=${id}`)
-    return response.data
+    return response.data.tokens
 })
 
 export interface TokensType {
@@ -17,6 +17,8 @@ export interface TokensType {
     network: string
     price: number
     address: string
+    updatedAt: string
+    createdAt: string
 }
 
 interface selectedTokenConfig {
@@ -28,14 +30,14 @@ interface TokensState {
     apiTokens: TokensType[]
     tokensFilter: string
     choosenTokens: [TokensType, TokensType] | [TokensType, null] | [null, null]
-    selectedTokenDetail: null | TokensType
+    selectedTokenDetail: null | TokensType[]
 }
 
 const initialState: TokensState = {
     apiTokens: [],
     tokensFilter: '',
     choosenTokens: [null, null],
-    selectedTokenDetail: null,
+    selectedTokenDetail: [],
 }
 
 export const tokensSlice = createSlice({
