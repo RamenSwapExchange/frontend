@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './app.scss'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Tokens from './components/Tokens/Tokens'
