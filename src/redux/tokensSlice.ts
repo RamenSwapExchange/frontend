@@ -19,6 +19,7 @@ export interface TokensType {
     address: string
     updatedAt: string
     createdAt: string
+    liquidity: number
 }
 
 interface selectedTokenConfig {

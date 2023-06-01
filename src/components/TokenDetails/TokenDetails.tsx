@@ -4,14 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { fetchAsyncTokenDetails, removeSelectedToken, selectProductDetail } from '../../redux/tokensSlice'
 import { format } from 'date-fns'
 import './tokenDetails.scss'
+import { AiOutlineCopy } from 'react-icons/ai'
 
 const TokenDetails = () => {
     const dispatch = useAppDispatch()
     const data = useAppSelector(selectProductDetail)
-    console.log(data)
-    //https://api.portals.fi/v2/tokens?addresses=polygon:0xf5164054dc7a1997ecc42b996b8bf12a2046048c
     const { id } = useParams()
-    console.log(id)
 
     useEffect(() => {
         dispatch(fetchAsyncTokenDetails(id!))
@@ -38,13 +36,24 @@ const TokenDetails = () => {
                                     <img src={token.image} loading="lazy" alt="Token Image"></img>
                                 )}
                                 <div>{token.name}</div>
-                                <div>{token.symbol}</div>
+                                <div className="token-symbol">{token.symbol}</div>
                             </div>
-                            <div>${Math.ceil(token.price * 100) / 100}</div>
-                            <div>{token.address}</div>
-                            <div>Platform: {token.network}</div>
-                            <div>Last updated: {formattedUpdatedAt}</div>
-                            <div>Created: {formattedCreatedAt}</div>
+                            <div className="token-price">${Math.ceil(token.price * 100) / 100}</div>
+                            <div onClick={() => navigator.clipboard.writeText(token.address)} className="token-address">
+                                {token.address} <AiOutlineCopy className="copy-icon" />
+                            </div>
+                            <div>
+                                Liquidity: <b>{token.liquidity}</b>
+                            </div>
+                            <div>
+                                Platform: <b>{token.network}</b>
+                            </div>
+                            <div>
+                                Last updated: <b>{formattedUpdatedAt}</b>
+                            </div>
+                            <div>
+                                Created: <b>{formattedCreatedAt}</b>
+                            </div>
                         </div>
                     </div>
                 )
