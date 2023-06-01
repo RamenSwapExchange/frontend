@@ -3,6 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import tokensApi from '../common/tokensApi'
 
+export const fetchAsyncTokenDetails = createAsyncThunk('tokensModal/fetchAsyncTokenDetails', async (id: string) => {
+    const response = await tokensApi.get(`tokens?addresses=${id}`)
+    return response.data.tokens
+})
+
 export interface TokensType {
     name: string
     symbol: string
@@ -11,6 +16,10 @@ export interface TokensType {
     images: string[]
     network: string
     price: number
+    address: string
+    updatedAt: string
+    createdAt: string
+    liquidity: number
 }
 
 interface selectedTokenConfig {
@@ -26,13 +35,13 @@ interface TokensState {
     apiTokens: TokensType[]
     tokensFilter: string
     choosenTokens: [TokensType, TokensType] | [TokensType, null] | [null, null]
-    inputValues: [string, string]
 }
 
 const initialState: TokensState = {
     apiTokens: [],
     tokensFilter: '',
     choosenTokens: [null, null],
+    selectedTokenDetail: null | TokensType[]
     inputValues: ['0','0'],
 }
 
@@ -58,6 +67,9 @@ export const tokensSlice = createSlice({
         chooseToken: (state, action: PayloadAction<selectedTokenConfig>) => {
             state.choosenTokens[action.payload.id] = action.payload.token
         },
+        removeSelectedToken: (state) => {
+            state.selectedTokenDetail = null
+        },
         setInputValueRedux: (state, action: PayloadAction<setInputValueConfig>) => {
             state.inputValues[action.payload.id] = action.payload.value
         },
@@ -72,11 +84,14 @@ export const tokensSlice = createSlice({
             )
             state.apiTokens = [...prevTokens, ...uniqueTokens]
         })
+        builder.addCase(fetchAsyncTokenDetails.fulfilled, (state, { payload }) => {
+            state.selectedTokenDetail = payload
+        })
     },
 })
 
-export const { clearTokens, filterTokens, swapTokens, resetChoosenTokens, chooseToken, setInputValueRedux } =
-    tokensSlice.actions
+export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens, removeSelectedToken, setInputValueRedux } = tokensSlice.actions
+
 export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
     const response = await tokensApi.get(`${request}`)
     return response.data.tokens

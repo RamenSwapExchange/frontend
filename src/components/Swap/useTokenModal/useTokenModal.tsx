@@ -16,7 +16,6 @@ const useTokenModal = ({ id }: { id: number }) => {
     const dispatch = useAppDispatch()
     const reduxTokens = useAppSelector(selectTokens)
     const [tokensFilter, setTokensFilter] = useState('')
-
     const [show, setShow] = useState(false)
 
     const [page, setPage] = useState(0)

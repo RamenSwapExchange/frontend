@@ -6,17 +6,21 @@ import Swap from './components/Swap/Swap'
 import Pools from './components/Pools/Pools'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
+import TokenDetails from './components/TokenDetails/TokenDetails'
 
 const App = () => {
     return (
         <Router>
             <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/swap" element={<Swap />}></Route>
-                <Route path="/tokens" element={<Tokens />}></Route>
-                <Route path="/pools" element={<Pools />}></Route>
-            </Routes>
+            <div className="center-main-container">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/swap" element={<Swap />}></Route>
+                    <Route path="/tokens" element={<Tokens />}></Route>
+                    <Route path="/token/:id" element={<TokenDetails />}></Route>
+                    <Route path="/pools" element={<Pools />}></Route>
+                </Routes>
+            </div>
         </Router>
     )
 }
