@@ -25,8 +25,15 @@
             margin-top: 16px;
             font-size: 20px;
 
+            color: rgb(119, 128, 160);
+
+            b {
+                color: var(--black-to-white);
+            }
+
             .token-price {
                 font-size: 48px;
+                color: var(--black-to-white);
             }
 
             .token-address {
@@ -46,6 +53,10 @@
                 align-items: center;
                 gap: 5px;
                 font-size: 32px;
+
+                .token-named {
+                    color: var(--black-to-white);
+                }
 
                 .token-symbol {
                     color: rgb(119, 128, 160);

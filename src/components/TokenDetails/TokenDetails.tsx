@@ -35,7 +35,7 @@ const TokenDetails = () => {
                                 ) : (
                                     <img src={token.image} loading="lazy" alt="Token Image"></img>
                                 )}
-                                <div>{token.name}</div>
+                                <div className="token-named">{token.name}</div>
                                 <div className="token-symbol">{token.symbol}</div>
                             </div>
                             <div className="token-price">${Math.ceil(token.price * 100) / 100}</div>

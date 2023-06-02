@@ -49,13 +49,6 @@ const Swap = () => {
         setInputValues(items)
     }
 
-    // useEffect(() => {
-    //     const body = document.body
-    //     location.pathname === '/swap' || location.pathname === '/'
-    //         ? (body.style.height = '100vh')
-    //         : (body.style.minHeight = '100vh')
-    // })
-
     return (
         <div className="swap-container">
             <div className={location.pathname === '/swap' ? 'swap-box swap-margin' : 'swap-box'}>
