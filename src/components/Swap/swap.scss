@@ -22,6 +22,10 @@ $gray-hover: #929396;
     --settings-hover-color: white;
 }
 
+.swap-container {
+    overflow-y: hidden;
+}
+
 .swap-margin {
     margin-top: 125px !important;
 }

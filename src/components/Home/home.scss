@@ -18,7 +18,7 @@
     @include flexCenter();
     flex-direction: column;
     gap: 10px;
-    margin-top: 30px;
+    overflow-y: hidden;
 
     a {
         @include flexCenter();

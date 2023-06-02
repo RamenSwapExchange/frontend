@@ -16,7 +16,7 @@ const Swap = () => {
     const location = useLocation()
     const { isConnected } = useAccount()
     const { unsupported } = useNet()
-    const [inputValues, setInputValues] = useState(["", ""])
+    const [inputValues, setInputValues] = useState(['', ''])
 
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
@@ -36,21 +36,28 @@ const Swap = () => {
     }, [inputValue[0]])
 
     function calculateValue(id: number) {
-        if (choosenToknes[0] == null || choosenToknes[1] == null) return;
-        const price1 = choosenToknes[0].price;
-        const price2 = choosenToknes[1].price;
-        const amount = inputValue[id];
+        if (choosenToknes[0] == null || choosenToknes[1] == null) return
+        const price1 = choosenToknes[0].price
+        const price2 = choosenToknes[1].price
+        const amount = inputValue[id]
 
-        let result = ((parseInt(amount) * price2) / price1).toString();
+        let result = ((parseInt(amount) * price2) / price1).toString()
 
-        if (amount == "") result = "";
-        let items = [...inputValues];
-        items[1] = result;
-        setInputValues(items);
+        if (amount == '') result = ''
+        let items = [...inputValues]
+        items[1] = result
+        setInputValues(items)
     }
 
+    // useEffect(() => {
+    //     const body = document.body
+    //     location.pathname === '/swap' || location.pathname === '/'
+    //         ? (body.style.height = '100vh')
+    //         : (body.style.minHeight = '100vh')
+    // })
+
     return (
-        <>
+        <div className="swap-container">
             <div className={location.pathname === '/swap' ? 'swap-box swap-margin' : 'swap-box'}>
                 <div className="swap-top">
                     <div>Swap</div>
@@ -84,7 +91,7 @@ const Swap = () => {
                     </button>
                 )}
             </div>
-        </>
+        </div>
     )
 }
 
