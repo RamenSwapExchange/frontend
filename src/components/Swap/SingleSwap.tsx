@@ -1,22 +1,20 @@
 import './singleSwap.scss'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useTokenModal from './useTokenModal/useTokenModal'
 import { RiArrowDropDownLine } from 'react-icons/ri'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectChoosenTokens, setInputValueRedux } from '../../redux/tokensSlice'
+import { useAppSelector } from '../../redux/hooks'
+import { selectChoosenTokens } from '../../redux/tokensSlice'
+import { IMaskInput } from "react-imask"
 
 type singleSwapConfig = {
     id: number
-    value: string
     disabled?: boolean
 }
 
-const SingleSwap = ({ id, value, disabled = false }: singleSwapConfig) => {
+const SingleSwap = ({ id, disabled = false }: singleSwapConfig) => {
     const { modal, setShow } = useTokenModal({ id })
     const [inputValue, setInputValue] = useState('')
-    const inputAmount = inputValue ? parseInt(inputValue) : 0
-
-    const dispatch = useAppDispatch();
+    const inputAmount = inputValue ? parseFloat(inputValue) : 0
 
     const choosenToknes = useAppSelector(selectChoosenTokens)
     const token = choosenToknes[id]
@@ -25,26 +23,21 @@ const SingleSwap = ({ id, value, disabled = false }: singleSwapConfig) => {
         setShow(true)
     }
 
-    useEffect(() => {
-        dispatch(setInputValueRedux({ id, value: inputValue }))
-    }, [inputValue])
-
-    useEffect(() => {
-        setInputValue(value);
-    }, [value])
-
     return (
         <>
             <div className="single-swap">
                 <div className="swap-top">
-                    <input
-                        type="text"
+                    <IMaskInput
+                        mask={Number}
+                        radix="."
                         placeholder="0"
                         className="swap-input"
                         disabled={disabled}
-                        pattern="^[0-9]*[.]?[0-9]*$"
-                        value={disabled ? 0 : inputValue}
-                        onChange={(e) => setInputValue((v) => (e.target.validity.valid ? e.target.value : v))}
+                        value={inputValue}
+                        onAccept={(value) => {
+                            setInputValue(value)
+                        }}
+                        onChange={() => ""}
                     />
 
                     <button className="token-btn" onClick={handleShow} disabled={disabled}>

@@ -26,17 +26,12 @@ interface selectedTokenConfig {
     id: number
     token: TokensType
 }
-interface setInputValueConfig {
-    id: number
-    value: string
-}
 
 interface TokensState {
     apiTokens: TokensType[]
     tokensFilter: string
     choosenTokens: [TokensType, TokensType] | [TokensType, null] | [null, null]
     selectedTokenDetail: null | TokensType[]
-    inputValues: [string, string]
 }
 
 const initialState: TokensState = {
@@ -44,7 +39,6 @@ const initialState: TokensState = {
     tokensFilter: '',
     choosenTokens: [null, null],
     selectedTokenDetail: [],
-    inputValues: ['0', '0'],
 }
 
 export const tokensSlice = createSlice({
@@ -72,9 +66,6 @@ export const tokensSlice = createSlice({
         removeSelectedToken: (state) => {
             state.selectedTokenDetail = null
         },
-        setInputValueRedux: (state, action: PayloadAction<setInputValueConfig>) => {
-            state.inputValues[action.payload.id] = action.payload.value
-        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTokens.pending, () => {})
@@ -92,15 +83,8 @@ export const tokensSlice = createSlice({
     },
 })
 
-export const {
-    clearTokens,
-    filterTokens,
-    chooseToken,
-    swapTokens,
-    resetChoosenTokens,
-    removeSelectedToken,
-    setInputValueRedux,
-} = tokensSlice.actions
+export const { clearTokens, filterTokens, chooseToken, swapTokens, resetChoosenTokens, removeSelectedToken } =
+    tokensSlice.actions
 
 export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async (request: string) => {
     const response = await tokensApi.get(`${request}`)
@@ -110,7 +94,6 @@ export const fetchTokens = createAsyncThunk('networks/fetchAsyncNetworks', async
 export const selectTokens = (state: RootState) => state.tokens.apiTokens
 export const selectTokensFilter = (state: RootState) => state.tokens.tokensFilter
 export const selectChoosenTokens = (state: RootState) => state.tokens.choosenTokens
-export const selectInputValue = (state: RootState) => state.tokens.inputValues
 export const selectProductDetail = (state: RootState) => state.tokens.selectedTokenDetail
 
 export default tokensSlice.reducer
