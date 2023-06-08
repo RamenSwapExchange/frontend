@@ -2,16 +2,18 @@ import './singleSwap.scss'
 import './swap.scss'
 import { FiSettings } from 'react-icons/fi'
 import { AiOutlineArrowDown } from 'react-icons/ai'
+import { RiArrowDropDownLine } from 'react-icons/ri'
+
+import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { IMaskInput } from 'react-imask'
 import { useAccount } from 'wagmi'
+
 import useNet from '../../common/useNet'
+import useTokenModal from './useTokenModal/useTokenModal'
 import { selectChoosenTokens, swapTokens } from '../../redux/tokensSlice'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
-import { useRef, useState, useEffect } from 'react'
-import useTokenModal from './useTokenModal/useTokenModal'
-import { IMaskInput } from 'react-imask'
-import { RiArrowDropDownLine } from 'react-icons/ri'
 
 const Swap = () => {
     const location = useLocation()
@@ -21,13 +23,6 @@ const Swap = () => {
     const dispatch = useAppDispatch()
     const isCanvas = useAppSelector(selectAccountCanvas)
     const choosenTokens = useAppSelector(selectChoosenTokens)
-
-    function handleShowAccount() {
-        dispatch(showAccountCanvas(!isCanvas))
-    }
-    function swapButtons() {
-        dispatch(swapTokens());
-    }
 
     const { modal, show: { setId, setShow } } = useTokenModal()
 
@@ -40,12 +35,7 @@ const Swap = () => {
     const inputAmount1 = inputValue1 ? parseFloat(inputValue1) : 0
     const inputAmount2 = inputValue2 ? parseFloat(inputValue2) : 0
 
-    function handleShow(id: number) {
-        setId(id)
-        setShow(true)
-    }
-
-    function onChangeInput(id: number) {
+    function changeSecondInput(id: number) {
         const ref = id == 0 ? input1.current : input2.current
         const otherId = id == 0 ? 1 : 0
 
@@ -64,11 +54,23 @@ const Swap = () => {
         }
     }
 
+    function handleShowModal(id: number) {
+        setId(id)
+        setShow(true)
+    }
+
+    function handleShowAccount() {
+        dispatch(showAccountCanvas(!isCanvas))
+    }
+
+    function swapButtons() {
+        dispatch(swapTokens());
+    }
+
     useEffect(() => {
         setInputValue1('')
         setInputValue2('')
     }, [choosenTokens])
-
 
     return (
         <div className="swap-container">
@@ -90,10 +92,10 @@ const Swap = () => {
                             disabled={unsupported}
                             value={inputValue1}
                             inputRef={input1}
-                            onChange={(e) => onChangeInput(0)}
+                            onChange={(e) => changeSecondInput(0)}
                         />
 
-                        <button className="token-btn" onClick={() => handleShow(0)} disabled={unsupported}>
+                        <button className="token-btn" onClick={() => handleShowModal(0)} disabled={unsupported}>
                             {unsupported || choosenTokens[0] == null ? (
                                 'Select token'
                             ) : (
@@ -119,10 +121,10 @@ const Swap = () => {
                             disabled={unsupported}
                             value={inputValue2}
                             inputRef={input2}
-                            onChange={(e) => onChangeInput(1)}
+                            onChange={(e) => changeSecondInput(1)}
                         />
 
-                        <button className="token-btn" onClick={() => handleShow(1)} disabled={unsupported}>
+                        <button className="token-btn" onClick={() => handleShowModal(1)} disabled={unsupported}>
                             {unsupported || choosenTokens[1] == null ? (
                                 'Select token'
                             ) : (
