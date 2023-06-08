@@ -1,18 +1,18 @@
 import './singleSwap.scss'
-import { RiArrowDropDownLine } from "react-icons/ri"
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
-import { Ref } from "react"
-import { IMaskInput } from "react-imask"
+import { Ref } from 'react'
+import { IMaskInput } from 'react-imask'
 
-import useTokenModal from "./useTokenModal/useTokenModal"
-import useNet from "../../common/useNet"
+import useTokenModal from './useTokenModal/useTokenModal'
+import useNet from '../../common/useNet'
 
-import { useAppSelector } from "../../redux/hooks"
-import { selectChoosenTokens } from "../../redux/tokensSlice"
+import { useAppSelector } from '../../redux/hooks'
+import { selectChoosenTokens } from '../../redux/tokensSlice'
 
 type SingleSwapConfig = {
-    id: number,
-    inputValue: string,
+    id: number
+    inputValue: string
     inputRef: Ref<HTMLInputElement>
     changeSecondInput: (id: number) => void
 }
@@ -43,13 +43,25 @@ const SingleSwap = ({ id, inputValue, inputRef, changeSecondInput }: SingleSwapC
                         onChange={(e) => changeSecondInput(id)}
                     />
 
-                    <button className="token-btn" onClick={() => handleShowModal()} disabled={unsupported}>
+                    <button
+                        className={unsupported ? 'token-btn token-btn-disabled' : 'token-btn '}
+                        onClick={() => handleShowModal()}
+                        disabled={unsupported}
+                    >
                         {unsupported || choosenTokens[id] == null ? (
                             'Select token'
                         ) : (
                             <>
-                                <img src={choosenTokens[id]?.images ? choosenTokens[id]?.images[1] : choosenTokens[id]?.image} />
-                                {choosenTokens[id]!.symbol.length > 10 ? choosenTokens[id]?.symbol.slice(0, 10) + '...' : choosenTokens[id]?.symbol}
+                                <img
+                                    src={
+                                        choosenTokens[id]?.images
+                                            ? choosenTokens[id]?.images[1]
+                                            : choosenTokens[id]?.image
+                                    }
+                                />
+                                {choosenTokens[id]!.symbol.length > 10
+                                    ? choosenTokens[id]?.symbol.slice(0, 10) + '...'
+                                    : choosenTokens[id]?.symbol}
                             </>
                         )}
                         <RiArrowDropDownLine fontSize={25} />

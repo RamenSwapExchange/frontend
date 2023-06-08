@@ -49,6 +49,10 @@
         position: relative;
     }
 
+    .token-btn-disabled {
+        color: gray !important;
+    }
+
     .token-btn {
         padding: 4px 8px;
         border-radius: 16px;
