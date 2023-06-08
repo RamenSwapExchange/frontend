@@ -12,14 +12,13 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import useNet from '../../../common/useNet'
 
-const useTokenModal = () => {
+const useTokenModal = ({ id }: { id: number }) => {
     const dispatch = useAppDispatch()
     const reduxTokens = useAppSelector(selectTokens)
 
     const [tokensFilter, setTokensFilter] = useState('')
     const [page, setPage] = useState(0)
     const [show, setShow] = useState(false)
-    const [id, setId] = useState(0);
 
     const boxRef = useRef<HTMLDivElement>(null)
 
@@ -111,10 +110,7 @@ const useTokenModal = () => {
                 </Modal.Body>
             </Modal>
         ),
-        show: {
-            setId: (id: number) => setId(id),
-            setShow
-        },
+        setShow
     }
 }
 
