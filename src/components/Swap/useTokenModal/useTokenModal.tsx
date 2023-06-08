@@ -15,10 +15,11 @@ import useNet from '../../../common/useNet'
 const useTokenModal = ({ id }: { id: number }) => {
     const dispatch = useAppDispatch()
     const reduxTokens = useAppSelector(selectTokens)
+
     const [tokensFilter, setTokensFilter] = useState('')
+    const [page, setPage] = useState(0)
     const [show, setShow] = useState(false)
 
-    const [page, setPage] = useState(0)
     const boxRef = useRef<HTMLDivElement>(null)
 
     const { net } = useNet()
@@ -109,7 +110,7 @@ const useTokenModal = ({ id }: { id: number }) => {
                 </Modal.Body>
             </Modal>
         ),
-        setShow,
+        setShow
     }
 }
 

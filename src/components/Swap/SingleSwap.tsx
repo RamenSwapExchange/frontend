@@ -1,66 +1,62 @@
 import './singleSwap.scss'
-import { useEffect, useState } from 'react'
-import useTokenModal from './useTokenModal/useTokenModal'
-import { RiArrowDropDownLine } from 'react-icons/ri'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { selectChoosenTokens, setInputValueRedux } from '../../redux/tokensSlice'
+import { RiArrowDropDownLine } from "react-icons/ri"
 
-type singleSwapConfig = {
-    id: number
-    value: string
-    disabled?: boolean
+import { Ref } from "react"
+import { IMaskInput } from "react-imask"
+
+import useTokenModal from "./useTokenModal/useTokenModal"
+import useNet from "../../common/useNet"
+
+import { useAppSelector } from "../../redux/hooks"
+import { selectChoosenTokens } from "../../redux/tokensSlice"
+
+type SingleSwapConfig = {
+    id: number,
+    inputValue: string,
+    inputRef: Ref<HTMLInputElement>
+    changeSecondInput: (id: number) => void
 }
 
-const SingleSwap = ({ id, value, disabled = false }: singleSwapConfig) => {
+const SingleSwap = ({ id, inputValue, inputRef, changeSecondInput }: SingleSwapConfig) => {
+    const { unsupported } = useNet()
     const { modal, setShow } = useTokenModal({ id })
-    const [inputValue, setInputValue] = useState('')
-    const inputAmount = inputValue ? parseInt(inputValue) : 0
+    const choosenTokens = useAppSelector(selectChoosenTokens)
 
-    const dispatch = useAppDispatch();
+    const inputAmount = inputValue ? parseFloat(inputValue) : 0
 
-    const choosenToknes = useAppSelector(selectChoosenTokens)
-    const token = choosenToknes[id]
-
-    function handleShow() {
+    function handleShowModal() {
         setShow(true)
     }
-
-    useEffect(() => {
-        dispatch(setInputValueRedux({ id, value: inputValue }))
-    }, [inputValue])
-
-    useEffect(() => {
-        setInputValue(value);
-    }, [value])
 
     return (
         <>
             <div className="single-swap">
                 <div className="swap-top">
-                    <input
-                        type="text"
+                    <IMaskInput
+                        mask={Number}
+                        radix="."
                         placeholder="0"
                         className="swap-input"
-                        disabled={disabled}
-                        pattern="^[0-9]*[.]?[0-9]*$"
-                        value={disabled ? 0 : inputValue}
-                        onChange={(e) => setInputValue((v) => (e.target.validity.valid ? e.target.value : v))}
+                        disabled={unsupported}
+                        value={inputValue}
+                        inputRef={inputRef}
+                        onChange={(e) => changeSecondInput(id)}
                     />
 
-                    <button className="token-btn" onClick={handleShow} disabled={disabled}>
-                        {disabled || token == null ? (
+                    <button className="token-btn" onClick={() => handleShowModal()} disabled={unsupported}>
+                        {unsupported || choosenTokens[id] == null ? (
                             'Select token'
                         ) : (
                             <>
-                                <img src={token?.images ? token?.images[1] : token?.image} />
-                                {token?.symbol.length > 10 ? token?.symbol.slice(0, 10) + '...' : token?.symbol}
+                                <img src={choosenTokens[id]?.images ? choosenTokens[id]?.images[1] : choosenTokens[id]?.image} />
+                                {choosenTokens[id]!.symbol.length > 10 ? choosenTokens[id]?.symbol.slice(0, 10) + '...' : choosenTokens[id]?.symbol}
                             </>
                         )}
                         <RiArrowDropDownLine fontSize={25} />
                     </button>
                 </div>
                 <div className="swap-bottom">
-                    ${token?.price ? Math.ceil(token?.price * inputAmount * 100) / 100 : '0'}
+                    ${choosenTokens[id]?.price ? Math.ceil(choosenTokens[id]!.price * inputAmount * 100) / 100 : '0'}
                 </div>
             </div>
             {modal}
