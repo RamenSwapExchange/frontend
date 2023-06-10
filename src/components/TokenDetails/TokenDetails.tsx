@@ -1,10 +1,10 @@
+import './tokenDetails.scss'
+import { AiOutlineCopy, AiOutlineArrowLeft } from 'react-icons/ai'
+import { format } from 'date-fns'
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { fetchAsyncTokenDetails, removeSelectedToken, selectProductDetail } from '../../redux/tokensSlice'
-import { format } from 'date-fns'
-import './tokenDetails.scss'
-import { AiOutlineCopy } from 'react-icons/ai'
 
 const TokenDetails = () => {
     const dispatch = useAppDispatch()
@@ -18,15 +18,31 @@ const TokenDetails = () => {
         }
     }, [dispatch, id])
 
+    console.log(data)
+
     return (
         <div className="container-sm token-detail-container">
             {data?.map((token) => {
-                const formattedUpdatedAt = format(new Date(token.updatedAt), 'yyyy-MM-dd HH:mm:ss')
-                const formattedCreatedAt = format(new Date(token.createdAt), 'yyyy-MM-dd HH:mm:ss')
+                const formattedUpdatedAt = format(new Date(token.updatedAt), 'yyyy-mm-dd')
+                const formattedCreatedAt = format(new Date(token.createdAt), 'yyyy-mm-dd')
+                let page = "";
+                switch (token.network) {
+                    case "ethereum":
+                        page = "etherscan.io"
+                        break;
+                    case "polygon":
+                        page = "polygonscan.com"
+                        break;
+                    case "optimism":
+                        page = "optimistic.etherscan.io"
+                        break;
+                }
+
                 return (
                     <div className="token-detail" key={token.address}>
                         <Link to={'/tokens'} className="tokens-link">
-                            &larr; Tokens
+                            <AiOutlineArrowLeft fontSize={14} className="link-arrow" />
+                            <div>Tokens</div>
                         </Link>
                         <div className="token-info">
                             <div className="token-name">
@@ -38,9 +54,9 @@ const TokenDetails = () => {
                                 <div className="token-named">{token.name}</div>
                                 <div className="token-symbol">{token.symbol}</div>
                             </div>
-                            <div className="token-price">${Math.ceil(token.price * 100) / 100}</div>
-                            <div onClick={() => navigator.clipboard.writeText(token.address)} className="token-address">
-                                {token.address} <AiOutlineCopy className="copy-icon" />
+                            <div className="token-price"> <b>${Math.ceil(token.price * 100) / 100}</b></div>
+                            <div onClick={() => navigator.clipboard.writeText(token.address)}>
+                                Address: <b className="token-address" >{token.address} <AiOutlineCopy /></b>
                             </div>
                             <div>
                                 Liquidity: <b>{token.liquidity}</b>
@@ -53,6 +69,9 @@ const TokenDetails = () => {
                             </div>
                             <div>
                                 Created: <b>{formattedCreatedAt}</b>
+                            </div>
+                            <div>
+                                <b><a href={`https://${page}/address/${token.address}`} target='_blank'> Block Explorer </a></b>
                             </div>
                         </div>
                     </div>

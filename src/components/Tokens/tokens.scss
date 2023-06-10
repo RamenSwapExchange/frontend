@@ -142,6 +142,10 @@
                     color: var(--token-name-color);
                     font-weight: bold;
                 }
+
+                img {
+                    border-radius: 2.5px;
+                }
             }
 
             .token-price {
