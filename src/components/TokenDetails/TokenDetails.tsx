@@ -25,6 +25,7 @@ const TokenDetails = () => {
             {data?.map((token) => {
                 const formattedUpdatedAt = format(new Date(token.updatedAt), 'yyyy-mm-dd')
                 const formattedCreatedAt = format(new Date(token.createdAt), 'yyyy-mm-dd')
+                const formattedNetwork = token.network.charAt(0).toUpperCase() + token.network.slice(1);
                 let page = "";
                 switch (token.network) {
                     case "ethereum":
@@ -62,7 +63,7 @@ const TokenDetails = () => {
                                 Liquidity: <b>{token.liquidity}</b>
                             </div>
                             <div>
-                                Platform: <b>{token.network}</b>
+                                Platform: <b>{formattedNetwork}</b>
                             </div>
                             <div>
                                 Last updated: <b>{formattedUpdatedAt}</b>
@@ -70,7 +71,7 @@ const TokenDetails = () => {
                             <div>
                                 Created: <b>{formattedCreatedAt}</b>
                             </div>
-                            <div>
+                            <div className='token-etherscan'>
                                 <b><a href={`https://${page}/address/${token.address}`} target='_blank'> Block Explorer </a></b>
                             </div>
                         </div>
