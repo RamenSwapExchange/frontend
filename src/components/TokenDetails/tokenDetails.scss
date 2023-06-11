@@ -3,7 +3,6 @@
     padding-top: 100px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
 
     .token-detail {
         width: 780px;
@@ -96,5 +95,12 @@
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .token-name div {
+        flex-direction: column;
+        align-items: start !important;
     }
 }

@@ -54,8 +54,10 @@ const TokenDetails = () => {
                                 ) : (
                                     <img src={token.image} loading="lazy" alt="Token Image"></img>
                                 )}
-                                <div className="token-named">{token.name}</div>
-                                <div className="token-symbol">{token.symbol}</div>
+                                <div>
+                                    <div className="token-named">{token.name}</div>
+                                    <div className="token-symbol">{token.symbol}</div>
+                                </div>
                             </div>
                             <div className="token-price"> <span>${Math.ceil(token.price * 100) / 100}</span></div>
                             <div className="token-address" onClick={() => navigator.clipboard.writeText(token.address)}>
