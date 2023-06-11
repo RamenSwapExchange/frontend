@@ -9,13 +9,11 @@ import ConnectButton from './components/ConnectButton'
 import ChainsDropdown from './components/ChainsDropdown'
 import MobileNavigation from './components/MobileNavigation/MobileNavigation'
 import InfoDropdown from './components/InfoDropdown/InfoDropdown'
-import changeBackground from './components/ChangeBackground'
 
 import { useEffect, useState } from 'react'
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
-    changeBackground()
 
     useEffect(() => {
         function handleScroll() {

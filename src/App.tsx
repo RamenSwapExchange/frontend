@@ -8,7 +8,11 @@ import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import TokenDetails from './components/TokenDetails/TokenDetails'
 
+import useBackground from './common/useBackground'
+
 const App = () => {
+    useBackground()
+
     return (
         <Router>
             <Header />
