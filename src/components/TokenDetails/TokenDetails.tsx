@@ -2,6 +2,7 @@ import './tokenDetails.scss'
 import { AiOutlineCopy, AiOutlineArrowLeft } from 'react-icons/ai'
 import { format } from 'date-fns'
 import { useEffect } from 'react'
+import { useWindowWidth } from '@react-hook/window-size'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { fetchAsyncTokenDetails, removeSelectedToken, selectProductDetail } from '../../redux/tokensSlice'
@@ -10,6 +11,7 @@ const TokenDetails = () => {
     const dispatch = useAppDispatch()
     const data = useAppSelector(selectProductDetail)
     const { id } = useParams()
+    const onlyWidth = useWindowWidth()
 
     useEffect(() => {
         dispatch(fetchAsyncTokenDetails(id!))
@@ -18,14 +20,14 @@ const TokenDetails = () => {
         }
     }, [dispatch, id])
 
-    console.log(data)
-
     return (
         <div className="container-sm token-detail-container">
             {data?.map((token) => {
                 const formattedUpdatedAt = format(new Date(token.updatedAt), 'yyyy-mm-dd')
                 const formattedCreatedAt = format(new Date(token.createdAt), 'yyyy-mm-dd')
                 const formattedNetwork = token.network.charAt(0).toUpperCase() + token.network.slice(1);
+                const addressSliced = onlyWidth < 540 ? token.address.replace(token.address.substring(7, token.address.length - 5), '...') : token.address
+
                 let page = "";
                 switch (token.network) {
                     case "ethereum":
@@ -55,9 +57,9 @@ const TokenDetails = () => {
                                 <div className="token-named">{token.name}</div>
                                 <div className="token-symbol">{token.symbol}</div>
                             </div>
-                            <div className="token-price"> <b>${Math.ceil(token.price * 100) / 100}</b></div>
-                            <div onClick={() => navigator.clipboard.writeText(token.address)}>
-                                Address: <b className="token-address" >{token.address} <AiOutlineCopy /></b>
+                            <div className="token-price"> <span>${Math.ceil(token.price * 100) / 100}</span></div>
+                            <div className="token-address" onClick={() => navigator.clipboard.writeText(token.address)}>
+                                Contract address: <b>{addressSliced} <AiOutlineCopy /></b>
                             </div>
                             <div>
                                 Liquidity: <b>{token.liquidity}</b>
@@ -72,7 +74,7 @@ const TokenDetails = () => {
                                 Created: <b>{formattedCreatedAt}</b>
                             </div>
                             <div className='token-etherscan'>
-                                <b><a href={`https://${page}/address/${token.address}`} target='_blank'> Block Explorer </a></b>
+                                <span><a href={`https://${page}/address/${token.address}`} target='_blank'> Block Explorer </a></span>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@
     padding-top: 100px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 
     .token-detail {
         width: 780px;
@@ -34,6 +35,7 @@
             div {
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
                 gap: 7px;
             }
 
@@ -72,19 +74,24 @@
 
             .token-price {
                 font-size: 48px;
+                font-weight: bold;
+                color: var(--black-to-white);
             }
 
             .token-address {
-                cursor: pointer;
-                transition: 0.3s;
+                b {
+                    cursor: pointer;
+                    transition: 0.3s;
 
-                &:hover {
-                    color: rgba(119, 128, 160, 0.719);
+                    &:hover {
+                        color: rgba(119, 128, 160, 0.719);
+                    }
                 }
             }
 
             .token-etherscan {
-                b {
+                span {
+                    font-weight: 600;
                     font-size: medium;
                 }
             }

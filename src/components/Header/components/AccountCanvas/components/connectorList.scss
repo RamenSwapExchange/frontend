@@ -3,11 +3,13 @@
 :root {
     --connector-div-background: #f8f4fc;
     --connector-div-background-hover: #f0ecfc;
+    --connector-loader: black;
 }
 
 [data-theme='dark'] {
     --connector-div-background: rgb(19, 26, 42);
     --connector-div-background-hover: #383c54;
+    --connector-loader: white;
 }
 
 .connector-header {
@@ -44,6 +46,7 @@
             color: var(--black-to-white);
         }
         .connector-spinner {
+            color: var(--connector-loader);
             height: 20px;
             width: 20px;
             margin-left: auto;
