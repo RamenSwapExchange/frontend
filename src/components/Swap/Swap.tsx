@@ -10,7 +10,7 @@ import useNet from '../../common/useNet'
 import { selectChoosenTokens, swapTokens } from '../../redux/tokensSlice'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../redux/appSlice'
-import SingleSwap from './SingleSwap'
+import SingleSwap from './SingleSwap/SingleSwap'
 
 const Swap = () => {
     const location = useLocation()

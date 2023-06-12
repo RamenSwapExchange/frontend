@@ -4,11 +4,11 @@ import { RiArrowDropDownLine } from 'react-icons/ri'
 import { Ref } from 'react'
 import { IMaskInput } from 'react-imask'
 
-import useTokenModal from './useTokenModal/useTokenModal'
-import useNet from '../../common/useNet'
+import useTokenModal from '../../../common/useTokenModal/useTokenModal'
+import useNet from '../../../common/useNet'
 
-import { useAppSelector } from '../../redux/hooks'
-import { selectChoosenTokens } from '../../redux/tokensSlice'
+import { useAppSelector } from '../../../redux/hooks'
+import { selectChoosenTokens } from '../../../redux/tokensSlice'
 
 type SingleSwapConfig = {
     id: number

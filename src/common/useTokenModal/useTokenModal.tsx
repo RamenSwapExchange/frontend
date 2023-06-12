@@ -8,9 +8,9 @@ import {
     resetChoosenTokens,
     selectTokens,
     TokensType,
-} from '../../../redux/tokensSlice'
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import useNet from '../../../common/useNet'
+} from '../../redux/tokensSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import useNet from '../../common/useNet'
 
 const useTokenModal = ({ id }: { id: number }) => {
     const dispatch = useAppDispatch()
