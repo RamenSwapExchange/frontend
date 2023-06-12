@@ -56,7 +56,21 @@
         box-shadow: 0px -73px 100px 0px rgba(129, 71, 229, 0.445);
         transition: 0.2s;
     }
+
+    .home-header {
+        z-index: 20;
+        margin-top: 40px;
+        font-size: 6rem;
+        color: $primary-color;
+        background: #8247e5;
+        background: linear-gradient(to right, $primary-color 0%, #9f75e7 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
     .home-button {
+        z-index: 20;
         background: linear-gradient(to right, $primary-color, #9f75e7);
         color: white;
         border-radius: 25px;
@@ -69,34 +83,34 @@
     }
 }
 
-.home-header {
-    margin-top: 40px;
-    font-size: 6rem;
-    color: $primary-color;
-    background: #8247e5;
-    background: linear-gradient(to right, $primary-color 0%, #9f75e7 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 @media only screen and (max-width: 1300px) {
-    .home-header {
-        font-size: 5rem;
+    .home-container {
+        .home-header {
+            font-size: 5rem;
+        }
     }
 }
 @media only screen and (max-width: 600px) {
     .home-container {
         margin-top: 0px;
-    }
 
-    .home-header {
-        font-size: 3rem;
+        .home-header {
+            font-size: 3rem;
+        }
     }
 }
 
 @media only screen and (max-width: 288px) {
-    .home-header {
-        font-size: 2rem;
+    .home-container {
+        .home-header {
+            font-size: 2rem;
+        }
+    }
+}
+@media only screen and (max-height: 750px) {
+    .home-container {
+        .home-header {
+            margin-top: -40px;
+        }
     }
 }
