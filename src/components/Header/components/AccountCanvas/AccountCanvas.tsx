@@ -8,6 +8,7 @@ import Account from './components/Account'
 
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
 import { selectAccountCanvas, showAccountCanvas } from '../../../../redux/appSlice'
+import Info from './Info/Info'
 
 const AccountCanvas = () => {
     const dispatch = useAppDispatch()
@@ -30,7 +31,7 @@ const AccountCanvas = () => {
 
                     <div className="right-panel">
                         {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
-
+                        <Info />
                         <ThemeButton />
                     </div>
                 </div>
@@ -40,10 +41,10 @@ const AccountCanvas = () => {
                 <div className="backdrop-mobile" onClick={handleClose} />
                 <div className="right-panel">
                     {isConnected ? <Account /> : <ConnectorList onConnectAccount={handleClose} />}
-
+                    <Info />
                     <ThemeButton />
                 </div>
-            </Offcanvas>
+            </Offcanvas >
         </>
     )
 }
